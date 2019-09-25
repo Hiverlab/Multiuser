@@ -42,12 +42,12 @@ public class PhotonRaiseEventComponent : MonoBehaviourPunCallbacks, IOnEventCall
 		}
 	}
 
-	public void OnEnable()
+	public override void OnEnable()
 	{
 		PhotonNetwork.AddCallbackTarget(this);
 	}
 
-	public void OnDisable()
+	public override void OnDisable()
 	{
 		PhotonNetwork.RemoveCallbackTarget(this);
 	}

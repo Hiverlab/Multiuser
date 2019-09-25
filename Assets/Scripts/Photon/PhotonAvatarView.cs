@@ -7,7 +7,7 @@ using Oculus;
 
 public class PhotonAvatarView : MonoBehaviourPunCallbacks, IPunObservable
 {
-	private PhotonView photonView;
+	private PhotonView m_PhotonView;
 	private OvrAvatar ovrAvatar;
 	private OvrAvatarRemoteDriver remoteDriver;
 
@@ -19,13 +19,13 @@ public class PhotonAvatarView : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-		photonView = GetComponent<PhotonView>();
+		m_PhotonView = GetComponent<PhotonView>();
 
-		if (photonView.IsMine)
+		if (m_PhotonView.IsMine)
 		{
 			ovrAvatar = GetComponent<OvrAvatar>();
 
-			ovrAvatar.oculusUserID = photonView.ViewID.ToString();
+			ovrAvatar.oculusUserID = m_PhotonView.ViewID.ToString();
 			thisOculusID = ovrAvatar.oculusUserID;
 
 			//ovrAvatar.oculusUserID = Oculus.Platform.Users.GetLoggedInUser().ToString();
@@ -52,7 +52,7 @@ public class PhotonAvatarView : MonoBehaviourPunCallbacks, IPunObservable
 
 	public void OnDisable()
 	{
-		if (photonView.IsMine)
+		if (m_PhotonView.IsMine)
 		{
 			ovrAvatar.RecordPackets = false;
 			ovrAvatar.PacketRecorded -= OnLocalAvatarPacketRecorded;
