@@ -171,17 +171,17 @@ public class SpeechSandboxStreaming : MonoBehaviour
         StartRecording();
     }
 
-    void Start()
-    {
-        //_GameLogicController = GameLogicController as dialogFocus;
-
+    public void Initialize() {
         LogSystem.InstallDefaultReactors();
 
 
         //  Create credential and instantiate service
         Runnable.Run(createServices());
+    }
 
-
+    void Start()
+    {
+        //_GameLogicController = GameLogicController as dialogFocus;
     }
 
     public bool Active

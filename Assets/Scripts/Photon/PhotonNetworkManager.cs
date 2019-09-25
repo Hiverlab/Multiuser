@@ -172,12 +172,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 		//SceneController.instance.SwitchScene(sceneIndex);
 	}
 
-    public void OnJoinRoomSuccess() {
-        DebugText("Joined room successfully " + PhotonNetwork.CurrentRoom.ToString());
-
-        CreateLocalAvatar();
-    }
-
 	#region OVERRIDEN PHOTON CALLBACKS
 
 	public override void OnConnectedToMaster()
@@ -201,6 +195,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 
     public override void OnJoinedRoom()
 	{
+        OnJoinRoomSuccessful.Invoke();
+
         CreateLocalAvatar();
     }
 
