@@ -62,6 +62,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
     // Update is called once per frame
     void Update()
     {
+        /*
 		networkClientState = PhotonNetwork.NetworkClientState;
         //Debug.Log("Status: " + PhotonNetwork.NetworkClientState);
 
@@ -77,6 +78,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 				playerIDList.Add(player.UserId);
 			}
 		}
+        */
     }
 
 	public void Connect()
