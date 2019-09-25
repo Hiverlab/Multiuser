@@ -12,8 +12,9 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 	public static PhotonNetworkManager instance;
 
 	public Transform OVRCameraRig;
+    public Transform avatarSpawnPoint;
 
-	private PhotonView myPhotonView;
+    private PhotonView myPhotonView;
 
 	public bool isMaster;
 
@@ -207,6 +208,14 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 
         if (PhotonNetwork.AllocateViewID(photonView)) {
             Debug.Log("Allocated viewid: " + photonView);
+
+            // Set camera rig position to spawn point
+            OVRCameraRig.position = avatarSpawnPoint.transform.position;
+            OVRCameraRig.rotation = avatarSpawnPoint.transform.rotation;
+
+            // Set local avatar transform to OVR camera transform
+            localAvatar.transform.position = avatarSpawnPoint.transform.position;
+            localAvatar.transform.rotation = avatarSpawnPoint.transform.rotation;
 
             RaiseEventOptions raiseEventOptions = new RaiseEventOptions {
                 CachingOption = EventCaching.AddToRoomCache,
