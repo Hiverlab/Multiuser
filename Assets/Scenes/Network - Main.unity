@@ -228,7 +228,6 @@ GameObject:
   - component: {fileID: 43975428}
   - component: {fileID: 43975434}
   - component: {fileID: 43975433}
-  - component: {fileID: 43975435}
   m_Layer: 0
   m_Name: ToyCubePf (3)
   m_TagString: Untagged
@@ -376,26 +375,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 43975433}
-  - {fileID: 43975435}
   viewIdField: 3
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &43975435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43975426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &77530253
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77530253}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2386355, z: -0.061080012}
+  m_LocalPosition: {x: 0, y: 2.098, z: -0.1279}
   m_LocalScale: {x: 0.12143143, y: 1.9398922, z: 0.12143143}
   m_Children:
   - {fileID: 43975427}
@@ -500,7 +482,6 @@ GameObject:
   - component: {fileID: 579431049}
   - component: {fileID: 579431055}
   - component: {fileID: 579431054}
-  - component: {fileID: 579431056}
   m_Layer: 0
   m_Name: ToyCubePf (5)
   m_TagString: Untagged
@@ -648,26 +629,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 579431054}
-  - {fileID: 579431056}
   viewIdField: 4
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &579431056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579431047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1001 &596079919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1313,7 +1277,6 @@ GameObject:
   - component: {fileID: 1310256211}
   - component: {fileID: 1310256217}
   - component: {fileID: 1310256216}
-  - component: {fileID: 1310256218}
   m_Layer: 0
   m_Name: ToyCubePf (6)
   m_TagString: Untagged
@@ -1461,26 +1424,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1310256216}
-  - {fileID: 1310256218}
   viewIdField: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1310256218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1310256209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &1482796282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OVRCameraRig: {fileID: 177755697}
-  avatarSpawnPoint: {fileID: 0}
+  avatarSpawnPoint: {fileID: 1900671705}
   isMaster: 0
   roomName: 
   playerIDList: []
@@ -1859,7 +1805,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900671704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.767, y: -0.135, z: -0.535}
+  m_LocalPosition: {x: -0.005, y: -0.135, z: -1.571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1773762025}
