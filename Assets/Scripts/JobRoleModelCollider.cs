@@ -23,7 +23,7 @@ public class JobRoleModelCollider : MonoBehaviour {
             jobRoleParent.transform.position += normalizedDir * 0.1f;
         }
 
-        Debug.Log("Colliding with: " + other);
+        //Debug.Log("Colliding with: " + other);
     }
 
     public void ShowSkillPanel() {

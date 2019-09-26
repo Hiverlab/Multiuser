@@ -13,7 +13,7 @@ public class KeyChecker : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        Debug.Log("KeyChecker started");
+        //Debug.Log("KeyChecker started");
     }
 
     // Update is called once per frame
@@ -30,13 +30,16 @@ public class KeyChecker : MonoBehaviour {
 
         // Invoke button click if collided with panel button
         if (other.tag == "PanelButton") {
+
             ParameterButton parameterButton = other.GetComponent<ParameterButton>();
+
+            Debug.Log("Parameter button: " + parameterButton);
 
             // If is parameter button
             if (parameterButton != null) {
                 // And not visible
                 if (!parameterButton.GetIsVisible()) {
-                    return;
+                    //return;
                 }
 
                 DataManager.instance.OnButtonSelected?.Invoke(other.gameObject);

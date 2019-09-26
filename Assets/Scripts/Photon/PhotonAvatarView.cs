@@ -50,7 +50,7 @@ public class PhotonAvatarView : MonoBehaviourPunCallbacks, IPunObservable
 		//DebugAvatarView.instance.UpdateDebugText(packetData.Count);
 	}
 
-	public void OnDisable()
+	public override void OnDisable()
 	{
 		if (m_PhotonView.IsMine)
 		{
@@ -148,6 +148,10 @@ public class PhotonAvatarView : MonoBehaviourPunCallbacks, IPunObservable
 		else if (stream.IsReading)
 		{
 			thisOculusID = (string)stream.ReceiveNext();
+
+            if (stream.PeekNext() == null) {
+                return;
+            }
 
 			int num = (int)stream.ReceiveNext();
 

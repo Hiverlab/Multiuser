@@ -673,6 +673,11 @@ namespace Photon.Pun
                 return null;
             }
 
+            if (this.currentItem >= this.readData.Length) {
+                return null;
+            }
+
+
             object obj = this.readData[this.currentItem];
             this.currentItem++;
             return obj;
@@ -684,6 +689,10 @@ namespace Photon.Pun
             if (this.IsWriting)
             {
                 Debug.LogError("Error: you cannot read this stream that you are writing!");
+                return null;
+            }
+            
+            if (this.currentItem >= this.readData.Length) {
                 return null;
             }
 

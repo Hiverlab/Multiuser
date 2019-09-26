@@ -153,9 +153,9 @@ public class DataManager : MonoBehaviour {
         Debug.Log("Job roles: " + jobRolesList.Count + " Job families: " + jobFamiliesList.Count + " Impact level: " + impactLevelList.Count + " Skills: " + skillsList.Count);
 
         if (result.Count() > 0) {
-            TableManager.instance.ShowSortButtons();
+            //TableManager.instance.ShowSortButtons();
         } else {
-            TableManager.instance.HideSortButtons();
+            //TableManager.instance.HideSortButtons();
         }
 
         for (int i = 0; i < nodesList.Count; i++) {
@@ -166,6 +166,11 @@ public class DataManager : MonoBehaviour {
                 nodesList[i].Unhighlight();
             }
         }
+    }
+
+    public void SortHighlightedNodesRPC() {
+        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SortHighlightedNodes),
+                    Photon.Pun.RpcTarget.All);
     }
 
     public void SortHighlightedNodes() {
@@ -387,6 +392,7 @@ public class DataManager : MonoBehaviour {
         //impactLevelDropdown.AddOptions(impactLevels);
         //skillsDropdown.AddOptions(skills);
 
+        /*
         for (int i = 0; i < jobFamilies.Count; i++) {
             jobFamilyButtonContainer.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text = jobFamilies[i];
             jobFamilyButtonContainer.GetChild(i).name = jobFamilies[i].ToLower();
@@ -401,6 +407,7 @@ public class DataManager : MonoBehaviour {
             skillsButtonContainer.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text = skills[i];
             skillsButtonContainer.GetChild(i).name = skills[i].ToLower();
         }
+        */
 
         for (int i = 0; i < impactLevels.Count; i++) {
             impactLevelButtonContainer.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text = impactLevels[i];
@@ -474,7 +481,7 @@ public class DataManager : MonoBehaviour {
         HighlightSelectedNodes();
     }
 
-    public void DeseectImpact(string impact) {
+    public void DeselectImpact(string impact) {
         ClearParameterLists();
 
         HighlightSelectedNodes();
@@ -501,7 +508,7 @@ public class DataManager : MonoBehaviour {
 
         jobFamily.transform.position = GetCenterPointOfJobFamily(jobFamilyName);
 
-        jobFamily.transform.localPosition = new Vector3(jobFamily.transform.localPosition.x, -0.75f, jobFamily.transform.localPosition.z);
+        jobFamily.transform.localPosition = new Vector3(jobFamily.transform.localPosition.x, 0.5f, jobFamily.transform.localPosition.z);
 
         jobFamily.SetTitle(jobFamilyName);
         jobFamily.name = jobFamilyName;
@@ -558,7 +565,7 @@ public class DataManager : MonoBehaviour {
 
         officePosition /= functions.Length;
 
-        Vector3 position = new Vector3(officePosition.x + randomOffset.x, 5f, officePosition.z + randomOffset.z);
+        Vector3 position = new Vector3(officePosition.x + randomOffset.x, 1.1f, officePosition.z + randomOffset.z);
         //Vector3 position = new Vector3(officePosition.x + randomOffset.x, 5f, officePosition.z + randomOffset.z);
         //Vector3 position = new Vector3(officePosition.x + randomOffset.x, -0.5f, officePosition.z + randomOffset.z);
         jobRole.transform.position = position;

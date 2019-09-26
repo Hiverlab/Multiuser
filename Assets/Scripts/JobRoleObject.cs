@@ -144,7 +144,7 @@ public class JobRoleObject : MonoBehaviour {
     }
 
     public void SetOriginalPosition(Vector3 position) {
-        originalPosition = new Vector3(position.x, -0.5f, position.z);
+        originalPosition = new Vector3(position.x, 1.1f, position.z);
     }
 
     public JobRole GetJobRoleData() {

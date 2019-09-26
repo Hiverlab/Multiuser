@@ -53,6 +53,10 @@ public class ParameterButton : MonoBehaviour
         }
     }
 
+    public void TestButton() {
+        Debug.Log("Test hit button");
+    }
+
     public void OnClick() {
         buttonName = textMesh.text;
 
@@ -66,7 +70,11 @@ public class ParameterButton : MonoBehaviour
                 DataManager.instance.SelectJobFamily(buttonName);
                 break;
             case PARAMETER_TYPE.IMPACT:
-                DataManager.instance.SelectImpact(buttonName);
+                //DataManager.instance.SelectImpact(buttonName);
+                //PhotonNetworkManager.instance.photonView.RPC("RPC_SelectImpact", Photon.Pun.RpcTarget.All, buttonName);
+                PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SelectImpact),
+                    Photon.Pun.RpcTarget.All,
+                    buttonName);
                 break;
             case PARAMETER_TYPE.SKILL:
                 DataManager.instance.SelectSkill(buttonName);
@@ -87,7 +95,7 @@ public class ParameterButton : MonoBehaviour
                 DataManager.instance.DeselectJobFamily(buttonName);
                 break;
             case PARAMETER_TYPE.IMPACT:
-                DataManager.instance.DeseectImpact(buttonName);
+                DataManager.instance.DeselectImpact(buttonName);
                 break;
             case PARAMETER_TYPE.SKILL:
                 DataManager.instance.DeselectSkill(buttonName);

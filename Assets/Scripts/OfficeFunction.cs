@@ -48,8 +48,8 @@ public class OfficeFunction : MonoBehaviour {
         originalColor = new Color[buildingMaterials.Length];
 
         for (int i = 0; i < buildingMaterials.Length; i++) {
-            //originalColor[i] = buildingMaterials[i].GetColor("_BaseColor");
-            //Debug.Log("Original color: " + buildingMaterials[i].GetColor("_BaseColor"));
+            originalColor[i] = buildingMaterials[i].GetColor("_BaseColor");
+            Debug.Log("Original color: " + buildingMaterials[i].GetColor("_BaseColor"));
         }
     }
 
@@ -57,7 +57,7 @@ public class OfficeFunction : MonoBehaviour {
         originalColor = new Color[buildingMaterials.Length];
 
         for (int i = 0; i < buildingMaterials.Length; i++) {
-            //buildingMaterials[i].SetColor("_EmissionColor", dangerLight);
+            buildingMaterials[i].SetColor("_EmissionColor", dangerLight);
 
             //DOTween.To(() => buildingMaterials[i].GetColor("_EmissionColor"), x => buildingMaterials[i].SetColor("_EmissionColor", x), Color.red, Utilities.animationSpeed);
         }
@@ -67,7 +67,7 @@ public class OfficeFunction : MonoBehaviour {
         originalColor = new Color[buildingMaterials.Length];
 
         for (int i = 0; i < buildingMaterials.Length; i++) {
-            //buildingMaterials[i].SetColor("_EmissionColor", buildingMaterials[i].GetColor("_BaseColor"));
+            buildingMaterials[i].SetColor("_EmissionColor", buildingMaterials[i].GetColor("_BaseColor"));
         }
     }
 

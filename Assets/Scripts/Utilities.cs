@@ -32,7 +32,7 @@ public class Utilities : MonoBehaviour {
     }
 
     public void VibrateController(float frequency, float amplitude, float duration, OVRInput.Controller controller) {
-        SoundEffectsManager.instance.PlayAudioClip(SoundEffectsManager.SFX.UI);
+        //SoundEffectsManager.instance.PlayAudioClip(SoundEffectsManager.SFX.UI);
         StartCoroutine(VibrateControllerCoroutine(frequency, amplitude, duration, controller));
     }
 

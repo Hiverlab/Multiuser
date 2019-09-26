@@ -1,0 +1,711 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124ba434280ab8f4295f3d92cdd0c391, type: 3}
+  m_Name: JobRolesData
+  m_EditorClassIdentifier: 
+  Entities:
+  - role: Branch operations
+    family: Sales & distribution
+    functions: Front office
+    impactLevel: High
+    skills: 'Advisory
+
+      Customer mindset
+
+      Data interpretation & analysis
+
+      Change management
+
+      Lateral thinking
+
+      Product awareness'
+    size: 355
+  - role: 'Customer service
+
+      Call centre representative'
+    family: Customer service
+    functions: Front office
+    impactLevel: High
+    skills: "Complex problem solving\nTechnology troubleshooting\nData interpretation
+      & analysis \nCustomer mindset\nProduct awareness"
+    size: 220
+  - role: Mortgage specialist
+    family: Sales & distribution
+    functions: Front office
+    impactLevel: High
+    skills: 'Advisory
+
+      Customer mindset
+
+      Data interpretation & analysis
+
+      Change management
+
+      Lateral thinking
+
+      Product awareness'
+    size: 165
+  - role: Business assurance
+    family: Business assurance
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: High
+    skills: 'Advanced digital acumen / literacy
+
+      Change management
+
+      Data interpretation & analysis
+
+      Lateral thinking
+
+      Process excellence'
+    size: 20
+  - role: Credit & loan operations
+    family: Credit & loan operations
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: High
+    skills: 'Advanced digital acumen / literacy
+
+      Advisory
+
+      Automation management
+
+      Change management
+
+      Complex problem solving
+
+      Data interpretation & analysis
+
+      Process excellence
+
+      Systems thinking'
+    size: 110
+  - role: "Transaction \nprocessing officer"
+    family: Transaction operations
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: High
+    skills: 'Automation management
+
+      Business & financial acumen
+
+      Process excellence
+
+      Risk awareness
+
+      Technology troubleshooting'
+    size: 67
+  - role: Financial consultant
+    family: Relationship management
+    functions: Front office
+    impactLevel: Medium
+    skills: 'Advisory
+
+      Customer mindset
+
+      Product awareness
+
+      Influencing & negotiation
+
+      Lateral thinking'
+    size: 955
+  - role: Product manager
+    family: Product management
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: "Advanced digital acumen / literacy\nChange management\nCustomer mindset\nData
+      interpretation & analysis \nData storytelling\nInfluencing & negotiation\nProject
+      management\nStakeholder engagement"
+    size: 115
+  - role: Trader
+    family: Sales & trading
+    functions: Front office
+    impactLevel: Medium
+    skills: 'Analytics & computational modelling
+
+      Advanced digital acumen / literacy
+
+      Customer mindset
+
+      Data storytelling
+
+      Lateral thinking'
+    size: 120
+  - role: Trade Support
+    family: Trade Management
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: High
+    skills: "Automation management\nAdvanced digital acumen / literacy \nProcess excellence
+      \nComplex problem solving \nRisk awareness \nData interpretation & analysis"
+    size: 55
+  - role: Relationship manager
+    family: Client servicing & reporting
+    functions: Front office
+    impactLevel: Medium
+    skills: 'Advanced digital acumen / literacy
+
+      Advisory
+
+      Analytics & computational modelling
+
+      Customer mindset
+
+      Product awareness'
+    size: 525
+  - role: Research analyst
+    family: Research
+    functions: Front office
+    impactLevel: Medium
+    skills: 'Advanced digital acumen / literacy
+
+      Advisory
+
+      Analytics & computational modelling
+
+      Data storytelling
+
+      Lateral thinking
+
+      Programming & coding'
+    size: 30
+  - role: Credit structuring officer
+    family: Product management
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Advanced digital acumen / literacy
+
+      Data interpretation & analysis
+
+      Lateral thinking
+
+      Risk awareness
+
+      Stakeholder engagement'
+    size: 195
+  - role: Portfolio manager/advisor
+    family: Portfolio management
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Advanced digital acumen / literacy
+
+      Customer mindset
+
+      Data interpretation & analysis
+
+      Lateral thinking
+
+      Stakeholder engagement'
+    size: 50
+  - role: Wealth manager
+    family: Relationship management
+    functions: Front office
+    impactLevel: Low
+    skills: 'Advanced digital acumen / literacy
+
+      Advisory
+
+      Customer mindset
+
+      Influencing & negotiation
+
+      Product awareness'
+    size: 40
+  - role: 'Relationship manager
+
+      (Commercial)'
+    family: Relationship management
+    functions: 'Front office
+
+      Middle office'
+    impactLevel: High
+    skills: 'Advisory
+
+      Advanced digital acumen / literacy
+
+      Data interpretation & analysis
+
+      Influencing & negotiation
+
+      Lateral thinking'
+    size: 530
+  - role: "Transaction banking \noperations"
+    family: Operations
+    functions: Back office
+    impactLevel: High
+    skills: 'Advanced digital acumen / literacy
+
+      Change management
+
+      Complex problem solving
+
+      Data interpretation & analysis
+
+      Process excellence
+
+      Systems thinking'
+    size: 25
+  - role: 'Relationship manager
+
+      (Corporate)'
+    family: Relationship management
+    functions: 'Front office
+
+      Middle office'
+    impactLevel: Low
+    skills: 'Advisory
+
+      Advanced digital acumen / literacy
+
+      Data interpretation & analysis
+
+      Influencing & negotiation
+
+      Lateral thinking'
+    size: 220
+  - role: Product sales
+    family: Sales
+    functions: 'Front office
+
+      Middle office'
+    impactLevel: Medium
+    skills: 'Advisory
+
+      Data interpretation & analysis
+
+      Data storytelling
+
+      Influencing & negotiation
+
+      Stakeholder engagement'
+    size: 250
+  - role: "Product sales & \ndevelopment (Corporate)"
+    family: Product management
+    functions: 'Front office
+
+      Middle office'
+    impactLevel: Low
+    skills: "Advanced digital acumen / literacy\nAdvisory\nChange management\nCustomer
+      mindset\nData interpretation & analysis \nData storytelling\nInfluencing & negotiation\nProject
+      management\nStakeholder engagement"
+    size: 135
+  - role: "Treasury operations \nofficer"
+    family: Operations
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Data interpretation & analysis
+
+      Data storytelling
+
+      Process excellence
+
+      Risk awareness
+
+      Strategy planning
+
+      Stakeholder engagement'
+    size: 75
+  - role: 'AML / CFT transaction
+
+      surveillance'
+    family: Compliance
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: High
+    skills: "Data interpretation & analysis \nAdvanced digital acumen / literacy \nData
+      storytelling \nComplex problem solving \nProduct awareness \nLateral thinking
+      \nAnalytics & computational modelling"
+    size: 45
+  - role: "Compliance monitoring \n& testing"
+    family: Compliance
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: High
+    skills: "Data interpretation & analysis \nAdvanced digital acumen / literacy \nData
+      storytelling \nComplex problem solving \nProduct awareness \nLateral thinking
+      \nAnalytics & computational modelling"
+    size: 10
+  - role: Trade surveillance
+    family: Compliance
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: High
+    skills: "Data interpretation & analysis \nAdvanced digital acumen / literacy \nData
+      storytelling \nComplex problem solving \nProduct awareness \nLateral thinking
+      \nAnalytics & computational modelling"
+    size: 40
+  - role: "Paralegal / legal \ncounsel"
+    family: Legal
+    functions: Front office
+    impactLevel: Low
+    skills: 'Advanced digital acumen / literacy
+
+      Change management
+
+      Cybersecurity
+
+      Lateral thinking
+
+      Risk awareness'
+    size: 30
+  - role: Data analyst / scientist
+    family: Data analytics
+    functions: Front office
+    impactLevel: Medium
+    skills: 'Advisory
+
+      Business & financial acumen
+
+      Data storytelling
+
+      Data engineering
+
+      Investigation
+
+      Lateral thinking
+
+      Process excellence
+
+      Stakeholder engagement'
+    size: 80
+  - role: "Finance operations \n& tax"
+    family: HR, finance, tax & audit
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Advanced digital acumen / literacy
+
+      Advisory
+
+      Business & financial acumen
+
+      Change management
+
+      Complex problem solving
+
+      Data interpretation & analysis
+
+      Lateral thinking
+
+      Process excellence'
+    size: 200
+  - role: "Human resource \noperations"
+    family: HR, finance, tax & audit
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Advanced digital acumen / literacy
+
+      Advisory
+
+      Business & financial acumen
+
+      Change management
+
+      Complex problem solving
+
+      Data interpretation & analysis
+
+      Lateral thinking
+
+      Process excellence'
+    size: 120
+  - role: Internal audit
+    family: HR, finance, tax & audit
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Advanced digital acumen / literacy
+
+      Advisory
+
+      Business & financial acumen
+
+      Change management
+
+      Complex problem solving
+
+      Data interpretation & analysis
+
+      Lateral thinking
+
+      Process excellence'
+    size: 105
+  - role: "Marketing & \ncommunications officer"
+    family: Marketing
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Data interpretation & analysis
+
+      Targeted technical sales
+
+      Product awareness
+
+      Customer mindset
+
+      Advanced digital acumen / literacy
+
+      Technology troubleshooting'
+    size: 50
+  - role: "IT applications \n& software"
+    family: Information technology
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Business & financial acumen
+
+      Project management
+
+      Risk awareness
+
+      Change management
+
+      Global perspectives
+
+      Process excellence
+
+      Systems thinking
+
+      Cybersecurity'
+    size: 380
+  - role: IT security
+    family: Information technology
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Business & financial acumen
+
+      Project management
+
+      Risk awareness
+
+      Change management
+
+      Global perspectives
+
+      Process excellence
+
+      Systems thinking
+
+      Cybersecurity'
+    size: 55
+  - role: "IT operations \nmanagement"
+    family: Information technology
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Business & financial acumen
+
+      Project management
+
+      Risk awareness
+
+      Change management
+
+      Global perspectives
+
+      Process excellence
+
+      Systems thinking
+
+      Cybersecurity'
+    size: 170
+  - role: IT project delivery
+    family: Information technology
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Business & financial acumen
+
+      Project management
+
+      Risk awareness
+
+      Change management
+
+      Global perspectives
+
+      Process excellence
+
+      Systems thinking
+
+      Cybersecurity'
+    size: 20
+  - role: IT service support
+    family: Information technology
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Business & financial acumen
+
+      Project management
+
+      Risk awareness
+
+      Change management
+
+      Global perspectives
+
+      Process excellence
+
+      Systems thinking
+
+      Cybersecurity'
+    size: 70
+  - role: "IT strategy & \narchitecture"
+    family: Information technology
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: 'Business & financial acumen
+
+      Project management
+
+      Risk awareness
+
+      Change management
+
+      Global perspectives
+
+      Process excellence
+
+      Systems thinking
+
+      Cybersecurity'
+    size: 25
+  - role: Credit risk officer
+    family: Risk
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: "Data engineering \nData storytelling \nProgramming & coding \nStakeholder
+      engagement \nAnalytics & computational modelling \nData interpretation & analysis
+      \nSystems thinking \nAutomation management"
+    size: 25
+  - role: 'Compliance regulatory
+
+      reporting / advisory'
+    family: Compliance
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: "Data interpretation & analysis \nAdvanced digital acumen / literacy \nData
+      storytelling \nComplex problem solving \nProduct awareness \nLateral thinking
+      \nAnalytics & computational modelling"
+    size: 40
+  - role: "Financial crime \ncompliance"
+    family: Compliance
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Medium
+    skills: "Data interpretation & analysis \nAdvanced digital acumen / literacy \nData
+      storytelling \nComplex problem solving \nProduct awareness \nLateral thinking
+      \nAnalytics & computational modelling"
+    size: 5
+  - role: "Customer experience \ndesigner"
+    family: Digital & innovation
+    functions: Front office
+    impactLevel: Low
+    skills: 'Advisory
+
+      Business & financial acumen
+
+      Data storytelling
+
+      Data engineering
+
+      Investigation
+
+      Lateral thinking
+
+      Process excellence
+
+      Stakeholder engagement'
+    size: 35
+  - role: Market risk officer
+    family: Risk
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Low
+    skills: "Data engineering \nData storytelling \nProgramming & coding \nStakeholder
+      engagement \nAnalytics & computational modelling \nData interpretation & analysis
+      \nSystems thinking \nAutomation management"
+    size: 80
+  - role: "Operational risk \nmanagement"
+    family: Risk
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Low
+    skills: "Data engineering \nData storytelling \nProgramming & coding \nStakeholder
+      engagement \nAnalytics & computational modelling \nData interpretation & analysis
+      \nSystems thinking \nAutomation management"
+    size: 65
+  - role: "Digital marketing \nofficer"
+    family: Marketing
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Low
+    skills: 'Data interpretation & analysis
+
+      Targeted technical sales
+
+      Product awareness
+
+      Customer mindset
+
+      Advanced digital acumen / literacy
+
+      Technology troubleshooting'
+    size: 20
+  - role: "AML / CFT policy \nadvisory"
+    family: Compliance
+    functions: 'Middle office
+
+      Back office'
+    impactLevel: Low
+    skills: "Data interpretation & analysis \nAdvanced digital acumen / literacy \nData
+      storytelling \nComplex problem solving \nProduct awareness \nLateral thinking
+      \nAnalytics & computational modelling"
+    size: 170

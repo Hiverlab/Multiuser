@@ -34,7 +34,7 @@ public class JobFamilyObject : MonoBehaviour {
 
     private Transform lineEndAnchor;
 
-    private float highlightHeight = 0.9f;
+    private float highlightHeight = 1.2f;
 
     // Use this for initialization
     void Start() {
@@ -113,7 +113,7 @@ public class JobFamilyObject : MonoBehaviour {
 
         isHighlighted = false;
 
-        transform.DOLocalMoveY(-0.75f, Utilities.animationSpeed);
+        transform.DOLocalMoveY(0.5f, Utilities.animationSpeed);
 
         List<Transform> jobRolesList = DataManager.instance.GetJobRolesByFamilyName(name);
 

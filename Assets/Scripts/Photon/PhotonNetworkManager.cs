@@ -195,6 +195,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 
     public override void OnJoinedRoom()
 	{
+        Debug.Log("Joined room successfully");
+
         OnJoinRoomSuccessful.Invoke();
 
         CreateLocalAvatar();
@@ -231,6 +233,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 
             Destroy(localAvatar);
         }
+
+        Debug.Log("Created local avatar");
     }
 
     public void CreateLocalAvatarOld ()
