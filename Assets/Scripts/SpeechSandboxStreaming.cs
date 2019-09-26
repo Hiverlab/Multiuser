@@ -368,9 +368,19 @@ public class SpeechSandboxStreaming : MonoBehaviour
                 {
                     case DialogueStatus.initial_Trigger:
                         AIStandby = true;
+
+                        // Assistant
+                        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_AssistantStandby),
+                                    Photon.Pun.RpcTarget.All);
+
                         break;
                     case DialogueStatus.Help:
                         AIStandby = true;
+
+                        // Assistant
+                        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_AssistantStandby),
+                                    Photon.Pun.RpcTarget.All);
+
                         break;
                     case DialogueStatus.Display:
                         if (AIStandby)
@@ -384,6 +394,11 @@ public class SpeechSandboxStreaming : MonoBehaviour
                         break;
                     default:
                         //AIStandby = false;
+
+                        // Assistant
+                        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_AssistantFailure),
+                                    Photon.Pun.RpcTarget.All);
+
                         break;
                 }
                 

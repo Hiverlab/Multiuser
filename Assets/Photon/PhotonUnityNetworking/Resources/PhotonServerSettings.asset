@@ -36,5 +36,8 @@ MonoBehaviour:
   - RespawnSpaceship
   - RPC_SelectImpact
   - RPC_SortHighlightedNodes
+  - RPC_AssistantFailure
+  - RPC_AssistantStandby
+  - RPC_AssistantSuccess
   DisableAutoOpenWizard: 1
   ShowSettings: 1
