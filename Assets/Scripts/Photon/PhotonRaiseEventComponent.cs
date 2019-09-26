@@ -34,18 +34,24 @@ public class PhotonRaiseEventComponent : MonoBehaviourPunCallbacks, IOnEventCall
 
 		if (photonEvent.Code == InstantiateVrAvatarEventCode)// && SceneManager.GetActiveScene().buildIndex == 1)
 		{
-			Debug.Log("Creating remote avatar...");
-
-			GameObject remoteAvatar = Instantiate(Resources.Load("RemoteAvatar")) as GameObject;
-            Debug.Log("Instantiated remote avatar");
-
-            PhotonView photonView = remoteAvatar.GetComponent<PhotonView>();
-            Debug.Log("Got photon view");
-
-            photonView.ViewID = (int)photonEvent.CustomData;
-            Debug.Log("Set photon view id");
+            StartCoroutine(CreateRemoteAvatarCoroutine(photonEvent));
         }
 	}
+
+    private IEnumerator CreateRemoteAvatarCoroutine(EventData photonEvent) {
+        yield return new WaitForSeconds(2.0f);
+
+        Debug.Log("Creating remote avatar...");
+
+        GameObject remoteAvatar = Instantiate(Resources.Load("RemoteAvatar")) as GameObject;
+        Debug.Log("Instantiated remote avatar");
+
+        PhotonView photonView = remoteAvatar.GetComponent<PhotonView>();
+        Debug.Log("Got photon view");
+
+        photonView.ViewID = (int)photonEvent.CustomData;
+        Debug.Log("Set photon view id");
+    }
 
 	public void OnEnable()
 	{
