@@ -52,10 +52,7 @@ public class ParameterButton : MonoBehaviour
             SelectButton(gameObject);
         }
     }
-
-    public void TestButton() {
-        Debug.Log("Test hit button");
-    }
+    
 
     public void OnClick() {
         buttonName = textMesh.text;
@@ -109,6 +106,8 @@ public class ParameterButton : MonoBehaviour
         if (isVisible) {
             return;
         }
+
+        Debug.Log("Trigger stay: " + other);
 
         if (other.tag == "ScrollRectCollider") {
 

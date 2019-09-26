@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - JobFamilyNode
+  - Node
+  - PanelButton
+  - InputField
+  - ScrollRectCollider
   layers:
   - Default
   - TransparentFX

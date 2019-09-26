@@ -13,15 +13,6 @@ public class DataManager : MonoBehaviour {
     private JobRolesData jobRolesData;
 
     [SerializeField]
-    private TMP_Dropdown jobRolesDropdown;
-    [SerializeField]
-    private TMP_Dropdown jobFamiliesDropdown;
-    [SerializeField]
-    private TMP_Dropdown impactLevelDropdown;
-    [SerializeField]
-    private TMP_Dropdown skillsDropdown;
-
-    [SerializeField]
     private Transform frontOffice;
     [SerializeField]
     private Transform middleOffice;
@@ -386,13 +377,7 @@ public class DataManager : MonoBehaviour {
         jobRoles.Sort();
         jobFamilies.Sort();
         skills.Sort();
-
-        //jobRolesDropdown.AddOptions(jobRoles);
-        //jobFamiliesDropdown.AddOptions(jobFamilies);
-        //impactLevelDropdown.AddOptions(impactLevels);
-        //skillsDropdown.AddOptions(skills);
-
-        /*
+        
         for (int i = 0; i < jobFamilies.Count; i++) {
             jobFamilyButtonContainer.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text = jobFamilies[i];
             jobFamilyButtonContainer.GetChild(i).name = jobFamilies[i].ToLower();
@@ -407,7 +392,6 @@ public class DataManager : MonoBehaviour {
             skillsButtonContainer.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text = skills[i];
             skillsButtonContainer.GetChild(i).name = skills[i].ToLower();
         }
-        */
 
         for (int i = 0; i < impactLevels.Count; i++) {
             impactLevelButtonContainer.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text = impactLevels[i];

@@ -39,7 +39,7 @@ public class KeyChecker : MonoBehaviour {
             if (parameterButton != null) {
                 // And not visible
                 if (!parameterButton.GetIsVisible()) {
-                    //return;
+                    return;
                 }
 
                 DataManager.instance.OnButtonSelected?.Invoke(other.gameObject);
@@ -95,7 +95,7 @@ public class KeyChecker : MonoBehaviour {
 
         // Hide keyboard if not interacting with it
         if (other.tag != "InputField" && other.tag != "VRGazeInteractable" && other.tag != "PanelButton" && other.tag != "ScrollRectCollider") {
-            KeyboardManager.instance.HideKeyboard();
+            //KeyboardManager.instance.HideKeyboard();
         }
 
         if (other.GetComponent<Key>()) {
