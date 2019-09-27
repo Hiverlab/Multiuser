@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class SpectatorManager : MonoBehaviour
-{
+public class SpectatorManager : MonoBehaviour {
     [SerializeField]
     private bool isSpectatorActive = false;
 
@@ -23,8 +22,11 @@ public class SpectatorManager : MonoBehaviour
     private int cameraPositionIndex;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        if (Application.platform == RuntimePlatform.Android) {
+            isSpectatorActive = false;
+        }
+
         if (isSpectatorActive) {
             Initialize();
         }
@@ -37,7 +39,7 @@ public class SpectatorManager : MonoBehaviour
 
         StartCoroutine(SwitchCameraViewCoroutine());
     }
-    
+
     private IEnumerator SwitchCameraViewCoroutine() {
         spectatorCamera.DOMove(cameraPositionList[cameraPositionIndex].position, 1.0f);
         spectatorCamera.DORotate(cameraPositionList[cameraPositionIndex].eulerAngles, 1.0f);
