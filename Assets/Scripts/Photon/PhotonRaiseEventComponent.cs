@@ -13,8 +13,9 @@ public class PhotonRaiseEventComponent : MonoBehaviourPunCallbacks, IOnEventCall
 	public List<GameObject> remoteAvatarToBeLoadedList;
 
 	public readonly byte InstantiateVrAvatarEventCode = 42;
+    public readonly byte InstantiateJobRoleEventCode = 43;
 
-	private void Awake()
+    private void Awake()
 	{
 		if (instance == null)
 		{
@@ -35,6 +36,10 @@ public class PhotonRaiseEventComponent : MonoBehaviourPunCallbacks, IOnEventCall
 		if (photonEvent.Code == InstantiateVrAvatarEventCode)// && SceneManager.GetActiveScene().buildIndex == 1)
 		{
             StartCoroutine(CreateRemoteAvatarCoroutine(photonEvent));
+        }
+
+        if (photonEvent.Code == InstantiateJobRoleEventCode) {
+
         }
 	}
 

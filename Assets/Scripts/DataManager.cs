@@ -231,7 +231,6 @@ public class DataManager : MonoBehaviour {
             xOffset += distanceBetweenNodes;
         }
 
-
     }
 
     private void SelectNodesWithJobRole(string jobRole) {
@@ -329,6 +328,10 @@ public class DataManager : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.O)) {
             SelectJobFamily("Relationship management");
+        }
+
+        if (Input.GetKeyDown(KeyCode.J)) {
+            SelectNodesWithJobRole("Wealth manager");
         }
 
         if (Input.GetKeyDown(KeyCode.L)) {

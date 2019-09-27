@@ -27,6 +27,7 @@ public class JobRoleModelCollider : MonoBehaviour {
     }
 
     public void ShowSkillPanel() {
-        jobRoleParent.ToggleJobPanel();
+        //jobRoleParent.ToggleJobPanel();
+        jobRoleParent.ToggleJobPanelRPC();
     }
 }

@@ -61,10 +61,16 @@ public class ParameterButton : MonoBehaviour
 
         switch (parameterType) {
             case PARAMETER_TYPE.JOB_ROLE:
-                DataManager.instance.SelectJobRole(buttonName);
+                //DataManager.instance.SelectJobRole(buttonName);
+                PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SelectJobRole),
+                    Photon.Pun.RpcTarget.All,
+                    buttonName);
                 break;
             case PARAMETER_TYPE.JOB_FAMILY:
-                DataManager.instance.SelectJobFamily(buttonName);
+                //DataManager.instance.SelectJobFamily(buttonName);
+                PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SelectJobFamily),
+                    Photon.Pun.RpcTarget.All,
+                    buttonName);
                 break;
             case PARAMETER_TYPE.IMPACT:
                 //DataManager.instance.SelectImpact(buttonName);
@@ -74,7 +80,10 @@ public class ParameterButton : MonoBehaviour
                     buttonName);
                 break;
             case PARAMETER_TYPE.SKILL:
-                DataManager.instance.SelectSkill(buttonName);
+                //DataManager.instance.SelectSkill(buttonName);
+                PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SelectSkill),
+                    Photon.Pun.RpcTarget.All,
+                    buttonName);
                 break;
             default:
                 break;
@@ -106,8 +115,6 @@ public class ParameterButton : MonoBehaviour
         if (isVisible) {
             return;
         }
-
-        Debug.Log("Trigger stay: " + other);
 
         if (other.tag == "ScrollRectCollider") {
 

@@ -39,5 +39,13 @@ MonoBehaviour:
   - RPC_AssistantFailure
   - RPC_AssistantStandby
   - RPC_AssistantSuccess
+  - RPC_SelectJobFamily
+  - RPC_SelectJobRole
+  - RPC_SelectSkill
+  - RPC_ToggleImpactPanel
+  - RPC_ToggleJobFamilyPanel
+  - RPC_ToggleJobRolePanel
+  - RPC_ToggleSkillsPanel
+  - RPC_ToggleJobPanel
   DisableAutoOpenWizard: 1
   ShowSettings: 1

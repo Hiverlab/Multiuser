@@ -9,7 +9,14 @@ public class RPCManager : MonoBehaviour
     public static RPCManager instance;
 
     public enum RPC {
+        RPC_ToggleImpactPanel,
+        RPC_ToggleJobFamilyPanel,
+        RPC_ToggleJobRolePanel,
+        RPC_ToggleSkillsPanel,
         RPC_SelectImpact,
+        RPC_SelectJobFamily,
+        RPC_SelectJobRole,
+        RPC_SelectSkill,
         RPC_SortHighlightedNodes,
         RPC_AssistantStandby,
         RPC_AssistantSuccess,
@@ -31,7 +38,14 @@ public class RPCManager : MonoBehaviour
     private void InitializeRPCDictionary() {
         RPCDictionary = new Dictionary<RPC, string>();
 
+        RPCDictionary.Add(RPC.RPC_ToggleImpactPanel, "RPC_ToggleImpactPanel");
+        RPCDictionary.Add(RPC.RPC_ToggleJobFamilyPanel, "RPC_ToggleJobFamilyPanel");
+        RPCDictionary.Add(RPC.RPC_ToggleJobRolePanel, "RPC_ToggleJobRolePanel");
+        RPCDictionary.Add(RPC.RPC_ToggleSkillsPanel, "RPC_ToggleSkillsPanel");
         RPCDictionary.Add(RPC.RPC_SelectImpact, "RPC_SelectImpact");
+        RPCDictionary.Add(RPC.RPC_SelectJobFamily, "RPC_SelectJobFamily");
+        RPCDictionary.Add(RPC.RPC_SelectJobRole, "RPC_SelectJobRole");
+        RPCDictionary.Add(RPC.RPC_SelectSkill, "RPC_SelectSkill");
         RPCDictionary.Add(RPC.RPC_SortHighlightedNodes, "RPC_SortHighlightedNodes");
         RPCDictionary.Add(RPC.RPC_AssistantStandby, "RPC_AssistantStandby");
         RPCDictionary.Add(RPC.RPC_AssistantSuccess, "RPC_AssistantSuccess");
@@ -49,10 +63,59 @@ public class RPCManager : MonoBehaviour
     }
 
     [PunRPC]
+    public void RPC_ToggleImpactPanel() {
+        Debug.Log("[RPC] Toggle impact panel");
+
+        TableManager.instance.ToggleImpactPanel();
+    }
+
+    [PunRPC]
+    public void RPC_ToggleJobFamilyPanel() {
+        Debug.Log("[RPC] Toggle job family panel");
+
+        TableManager.instance.ToggleJobFamilyPanel();
+    }
+
+    [PunRPC]
+    public void RPC_ToggleJobRolePanel() {
+        Debug.Log("[RPC] Toggle job role panel");
+
+        TableManager.instance.ToggleJobRolePanel();
+    }
+
+    [PunRPC]
+    public void RPC_ToggleSkillsPanel() {
+        Debug.Log("[RPC] Toggle skills panel");
+
+        TableManager.instance.ToggleSkillsPanel();
+    }
+
+    [PunRPC]
     public void RPC_SelectImpact(string impact) {
         Debug.Log("[RPC] Select Impact: " + impact);
 
         DataManager.instance.SelectImpact(impact);
+    }
+
+    [PunRPC]
+    public void RPC_SelectJobFamily(string jobFamily) {
+        Debug.Log("[RPC] Select Job Family: " + jobFamily);
+
+        DataManager.instance.SelectJobFamily(jobFamily);
+    }
+
+    [PunRPC]
+    public void RPC_SelectJobRole(string jobRole) {
+        Debug.Log("[RPC] Select Job Role: " + jobRole);
+
+        DataManager.instance.SelectJobRole(jobRole);
+    }
+
+    [PunRPC]
+    public void RPC_SelectSkill(string skill) {
+        Debug.Log("[RPC] Select Skill: " + skill);
+
+        DataManager.instance.SelectSkill(skill);
     }
 
     [PunRPC]

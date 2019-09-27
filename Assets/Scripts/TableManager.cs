@@ -61,7 +61,27 @@ public class TableManager : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    
+
+    public void ToggleJobRolePanelRPC() {
+        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_ToggleJobRolePanel),
+                    Photon.Pun.RpcTarget.All);
+    }
+
+    public void ToggleJobFamilyPanelRPC() {
+        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_ToggleJobFamilyPanel),
+                    Photon.Pun.RpcTarget.All);
+    }
+
+    public void ToggleImpactPanelRPC() {
+        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_ToggleImpactPanel),
+                    Photon.Pun.RpcTarget.All);
+    }
+
+    public void ToggleSkillsPanelRPC() {
+        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_ToggleSkillsPanel),
+                    Photon.Pun.RpcTarget.All);
+    }
+
     public void ToggleJobRolePanel() {
         isJobRolePanelVisible = !isJobRolePanelVisible;
 
@@ -82,7 +102,7 @@ public class TableManager : MonoBehaviour {
         DataManager.instance.ClearParameterLists();
         DataManager.instance.HighlightSelectedNodes();
 
-        //KeyboardManager.instance.HideKeyboard();
+        KeyboardManager.instance.HideKeyboard();
     }
 
     public void ToggleJobFamilyPanel() {
@@ -105,7 +125,7 @@ public class TableManager : MonoBehaviour {
         DataManager.instance.ClearParameterLists();
         DataManager.instance.HighlightSelectedNodes();
 
-        //KeyboardManager.instance.HideKeyboard();
+        KeyboardManager.instance.HideKeyboard();
     }
 
     public void ToggleImpactPanel() {
@@ -128,7 +148,7 @@ public class TableManager : MonoBehaviour {
         DataManager.instance.ClearParameterLists();
         DataManager.instance.HighlightSelectedNodes();
 
-        //KeyboardManager.instance.HideKeyboard();
+        KeyboardManager.instance.HideKeyboard();
     }
 
     public void ToggleSkillsPanel() {
@@ -152,6 +172,6 @@ public class TableManager : MonoBehaviour {
         DataManager.instance.ClearParameterLists();
         DataManager.instance.HighlightSelectedNodes();
 
-        //KeyboardManager.instance.HideKeyboard();
+        KeyboardManager.instance.HideKeyboard();
     }
 }

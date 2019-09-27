@@ -91,7 +91,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsVisible = false;
-        roomOptions.MaxPlayers = 4;
+        roomOptions.MaxPlayers = 8;
         PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
     }
 

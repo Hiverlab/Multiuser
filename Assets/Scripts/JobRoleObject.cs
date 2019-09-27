@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,15 +83,20 @@ public class JobRoleObject : MonoBehaviour {
 
     private bool isShowingJobPanel = false;
 
+    private PhotonView photonView;
+
     // Use this for initialization
     void Start () {
         titleTextMesh.text = "";
 
         //titleCanvas.DOLocalMoveY(Random.Range(-0.1f, 0.2f), 0).SetRelative();
 
-        spriteRenderer.transform.DOLocalMoveY(0.05f, Utilities.animationSpeed * 5).SetLoops(-1, LoopType.Yoyo).SetRelative().SetDelay(Random.Range(0.0f, 5.0f));
-        spriteRenderer.transform.DOLocalRotate(new Vector3(0, -45, 0), Utilities.animationSpeed * 5).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetDelay(Random.Range(0.0f, 5.0f));
-        
+        //spriteRenderer.transform.DOLocalMoveY(0.05f, Utilities.animationSpeed * 5).SetLoops(-1, LoopType.Yoyo).SetRelative().SetDelay(Random.Range(0.0f, 5.0f));
+        //spriteRenderer.transform.DOLocalRotate(new Vector3(0, -45, 0), Utilities.animationSpeed * 5).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetDelay(Random.Range(0.0f, 5.0f));
+
+        jobRoleCollider.transform.DOLocalMoveY(0.05f, Utilities.animationSpeed * 5).SetLoops(-1, LoopType.Yoyo).SetRelative().SetDelay(Random.Range(0.0f, 5.0f));
+        jobRoleCollider.transform.DOLocalRotate(new Vector3(0, -45, 0), Utilities.animationSpeed * 5).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetDelay(Random.Range(0.0f, 5.0f));
+
         defaultSprite = spriteRenderer.sprite;
 
         lineToJobFamily.enabled = false;
@@ -97,6 +105,35 @@ public class JobRoleObject : MonoBehaviour {
         jobPanel.gameObject.SetActive(false);
 
         sizePanel.gameObject.SetActive(false);
+
+        photonView = GetComponent<PhotonView>();
+
+        PhotonNetwork.AllocateViewID(photonView);
+    }
+
+    private void SetUpPhotonView() {
+
+        if (PhotonNetwork.AllocateViewID(photonView)) {
+            object[] data = new object[]
+            {
+            transform.position, transform.rotation, photonView.ViewID
+            };
+
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions {
+                Receivers = ReceiverGroup.Others,
+                CachingOption = EventCaching.AddToRoomCache
+            };
+
+            SendOptions sendOptions = new SendOptions {
+                Reliability = true
+            };
+
+            PhotonNetwork.RaiseEvent(PhotonRaiseEventComponent.instance.InstantiateJobRoleEventCode, data, raiseEventOptions, sendOptions);
+        } else {
+            Debug.LogError("Failed to allocate a ViewId.");
+
+            Destroy(transform);
+        }
     }
 
     public void SetJobRoleTitleHeight(float y) {
@@ -209,12 +246,31 @@ public class JobRoleObject : MonoBehaviour {
     }
 
     public void BringToFront() {
+        StartCoroutine(BringToFrontCoroutine());
+    }
+
+    private IEnumerator BringToFrontCoroutine() {
+        yield return new WaitForSeconds(Utilities.animationSpeed);
+
+        Debug.Log("Bringing to front");
+
         jobPanel.gameObject.SetActive(true);
 
         transform.DOKill();
-        transform.DOMove(new Vector3(0, -0.25f, -1.25f), Utilities.animationSpeed);
+        transform.DOMove(new Vector3(0, 1.6f, -1.5f), Utilities.animationSpeed);
 
         isShowingJobPanel = true;
+    }
+
+    [PunRPC]
+    public void RPC_ToggleJobPanel() {
+        Debug.Log("Toggle job panel");
+
+        ToggleJobPanel();
+    }
+
+    public void ToggleJobPanelRPC() {
+        photonView.RPC("RPC_ToggleJobPanel", RpcTarget.All);
     }
 
     public void ToggleJobPanel() {
@@ -239,6 +295,15 @@ public class JobRoleObject : MonoBehaviour {
     }
 
     public void ReturnToOriginalPosition() {
+        jobPanel.gameObject.SetActive(false);
+
+        SetJobRoleTitleHeight(originalJobRoleTitleHeight);
+
+        // Don't do this if not master client
+        if (!PhotonNetwork.IsMasterClient) {
+            return;
+        }
+
         if (originalPosition == Vector3.zero) {
             return;
         }
@@ -247,11 +312,7 @@ public class JobRoleObject : MonoBehaviour {
             return;
         }
 
-        jobPanel.gameObject.SetActive(false);
-
         transform.DOMove(originalPosition, Utilities.animationSpeed);
-
-        SetJobRoleTitleHeight(originalJobRoleTitleHeight);
     }
 
     public void Highlight() {
@@ -259,10 +320,6 @@ public class JobRoleObject : MonoBehaviour {
             return;
         }
         //Debug.Log("Highlighting: " + data.role);
-
-        float distanceToMove = Random.Range(0.1f, 0.25f);
-
-        transform.DOLocalMoveY(distanceToMove, Utilities.animationSpeed).SetRelative();
         
         sizePanel.gameObject.SetActive(true);
 
@@ -274,6 +331,15 @@ public class JobRoleObject : MonoBehaviour {
         lineToTitle.enabled = true;
 
         isHighlighted = true;
+
+        // Don't do this if not master client
+        if (!PhotonNetwork.IsMasterClient) {
+            return;
+        }
+
+        float distanceToMove = Random.Range(0.1f, 0.25f);
+
+        transform.DOLocalMoveY(distanceToMove, Utilities.animationSpeed).SetRelative();
     }
 
     public void Unhighlight() {
