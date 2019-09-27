@@ -198,6 +198,9 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
         Debug.Log("Joined room successfully");
 
         OnJoinRoomSuccessful.Invoke();
+        
+        GameObject newVoiceReceiver = PhotonNetwork.Instantiate("VoiceReceiver", Vector3.zero, Quaternion.identity);
+        Debug.Log("Voice Receiver instantiated: " + newVoiceReceiver.GetComponent<PhotonView>().ViewID);
 
         CreateLocalAvatar();
     }

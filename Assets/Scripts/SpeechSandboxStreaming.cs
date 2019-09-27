@@ -172,16 +172,19 @@ public class SpeechSandboxStreaming : MonoBehaviour
     }
 
     public void Initialize() {
-        LogSystem.InstallDefaultReactors();
-
-
         //  Create credential and instantiate service
         Runnable.Run(createServices());
+    }
+
+    public void StopService() {
+        StopRecording();
     }
 
     void Start()
     {
         //_GameLogicController = GameLogicController as dialogFocus;
+
+        LogSystem.InstallDefaultReactors();
     }
 
     public bool Active
@@ -236,6 +239,10 @@ public class SpeechSandboxStreaming : MonoBehaviour
         Active = false;
 
         Log.Debug("SpeechSandboxStreaming.OnError()", "Error! {0}", error);
+
+        if (!VoiceManager.instance.GetIsVoiceActive()) {
+            Initialize();
+        }
     }
 
     /*
@@ -269,6 +276,11 @@ public class SpeechSandboxStreaming : MonoBehaviour
                 Log.Error("SpeechSandboxStreaming.RecordingHandler()", "Microphone disconnected.");
 
                 StopRecording();
+
+                if (!VoiceManager.instance.GetIsVoiceActive()) {
+                    Initialize();
+                }
+
                 yield break;
             }
 

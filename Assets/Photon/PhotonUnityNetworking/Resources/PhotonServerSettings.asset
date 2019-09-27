@@ -15,7 +15,7 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: cda6140c-e2d4-45de-bef3-c23f48de95f7
     AppIdChat: 
-    AppIdVoice: 
+    AppIdVoice: cda6140c-e2d4-45de-bef3-c23f48de95f7
     AppVersion: 
     UseNameServer: 1
     FixedRegion: 
@@ -47,5 +47,6 @@ MonoBehaviour:
   - RPC_ToggleJobRolePanel
   - RPC_ToggleSkillsPanel
   - RPC_ToggleJobPanel
+  - ChangeColour
   DisableAutoOpenWizard: 1
   ShowSettings: 1

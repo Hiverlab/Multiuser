@@ -604,7 +604,7 @@ namespace Photon.Pun
     {
         private List<object> writeData;
         private object[] readData;
-        private byte currentItem; //Used to track the next item to receive.
+        private int currentItem; //Used to track the next item to receive.
 
         /// <summary>If true, this client should add data to the stream to send it.</summary>
         public bool IsWriting { get; private set; }
@@ -634,14 +634,14 @@ namespace Photon.Pun
             }
         }
 
-        public void SetReadStream(object[] incomingData, byte pos = 0)
+        public void SetReadStream(object[] incomingData, int pos = 0)
         {
             this.readData = incomingData;
             this.currentItem = pos;
             this.IsWriting = false;
         }
 
-        internal void SetWriteStream(List<object> newWriteData, byte pos = 0)
+        internal void SetWriteStream(List<object> newWriteData, int pos = 0)
         {
             if (pos != newWriteData.Count)
             {
@@ -673,11 +673,6 @@ namespace Photon.Pun
                 return null;
             }
 
-            if (this.currentItem >= this.readData.Length) {
-                return null;
-            }
-
-
             object obj = this.readData[this.currentItem];
             this.currentItem++;
             return obj;
@@ -689,10 +684,6 @@ namespace Photon.Pun
             if (this.IsWriting)
             {
                 Debug.LogError("Error: you cannot read this stream that you are writing!");
-                return null;
-            }
-            
-            if (this.currentItem >= this.readData.Length) {
                 return null;
             }
 

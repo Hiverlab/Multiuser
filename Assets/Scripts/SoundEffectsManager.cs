@@ -16,18 +16,10 @@ public class SoundEffectsManager : MonoBehaviour
     [SerializeField]
     private List<AudioClip> sfxList;
 
-    [SerializeField]
-    private AudioClip regularWaveAmbientClip;
-    [SerializeField]
-    private AudioClip distortedWaveAmbientClip;
-
     public enum SFX {
-        AFFECTED_TEXT,
-        NOTIFICATION_WARNING,
-        POWER_START,
-        MESSAGE,
-        OFFICE,
-        UI
+        UI,
+        STANDBY,
+        SELECT
     }
 
     private void Awake() {
@@ -48,18 +40,6 @@ public class SoundEffectsManager : MonoBehaviour
         } else {
             StartCoroutine(PlayAudioClipCoroutine(sfx, duration));
         }
-    }
-
-    public void PlayAmbientSound() {
-        ambientSource.clip = regularWaveAmbientClip;
-        ambientSource.Play();
-        ambientSource.DOFade(1.0f, Utilities.animationSpeed * 2);
-    }
-
-    public void PlayDistortedAmbientSound() {
-        ambientSource.clip = distortedWaveAmbientClip;
-        ambientSource.Play();
-        ambientSource.DOFade(0.5f, Utilities.animationSpeed * 2);
     }
 
     private IEnumerator PlayAudioClipCoroutine(SFX sfx, float duration) {

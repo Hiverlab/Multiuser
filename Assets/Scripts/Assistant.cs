@@ -47,6 +47,8 @@ public class Assistant : MonoBehaviour
     public void TriggerStandby() {
         assistantLight.DOColor(standbyLightColor, animationSpeed);
         assistantLight.DOIntensity(activeIntensity, animationSpeed);
+
+        SoundEffectsManager.instance.PlayAudioClip(SoundEffectsManager.SFX.STANDBY);
     }
 
     public void TriggerSuccess() {
@@ -54,6 +56,8 @@ public class Assistant : MonoBehaviour
         assistantLight.DOIntensity(activeIntensity, animationSpeed);
 
         StartCoroutine(TriggerInactiveCoroutine());
+
+        SoundEffectsManager.instance.PlayAudioClip(SoundEffectsManager.SFX.SELECT);
     }
 
     public void TriggerFailure() {
