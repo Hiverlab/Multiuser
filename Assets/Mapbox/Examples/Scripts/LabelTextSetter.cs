@@ -7,7 +7,7 @@
 	public class LabelTextSetter : MonoBehaviour, IFeaturePropertySettable
 	{
 		[SerializeField]
-		TextMesh _textMesh; 
+        TMPro.TextMeshPro _textMesh; 
 
 		public void Set(Dictionary<string, object> props)
 		{

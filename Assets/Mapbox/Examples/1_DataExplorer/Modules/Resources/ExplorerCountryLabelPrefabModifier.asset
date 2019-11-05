@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Active: 1
   _options:
-    prefab: {fileID: 1706413382388718, guid: 0940fff5996150e4cb6c1f69c781a29a, type: 2}
+    prefab: {fileID: 8552052776827546722, guid: bf56f48ca6871ee41bef984ee1943eda,
+      type: 3}
     scaleDownWithWorld: 1
