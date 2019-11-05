@@ -37,8 +37,8 @@ public class GoogleSheetsFetcher : MonoBehaviour {
                 dataDict.Add(columnName, columnData);
             }
             
-            PrintDataByColumn("Alcohol Level");
-            PrintDataByColumn("Wine Type");
+            PrintDataByColumn("Hit.Sentence");
+            PrintDataByColumn("Sentiment");
         };
 
         StartCoroutine(DownloadCSVCoroutine(spreadSheetId, commCallback, true, "Wine"));
