@@ -16,7 +16,7 @@ public class Utilities : MonoBehaviour {
     }
 
     public static float animationSpeed = 1.0f;
-
+    
     public static void Log(string className, string debugMessage) {
         Debug.Log("<b>" + className + "<b> " + debugMessage);
     }

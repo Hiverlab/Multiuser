@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -9,14 +10,14 @@ public class GoogleSheetsFetcher : MonoBehaviour {
     public string spreadSheetId;
     public string tabId;
 
-    public static Dictionary<string, List<string>> dataDict;
+    public static Dictionary<string, List<string>> dataDictionary;
 
     public void Start() {
         Initialize();
     }
 
     public void Initialize() {
-        dataDict = new Dictionary<string, List<string>>();
+        dataDictionary = new Dictionary<string, List<string>>();
 
         Action<string> commCallback = (csv) => {
             // Load data here
@@ -34,23 +35,22 @@ public class GoogleSheetsFetcher : MonoBehaviour {
                     columnData.Add(parsedCsv[row][col]);
                 }
 
-                dataDict.Add(columnName, columnData);
+                dataDictionary.Add(columnName, columnData);
             }
-            
-            PrintDataByColumn("Hit.Sentence");
-            PrintDataByColumn("Sentiment");
+
+            NodePopulator.instance.SetNodesDatabase(dataDictionary);
         };
 
         StartCoroutine(DownloadCSVCoroutine(spreadSheetId, commCallback, true, "Wine"));
     }
 
     public static List<string> GetDataByColumn(string columnName) {
-        return dataDict[columnName];
+        return dataDictionary[columnName];
     }
 
     public static void PrintDataByColumn(string columnName) {
-        for (int i = 0; i < dataDict[columnName].Count; i++) {
-            Debug.Log(dataDict[columnName][i]);
+        for (int i = 0; i < dataDictionary[columnName].Count; i++) {
+            Debug.Log(dataDictionary[columnName][i]);
         }
     }
 
@@ -133,7 +133,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
             callback(download.text);
             if (saveAsset) {
                 if (!string.IsNullOrEmpty(assetName))
-                    File.WriteAllText("Assets/Resources/Downloaded Spreadsheets" + assetName + ".csv", download.text);
+                    File.WriteAllText("Assets/Resources/Downloaded Spreadsheets/" + assetName + ".csv", download.text);
                 else {
                     throw new Exception("assetName is null");
                 }
