@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6008429351595997374}
-  - component: {fileID: 8868078738251732191}
+  - component: {fileID: 5352131676738063066}
   m_Layer: 0
   m_Name: MoodLabel
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8868078738251732191
+--- !u!114 &5352131676738063066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5376958654034902715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f21dd7c679f513d4eb79424c850a7206, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b3102a23f3cd2c41b643c6e210f259a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textMesh: {fileID: 4554790946255448955}
+  shapeModel: {fileID: 8690826371317354223}
+  labelTextMesh: {fileID: 4554790946255448955}
 --- !u!1 &6255919706753746642
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +61,7 @@ GameObject:
   - component: {fileID: 5746550396378170690}
   - component: {fileID: 4554790946255448955}
   m_Layer: 0
-  m_Name: '[TMP] TextMeshPro'
+  m_Name: '[TMP] Label'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +265,7 @@ GameObject:
   - component: {fileID: 2713930895198321257}
   - component: {fileID: 5251290101041701964}
   m_Layer: 0
-  m_Name: '[Model] Model'
+  m_Name: '[Transform] Model Parent'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,7 +358,7 @@ GameObject:
   - component: {fileID: 4948856022279883582}
   - component: {fileID: 6571988531793677102}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: '[Model] Model'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
