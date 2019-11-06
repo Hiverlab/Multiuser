@@ -3,6 +3,7 @@ using Mapbox.Unity.Utilities;
 using Mapbox.Utils;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 
@@ -26,6 +27,16 @@ public class NodePopulator : MonoBehaviour {
     List<Node> spawnedNodes;
 
     private bool areNodesPopulated = false;
+
+    private Dictionary<string, List<string>> dataDictionary;
+
+    public struct Properties {
+        public float minimum;
+        public float maximum;
+        public float average;
+    }
+
+    private Dictionary<string, Properties> columnPropertiesDictionary;
     
     private void Awake() {
         if (!instance) {
@@ -58,11 +69,16 @@ public class NodePopulator : MonoBehaviour {
 
     }
 
-    public void SetNodesDatabase(Dictionary<string, List<string>> dataDictionary) {
+    public void SetNodesDatabase(Dictionary<string, List<string>> _dataDictionary) {
         Debug.Log("Setting nodes database");
 
-        int totalRows = dataDictionary[dataDictionary.Keys.First()].Count;
+        // Initialize data dictionary
+        dataDictionary = new Dictionary<string, List<string>>(_dataDictionary);
 
+        int totalRows = dataDictionary[dataDictionary.Keys.First()].Count;
+        spawnedNodes = new List<Node>();
+
+        // For every row, create a node with properties from each column
         for (int row = 0; row < totalRows; row++) {
 
             Node currentNode = Lean.Pool.LeanPool.Spawn(nodePrefab);
@@ -77,8 +93,79 @@ public class NodePopulator : MonoBehaviour {
                 currentNode.AddToProperties(key, value);
             }
 
-            currentNode.FinalizeProperties();
+            //currentNode.FinalizeProperties();
+
+            spawnedNodes.Add(currentNode);
         }
+
+        areNodesPopulated = true;
+
+        // Update properties for column
+        UpdateProperties();
+
+        // Finalize properties for each spawned node
+        foreach (Node node in spawnedNodes) {
+            node.FinalizeProperties();
+        }
+    }
+
+    // Use this method to update row properties
+    private void UpdateProperties() {
+        columnPropertiesDictionary = new Dictionary<string, Properties>();
+
+        // For each column in data dictionary
+        foreach (KeyValuePair<string, List<string>> keyValuePair in dataDictionary) {
+            float outputValue;
+            bool success = float.TryParse(dataDictionary[keyValuePair.Key][0], NumberStyles.Float, CultureInfo.InvariantCulture, out outputValue);
+
+            // If the first value is not a float, then skip this column
+            if (!success) {
+                continue;
+            }
+
+            List<string> columnValues = dataDictionary[keyValuePair.Key];
+
+            Properties columnProperties = new Properties();
+
+            float count = columnValues.Count;
+            float sum = 0;
+            float min = float.MaxValue;
+            float max = float.MinValue;
+
+            for (int row = 0; row < count; row++) {
+                float value = float.Parse(columnValues[row]);
+
+                // Get the sum to calculate average at the end
+                sum += value;
+
+                // Keep track of the minimum
+                if (value < min) {
+                    min = value;
+                }
+
+                // Keep track of the maximum
+                if (value > max) {
+                    max = value;
+                }
+            }
+
+            columnProperties.minimum = min;
+            columnProperties.maximum = max;
+            columnProperties.average = sum / count;
+
+            columnPropertiesDictionary.Add(keyValuePair.Key, columnProperties);
+        }
+    }
+
+    // Returns a normalized value from 0.0 to 1.0 given the property and value
+    public float GetNormalizedValue(string property, float value) {
+        //Calculate the normalized float
+        float normalizedValue = (value - columnPropertiesDictionary[property].minimum) / 
+            (columnPropertiesDictionary[property].maximum - columnPropertiesDictionary[property].minimum);
+
+        normalizedValue = Mathf.Clamp(normalizedValue, 0, 1);
+
+        return Mathf.Clamp(normalizedValue, 0, 1);
     }
 
     void Start() {
@@ -86,17 +173,6 @@ public class NodePopulator : MonoBehaviour {
     }
 
     private void Update() {
-        if (!areNodesPopulated) {
-            return;
-        }
-
-        int count = spawnedNodes.Count;
-        for (int i = 0; i < count; i++) {
-            var spawnedObject = spawnedNodes[i];
-            var location = locations[i];
-            spawnedObject.transform.localPosition = map.GeoToWorldPosition(location, true);
-            spawnedObject.transform.localScale = new Vector3(spawnScale, spawnScale, spawnScale);
-        }
     }
 
 }

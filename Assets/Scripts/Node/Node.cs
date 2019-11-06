@@ -137,7 +137,7 @@ public class Node : MonoBehaviour {
     }
 
     private void UpdateScale() {
-        transform.localScale = Vector3.one * scale;
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * scale, transform.localScale.z);
     }
 
     private void UpdateColor() {
@@ -145,7 +145,7 @@ public class Node : MonoBehaviour {
     }
 
     private void UpdateColorScale() {
-        shapeMeshRenderer.material.color = colorGradient.Evaluate(colorScale);
+        shapeMeshRenderer.material.color = colorGradient.Evaluate(ColorScale);
     }
 
     private void UpdateShape() {
@@ -158,6 +158,15 @@ public class Node : MonoBehaviour {
 
     private void Awake() {
         //Initialize();
+    }
+
+    private void Update() {
+        /*
+        if (LocationString != null) {
+            transform.position = NodePopulator.instance.GetWorldSpacePositionFromGPS(LocationString);
+        }
+        */
+        //UpdateColorScale();
     }
 
     public void Initialize() {
@@ -198,7 +207,16 @@ public class Node : MonoBehaviour {
         // Convert address to GPS
         ConvertAddressToGPS();
 
+        // Set color scale based on sentiment value
+        string property = "Sentiment.Value";
+        ColorScale = NodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
+        Debug.Log("Setting color scale as: " + ColorScale);
 
+
+        // Set length based on reach
+        property = "Joy";
+        Scale = NodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
+        Debug.Log("Setting scale as: " + Scale);
     }
 
     private void ConvertAddressToGPS() {
@@ -224,8 +242,10 @@ public class Node : MonoBehaviour {
 
         LocationString = response.Features[0].Geometry.Coordinates.x + "," + response.Features[0].Geometry.Coordinates.y;
 
+        /*
         Debug.Log(transform.name + " Address: " + propertiesDictionary["Address"] +
             " GPS: " + LocationString);
+        */
 
         transform.position = NodePopulator.instance.GetWorldSpacePositionFromGPS(LocationString);
     }
