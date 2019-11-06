@@ -12,6 +12,16 @@ public class Node : MonoBehaviour {
     // These are the different dimensions that the node is affected by
     #region Dimensions
 
+    public enum DimensionType {
+        Position,
+        Scale,
+        ColorScale,
+        Shape
+    }
+
+    // Need to attach a dimension type to the property
+    public DimensionType dimensionType;
+
     // Private properties
     private Vector3 position;
     private float scale;
@@ -97,6 +107,10 @@ public class Node : MonoBehaviour {
 
     // Other node properties
     #region Properties
+    private struct Property {
+
+    }
+
     // Properties dictionary
     private Dictionary<string, string> propertiesDictionary;
 
@@ -120,6 +134,9 @@ public class Node : MonoBehaviour {
     public event Action<ForwardGeocodeResponse> OnGeocoderResponseDelegate = delegate { };
 
     public string LocationString { get; private set; }
+
+    // The property dimension dictionary attaches a dimension type to a data property
+    public Dictionary<string, DimensionType> PropertyDimensionDictionary;
 
     #endregion
 
@@ -206,13 +223,12 @@ public class Node : MonoBehaviour {
 
         // Convert address to GPS
         ConvertAddressToGPS();
-
+        
         // Set color scale based on sentiment value
         string property = "Sentiment.Value";
         ColorScale = NodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
         Debug.Log("Setting color scale as: " + ColorScale);
-
-
+        
         // Set length based on reach
         property = "Joy";
         Scale = NodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
