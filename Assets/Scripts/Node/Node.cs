@@ -219,13 +219,13 @@ public class Node : MonoBehaviour {
         Debug.Log("Finalizing properties");
 
         // Set label name
-        LabelName = propertiesDictionary["Influencer"];
+        LabelName = propertiesDictionary["Author_Name"];
 
         // Convert address to GPS
         ConvertAddressToGPS();
         
         // Set color scale based on sentiment value
-        string property = "Sentiment.Value";
+        string property = "Sentiment";
         ColorScale = NodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
         Debug.Log("Setting color scale as: " + ColorScale);
         

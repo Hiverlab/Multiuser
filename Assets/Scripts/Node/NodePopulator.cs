@@ -71,6 +71,47 @@ public class NodePopulator : MonoBehaviour {
 
     public void SetNodesDatabase(Dictionary<string, List<string>> _dataDictionary) {
         Debug.Log("Setting nodes database");
+        
+        // Initialize data dictionary
+        dataDictionary = new Dictionary<string, List<string>>(_dataDictionary);
+
+        int totalRows = dataDictionary[dataDictionary.Keys.First()].Count;
+        spawnedNodes = new List<Node>();
+
+        // For every row, create a node with properties from each column
+        for (int row = 0; row < totalRows; row++) {
+
+            Node currentNode = Lean.Pool.LeanPool.Spawn(nodePrefab);
+            currentNode.Initialize();
+
+            foreach (KeyValuePair<string, List<string>> keyValuePair in dataDictionary) {
+                string key = keyValuePair.Key;
+                string value = dataDictionary[keyValuePair.Key][row];
+
+                //Debug.Log("Row: " + row + " Property: " + key + " Value: " + value);
+
+                currentNode.AddToProperties(key, value);
+            }
+
+            //currentNode.FinalizeProperties();
+
+            spawnedNodes.Add(currentNode);
+        }
+
+        areNodesPopulated = true;
+
+        // Update properties for column
+        UpdateProperties();
+
+        // Finalize properties for each spawned node
+        foreach (Node node in spawnedNodes) {
+            node.FinalizeProperties();
+        }
+        //StartCoroutine(SetNodesDatabaseCoroutine(_dataDictionary));
+    }
+
+    private IEnumerator SetNodesDatabaseCoroutine(Dictionary<string, List<string>> _dataDictionary) {
+        Debug.Log("Setting nodes database");
 
         // Initialize data dictionary
         dataDictionary = new Dictionary<string, List<string>>(_dataDictionary);
@@ -88,7 +129,7 @@ public class NodePopulator : MonoBehaviour {
                 string key = keyValuePair.Key;
                 string value = dataDictionary[keyValuePair.Key][row];
 
-                Debug.Log("Row: " + row + " Property: " + key + " Value: " + value);
+                //Debug.Log("Row: " + row + " Property: " + key + " Value: " + value);
 
                 currentNode.AddToProperties(key, value);
             }
@@ -96,6 +137,8 @@ public class NodePopulator : MonoBehaviour {
             //currentNode.FinalizeProperties();
 
             spawnedNodes.Add(currentNode);
+
+            yield return new WaitForSeconds(0.5f);
         }
 
         areNodesPopulated = true;

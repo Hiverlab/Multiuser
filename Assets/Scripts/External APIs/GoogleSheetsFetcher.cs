@@ -23,6 +23,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
             // Load data here
             Debug.Log("Callback: " + csv);
 
+            /*
             List<List<string>> parsedCsv = ParseCSV(csv);
 
             // Go through first row to get keys
@@ -38,6 +39,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
                 dataDictionary.Add(columnName, columnData);
             }
             NodePopulator.instance.SetNodesDatabase(dataDictionary);
+            */
         };
 
         StartCoroutine(DownloadCSVCoroutine(spreadSheetId, commCallback, true, "Wine"));
