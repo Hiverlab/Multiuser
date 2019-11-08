@@ -5,15 +5,28 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class GoogleSheetsFetcher : MonoBehaviour {
     public string spreadSheetId;
     public string tabId;
 
+    private static string filePath = "Assets/Resources/Downloaded Spreadsheets/";
+
     public static Dictionary<string, List<string>> dataDictionary;
 
+    public static GoogleSheetsFetcher instance;
+
+    private void Awake() {
+        if (!instance) {
+            instance = this;
+        } else {
+            Destroy(instance);
+        }
+    }
+
     public void Start() {
-        Initialize();
+        //Initialize();
     }
 
     public void Initialize() {
@@ -22,7 +35,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
         Action<string> commCallback = (csv) => {
             // Load data here
             Debug.Log("Callback: " + csv);
-            
+
             List<List<string>> parsedCsv = ParseCSV(csv);
 
             // Go through first row to get keys
@@ -37,8 +50,8 @@ public class GoogleSheetsFetcher : MonoBehaviour {
 
                 dataDictionary.Add(columnName, columnData);
             }
-            NodePopulator.instance.SetNodesDatabase(dataDictionary);
-            
+
+            //NodePopulator.instance.SetNodesDatabase(dataDictionary);
         };
 
         StartCoroutine(DownloadCSVCoroutine(spreadSheetId, commCallback, true, "Wine", tabId));
@@ -66,6 +79,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
 
         bool jumpedFirst = false;
 
+        /*
         foreach (var line in lines) {
             // We don't want to jump the header
             /*
@@ -74,6 +88,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
                 continue;
             }
             */
+            /*
             var values = Regex.Split(line, SPLIT_RE);
 
             var entry = new List<string>();
@@ -84,6 +99,20 @@ public class GoogleSheetsFetcher : MonoBehaviour {
             }
             list.Add(entry);
         }
+        */
+
+        for (int i = 0; i < lines.Length; i++) {
+            var values = Regex.Split(lines[i], SPLIT_RE);
+
+            var entry = new List<string>();
+            for (var j = 0; j < header.Length && j < values.Length; j++) {
+                var value = values[j];
+                value = DecodeSpecialCharsFromCSV(value);
+                entry.Add(value);
+            }
+            list.Add(entry);
+        }
+
         return list;
     }
 
@@ -114,6 +143,27 @@ public class GoogleSheetsFetcher : MonoBehaviour {
         return text;
     }
 
+    private static void CompleteDownload(string csv) {
+        Debug.Log("Complete download");
+        List<List<string>> parsedCsv = ParseCSV(csv);
+
+       
+        // Go through first row to get keys
+        for (int col = 0; col < parsedCsv[0].Count; col++) {
+            string columnName = parsedCsv[0][col];
+
+            List<string> columnData = new List<string>();
+
+            for (int row = 1; row < parsedCsv.Count; row++) {
+                columnData.Add(parsedCsv[row][col]);
+            }
+
+            dataDictionary.Add(columnName, columnData);
+        }
+
+        NodePopulator.instance.SetNodesDatabase(dataDictionary);
+    }
+
     public static IEnumerator DownloadCSVCoroutine(string docId, Action<string> callback,
                                                    bool saveAsset = false, string assetName = null, string sheetId = null) {
         string url =
@@ -121,7 +171,52 @@ public class GoogleSheetsFetcher : MonoBehaviour {
 
         if (!string.IsNullOrEmpty(sheetId))
             url += "&gid=" + sheetId;
+        
+        using (UnityWebRequest www = UnityWebRequest.Get(url)) {
+            UnityWebRequestAsyncOperation asyncWebRequest = www.SendWebRequest();
 
+            if (www.isNetworkError || www.isHttpError) {
+                Debug.Log(www.error);
+            } else {
+                while (!asyncWebRequest.isDone) {
+                    Debug.Log("Download progress: " + asyncWebRequest.progress);
+                    yield return null;
+                }
+
+                Debug.Log("Download complete");
+
+                Debug.Log(www.downloadHandler.text);
+
+                CompleteDownload(www.downloadHandler.text);
+
+                /*
+                if (saveAsset) {
+                    if (!string.IsNullOrEmpty(assetName)) {
+                        File.WriteAllText(filePath + assetName + ".csv", www.downloadHandler.text);
+                    } else {
+                        throw new Exception("assetName is null");
+                    }
+                }
+                */
+            }
+            /*
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError) {
+                Debug.Log(www.error);
+            } else {
+                callback(www.downloadHandler.text);
+                if (saveAsset) {
+                    if (!string.IsNullOrEmpty(assetName)) {
+                        File.WriteAllText(filePath + assetName + ".csv", www.downloadHandler.text);
+                    } else {
+                        throw new Exception("assetName is null");
+                    }
+                }
+            }*/
+        }
+
+        /*
         WWWForm form = new WWWForm();
         WWW download = new WWW(url, form);
 
@@ -139,6 +234,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
                 }
             }
         }
+        */
     }
 
 

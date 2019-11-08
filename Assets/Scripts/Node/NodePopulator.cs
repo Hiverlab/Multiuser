@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class NodePopulator : MonoBehaviour {
     public static NodePopulator instance;
-    
+
     [SerializeField]
     AbstractMap map;
 
@@ -37,7 +37,7 @@ public class NodePopulator : MonoBehaviour {
     }
 
     private Dictionary<string, Properties> columnPropertiesDictionary;
-    
+
     private void Awake() {
         if (!instance) {
             instance = this;
@@ -71,19 +71,22 @@ public class NodePopulator : MonoBehaviour {
 
     public void SetNodesDatabase(Dictionary<string, List<string>> _dataDictionary) {
         Debug.Log("Setting nodes database");
-        
+
         // Initialize data dictionary
         dataDictionary = new Dictionary<string, List<string>>(_dataDictionary);
 
+        StartCoroutine(SpawnNodeCorutine());
+
+        /*
         int totalRows = dataDictionary[dataDictionary.Keys.First()].Count;
         spawnedNodes = new List<Node>();
-
+        
         // For every row, create a node with properties from each column
         for (int row = 0; row < totalRows; row++) {
 
             Node currentNode = Lean.Pool.LeanPool.Spawn(nodePrefab);
-            currentNode.Initialize();
-
+            //currentNode.Initialize();
+            
             foreach (KeyValuePair<string, List<string>> keyValuePair in dataDictionary) {
                 string key = keyValuePair.Key;
                 string value = dataDictionary[keyValuePair.Key][row];
@@ -93,38 +96,34 @@ public class NodePopulator : MonoBehaviour {
                 currentNode.AddToProperties(key, value);
             }
 
-            //currentNode.FinalizeProperties();
-
             spawnedNodes.Add(currentNode);
         }
+        
 
         areNodesPopulated = true;
 
         // Update properties for column
         UpdateProperties();
-
+        */
+        /*
         // Finalize properties for each spawned node
-        foreach (Node node in spawnedNodes) {
-            node.FinalizeProperties();
+        for (int i = 0; i < spawnedNodes.Count; i++) {
+            spawnedNodes[i].FinalizeProperties();
         }
+        */
+
         //StartCoroutine(SetNodesDatabaseCoroutine(_dataDictionary));
     }
 
-    private IEnumerator SetNodesDatabaseCoroutine(Dictionary<string, List<string>> _dataDictionary) {
-        Debug.Log("Setting nodes database");
-
-        // Initialize data dictionary
-        dataDictionary = new Dictionary<string, List<string>>(_dataDictionary);
-
+    private IEnumerator SpawnNodeCorutine() {
         int totalRows = dataDictionary[dataDictionary.Keys.First()].Count;
         spawnedNodes = new List<Node>();
 
         // For every row, create a node with properties from each column
         for (int row = 0; row < totalRows; row++) {
-
             Node currentNode = Lean.Pool.LeanPool.Spawn(nodePrefab);
             currentNode.Initialize();
-
+            
             foreach (KeyValuePair<string, List<string>> keyValuePair in dataDictionary) {
                 string key = keyValuePair.Key;
                 string value = dataDictionary[keyValuePair.Key][row];
@@ -134,21 +133,21 @@ public class NodePopulator : MonoBehaviour {
                 currentNode.AddToProperties(key, value);
             }
 
-            //currentNode.FinalizeProperties();
-
             spawnedNodes.Add(currentNode);
+            //Debug.Log("Current row: " + row);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.005f);
         }
+
 
         areNodesPopulated = true;
 
         // Update properties for column
         UpdateProperties();
-
+        
         // Finalize properties for each spawned node
-        foreach (Node node in spawnedNodes) {
-            node.FinalizeProperties();
+        for (int i = 0; i < spawnedNodes.Count; i++) {
+            spawnedNodes[i].FinalizeProperties();
         }
     }
 
@@ -203,7 +202,7 @@ public class NodePopulator : MonoBehaviour {
     // Returns a normalized value from 0.0 to 1.0 given the property and value
     public float GetNormalizedValue(string property, float value) {
         //Calculate the normalized float
-        float normalizedValue = (value - columnPropertiesDictionary[property].minimum) / 
+        float normalizedValue = (value - columnPropertiesDictionary[property].minimum) /
             (columnPropertiesDictionary[property].maximum - columnPropertiesDictionary[property].minimum);
 
         normalizedValue = Mathf.Clamp(normalizedValue, 0, 1);

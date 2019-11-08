@@ -9,7 +9,13 @@ public class NodeCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag.Equals("PlayerTouch")) {
-            parentNode.OnTouch();
+            parentNode.OnTouchEnter();
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.tag.Equals("PlayerTouch")) {
+            parentNode.OnTouchExit();
         }
     }
 }

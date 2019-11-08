@@ -146,6 +146,9 @@ public class Node : MonoBehaviour {
     [SerializeField]
     private TextMeshPro labelTextMesh;
 
+    [SerializeField]
+    private Transform nodeCollider;
+
     #endregion
 
     #region Dimension Updating
@@ -154,7 +157,20 @@ public class Node : MonoBehaviour {
     }
 
     private void UpdateScale() {
-        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * scale, transform.localScale.z);
+        // Update model scale on Y axis
+        float modelYScale = shapeMeshRenderer.transform.localScale.y * scale;
+
+        // Update model mesh renderer scale
+        shapeMeshRenderer.transform.localScale = new Vector3(shapeMeshRenderer.transform.localScale.x,
+            modelYScale,
+            shapeMeshRenderer.transform.localScale.z);
+
+        // Calculate offset position
+        Vector3 offsetPosition = new Vector3(0, (modelYScale *  0.25f) + 0.025f, 0);
+        
+        // Update text mesh and collider position
+        labelTextMesh.transform.localPosition = offsetPosition;
+        nodeCollider.transform.localPosition = offsetPosition;
     }
 
     private void UpdateColor() {
@@ -187,6 +203,8 @@ public class Node : MonoBehaviour {
     }
 
     public void Initialize() {
+        HideRestaurantName();
+
         // Initialize properties dictionary
         propertiesDictionary = new Dictionary<string, string>();
 
@@ -216,10 +234,10 @@ public class Node : MonoBehaviour {
     }
 
     public void FinalizeProperties() {
-        Debug.Log("Finalizing properties");
+        //Debug.Log("Finalizing properties");
 
         // Set label name
-        LabelName = propertiesDictionary["Author_Name"];
+        LabelName = propertiesDictionary["Restaurant"];
 
         // Convert address to GPS
         ConvertAddressToGPS();
@@ -227,12 +245,12 @@ public class Node : MonoBehaviour {
         // Set color scale based on sentiment value
         string property = "Sentiment";
         ColorScale = NodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
-        Debug.Log("Setting color scale as: " + ColorScale);
+        //Debug.Log("Setting color scale as: " + ColorScale);
         
         // Set length based on reach
         property = "Joy";
         Scale = NodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
-        Debug.Log("Setting scale as: " + Scale);
+        //Debug.Log("Setting scale as: " + Scale);
     }
 
     private void ConvertAddressToGPS() {
@@ -270,8 +288,22 @@ public class Node : MonoBehaviour {
 
     #region Interactive Functions
 
-    public void OnTouch() {
+    public void OnTouchEnter() {
         Debug.Log(transform.name + " touched");
+        ShowRestaurantName();
+    }
+
+    public void OnTouchExit() {
+        Debug.Log(transform.name + " touched");
+        HideRestaurantName();
+    }
+
+    private void ShowRestaurantName() {
+        labelTextMesh.gameObject.SetActive(true);
+    }
+
+    private void HideRestaurantName() {
+        labelTextMesh.gameObject.SetActive(false);
     }
 
     #endregion

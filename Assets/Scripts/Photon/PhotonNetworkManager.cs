@@ -87,7 +87,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 	}
 
     public void JoinOrCreateRoom() {
-        string roomName = "gn9m4gn24";
+        string roomName = "multiuserdataviz01";
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsVisible = false;
@@ -238,6 +238,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
         }
 
         Debug.Log("Created local avatar");
+
+        GoogleSheetsFetcher.instance.Initialize();
     }
 
     public void CreateLocalAvatarOld ()
