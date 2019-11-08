@@ -22,6 +22,7 @@ public class KeyChecker : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
+        /*
         if (!canCollide) {
             return;
         }
@@ -95,7 +96,7 @@ public class KeyChecker : MonoBehaviour {
 
         // Hide keyboard if not interacting with it
         if (other.tag != "InputField" && other.tag != "VRGazeInteractable" && other.tag != "PanelButton" && other.tag != "ScrollRectCollider") {
-            KeyboardManager.instance.HideKeyboard();
+            //KeyboardManager.instance.HideKeyboard();
         }
 
         if (other.GetComponent<Key>()) {
@@ -113,6 +114,7 @@ public class KeyChecker : MonoBehaviour {
 
             Utilities.instance.VibrateController(100, 0.25f, 0.15f, controller);
         }
+        */
     }
 
     private IEnumerator ResetCanCollideCoroutine() {

@@ -267,4 +267,12 @@ public class Node : MonoBehaviour {
     }
 
     #endregion
+
+    #region Interactive Functions
+
+    public void OnTouch() {
+        Debug.Log(transform.name + " touched");
+    }
+
+    #endregion
 }
