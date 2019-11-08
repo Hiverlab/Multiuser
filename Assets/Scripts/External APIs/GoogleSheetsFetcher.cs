@@ -161,7 +161,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
             dataDictionary.Add(columnName, columnData);
         }
 
-        NodePopulator.instance.SetNodesDatabase(dataDictionary);
+        DataNodePopulator.instance.SetNodesDatabase(dataDictionary);
     }
 
     public static IEnumerator DownloadCSVCoroutine(string docId, Action<string> callback,
