@@ -21,17 +21,25 @@ public class UIController : MonoBehaviour
 
     [Header("Available Parameters References")]
     [SerializeField]
-    private GridLayoutGroup availableParametersContainer;
+    private RectTransform availableParametersContainer;
 
     [Header("Selected Parameters References")]
     [SerializeField]
-    private GridLayoutGroup selectedParametersContainer;
+    private RectTransform selectedParametersContainer;
 
     #endregion
 
     [Header("General")]
     [SerializeField]
     private UIParameterButton uiParameterButtonPrefab;
+
+    [SerializeField]
+    private ToggleGroup parameterToggleGroup;
+
+    private RectTransform parameterToggleGroupRectTransform;
+
+    public delegate void ParameterSelectedDelegate(string parameter);
+    public ParameterSelectedDelegate OnParameterSelected;
 
     private void Awake() {
         if (!instance) {
@@ -46,6 +54,8 @@ public class UIController : MonoBehaviour
     private void Initialize() {
         availableParametersList = new List<UIParameterButton>();
         selectedParametersList = new List<UIParameterButton>();
+
+        parameterToggleGroupRectTransform = parameterToggleGroup.GetComponent<RectTransform>();
     }
 
     public void AddNewParameter(string parameter) {
@@ -56,18 +66,40 @@ public class UIController : MonoBehaviour
 
         uiParameterButton.Parameter = parameter;
 
-        AddToAvailableParameters(uiParameterButton);
+        // Set toggle group
+        uiParameterButton.SetToggleGroup(parameterToggleGroup);
+
+        // Set parent
+        uiParameterButton.transform.parent = parameterToggleGroup.transform;
+
+        // Reset position
+        uiParameterButton.transform.localPosition = Vector3.zero;
+
+        // Force rebuild layout
+        LayoutRebuilder.ForceRebuildLayoutImmediate(parameterToggleGroupRectTransform);
+
+        //AddToAvailableParameters(uiParameterButton);
+    }
+
+    public bool IsParameterAvailable(UIParameterButton uiParameterButton) {
+        return availableParametersList.Contains(uiParameterButton);
+    }
+
+    public bool IsParameterSelected(UIParameterButton uiParameterButton) {
+        return selectedParametersList.Contains(uiParameterButton);
     }
 
     public void AddToAvailableParameters(UIParameterButton uiParameterButton) {
         // If parameter is selected
-        if (selectedParametersList.Contains(uiParameterButton)) {
+        if (IsParameterSelected(uiParameterButton)) {
             // Remove it from the list
             selectedParametersList.Remove(uiParameterButton);
         }
 
         // Move it to available parameters container
-        uiParameterButton.transform.parent = availableParametersContainer;
+        uiParameterButton.transform.parent = availableParametersContainer.transform;
+        uiParameterButton.transform.localPosition = Vector3.zero;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(availableParametersContainer);
 
         // Add it to available parameters list
         availableParametersList.Add(uiParameterButton);
@@ -75,15 +107,23 @@ public class UIController : MonoBehaviour
 
     public void AddToSelectedParameters(UIParameterButton uiParameterButton) {
         // If parameter is available
-        if (availableParametersList.Contains(uiParameterButton)) {
+        if (IsParameterAvailable(uiParameterButton)) {
             // Remove it from the list
             availableParametersList.Remove(uiParameterButton);
         }
 
         // Move it to available parameters container
-        uiParameterButton.transform.parent = selectedParametersContainer;
+        uiParameterButton.transform.parent = selectedParametersContainer.transform;
+        uiParameterButton.transform.localPosition = Vector3.zero;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(selectedParametersContainer);
 
         // Add it to available parameters list
         selectedParametersList.Add(uiParameterButton);
+    }
+
+    public void SelectParameter(string parameter) {
+        Debug.Log("Parameter: " + parameter + " selected");
+
+        OnParameterSelected?.Invoke(parameter);
     }
 }

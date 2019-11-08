@@ -213,6 +213,8 @@ public class DataNode : MonoBehaviour {
 
         // Subscribe to geocoder response
         OnGeocoderResponseDelegate += OnGeocoderResponse;
+
+        UIController.instance.OnParameterSelected += SetProperty;
     }
 
     #endregion
@@ -251,6 +253,12 @@ public class DataNode : MonoBehaviour {
         property = "Joy";
         Scale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
         //Debug.Log("Setting scale as: " + Scale);
+    }
+
+    public void SetProperty(string property) {
+        Debug.Log("Setting property: " + property);
+
+        Scale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
     }
 
     private void ConvertAddressToGPS() {
