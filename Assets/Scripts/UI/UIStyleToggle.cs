@@ -54,7 +54,7 @@ public class UIStyleToggle : MonoBehaviour
 
         //uiToggle.ExecuteOnButtonSelected();
 
-        UIController.instance.SelectStyle(dimensionType);
+        UIController.instance.SelectDimensionType(dimensionType);
     }
 
     private void OnButtonRelease() {

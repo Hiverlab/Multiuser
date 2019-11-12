@@ -15,7 +15,7 @@ public class Utilities : MonoBehaviour {
         //DontDestroyOnLoad(this);
     }
 
-    public static float animationSpeed = 1.0f;
+    public static float animationSpeed = 0.5f;
     
     public static void Log(string className, string debugMessage) {
         Debug.Log("<b>" + className + "<b> " + debugMessage);

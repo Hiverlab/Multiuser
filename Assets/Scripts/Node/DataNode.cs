@@ -1,11 +1,13 @@
-﻿using Mapbox.Geocoding;
-using Mapbox.Unity;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using TMPro;
 using UnityEngine;
+
+using DG.Tweening;
+using Mapbox.Geocoding;
+using Mapbox.Unity;
+using TMPro;
 
 // The node class is purely for the visual representation of a data point
 public class DataNode : MonoBehaviour {
@@ -168,9 +170,13 @@ public class DataNode : MonoBehaviour {
         float modelYScale = 1.0f * scale;
 
         // Update model mesh renderer scale
+        /*
         shapeMeshRenderer.transform.localScale = new Vector3(shapeMeshRenderer.transform.localScale.x,
             modelYScale,
             shapeMeshRenderer.transform.localScale.z);
+            */
+
+        shapeMeshRenderer.transform.DOScaleY(modelYScale, Utilities.animationSpeed);
 
         // Calculate offset position
         Vector3 offsetPosition = new Vector3(0, (modelYScale *  0.25f) + 0.025f, 0);
@@ -185,7 +191,9 @@ public class DataNode : MonoBehaviour {
     }
 
     private void UpdateColorScale() {
-        shapeMeshRenderer.material.color = colorGradient.Evaluate(ColorScale);
+        //shapeMeshRenderer.material.color = colorGradient.Evaluate(ColorScale);
+
+        shapeMeshRenderer.material.DOColor(colorGradient.Evaluate(ColorScale), Utilities.animationSpeed);
     }
 
     private void UpdateShape() {
@@ -222,10 +230,13 @@ public class DataNode : MonoBehaviour {
         OnGeocoderResponseDelegate += OnGeocoderResponse;
 
         // Subscribe to OnParameterSelected event
-        UIController.instance.OnParameterSelected += SetProperty;
-        
+        //UIController.instance.OnTestParameterSelected += SetProperty;
+
         // Subscribe to OnStyleSelected event
-        UIController.instance.OnStyleSelected += SetStyle;
+        //UIController.instance.OnDimensionTypeSelected += SetStyle;
+
+        // Subscribe to OnParameterSelected event
+        UIController.instance.OnParameterSelected += SetPropertyAndStyle;
     }
 
     #endregion
@@ -284,12 +295,28 @@ public class DataNode : MonoBehaviour {
         Scale = DataNodePopulator.instance.GetNormalizedValue(property, outputValue);
         ColorScale = DataNodePopulator.instance.GetNormalizedValue(property, outputValue);
         */
+
+        UpdateVisuals();
     }
 
+    public void SetPropertyAndStyle(string property, DimensionType _dimensionType) {
+        Debug.Log("Setting property: " + property + " Setting style: " + _dimensionType);
+        
+        selectedProperty = property;
+        dimensionType = _dimensionType;
 
-    public void SetStyle(DimensionType dimensionType) {
-        Debug.Log("Setting style: " + dimensionType);
+        UpdateVisuals();
+    }
 
+    public void SetStyle(DimensionType _dimensionType) {
+        Debug.Log("Setting style: " + _dimensionType);
+
+        dimensionType = _dimensionType;
+
+        UpdateVisuals();
+    }
+
+    private void UpdateVisuals() {
         // If selected property is empty, then return
         if (string.IsNullOrEmpty(selectedProperty)) {
             return;
@@ -303,17 +330,19 @@ public class DataNode : MonoBehaviour {
             return;
         }
 
+        Debug.Log("Setting value: " + outputValue);
+
         switch (dimensionType) {
             case DimensionType.Scale:
                 Scale = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
-                ColorScale = 0.0f;
+                //ColorScale = 0.0f;
                 break;
             case DimensionType.ColorScale:
                 ColorScale = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
-                Scale = 0.25f;
+                //Scale = 0.25f;
                 break;
             default:
-                Scale = 0.0f;
+                Scale = 0.1f;
                 ColorScale = 0.0f;
                 break;
         }

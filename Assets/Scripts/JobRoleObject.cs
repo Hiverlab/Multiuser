@@ -325,7 +325,7 @@ public class JobRoleObject : MonoBehaviour {
 
         //titleTextMesh.text = title;
 
-        titleTextMesh.DOText(title, Utilities.animationSpeed);
+        //titleTextMesh.DOText(title, Utilities.animationSpeed);
         titlePanel.DOFillAmount(1.0f, Utilities.animationSpeed);
 
         lineToTitle.enabled = true;

@@ -1,12 +1,15 @@
-﻿using Doozy.Engine.UI;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+using DG.Tweening;
+using Doozy.Engine.UI;
+using TMPro;
+
 public class UIParameterButton : MonoBehaviour
 {
+    [Header("Toggle References")]
     [SerializeField]
     private TextMeshProUGUI textMesh;
 
@@ -15,6 +18,17 @@ public class UIParameterButton : MonoBehaviour
 
     [SerializeField]
     private UIToggle uiToggle;
+
+    [Header("Style Panel References")]
+    [SerializeField]
+    private CanvasGroup stylePanelCanvasGroup;
+
+    [SerializeField]
+    private TMP_Dropdown optionsDropdown;
+
+    private List<string> optionsList;
+
+    #region Properties
 
     private string parameter;
 
@@ -29,6 +43,21 @@ public class UIParameterButton : MonoBehaviour
         }
     }
 
+    private DataNode.DimensionType dimensionType;
+
+    public DataNode.DimensionType DimensionType {
+        get {
+            return dimensionType;
+        }
+        set {
+            dimensionType = value;
+        }
+    }
+
+    #endregion
+
+    #region Setters
+
     public void SetText(string text) {
         textMesh.text = text;
     }
@@ -40,6 +69,81 @@ public class UIParameterButton : MonoBehaviour
 
         toggle.group = toggleGroup;
     }
+
+    public void PopulateDropdownOptions() {
+        optionsList = new List<string>();
+
+        string[] dimensionTypeNames = System.Enum.GetNames(typeof(DataNode.DimensionType));
+        for (int i = 0; i < dimensionTypeNames.Length; i++) {
+            Debug.Log(dimensionTypeNames[i]);
+
+            optionsList.Add(dimensionTypeNames[i]);
+        }
+
+        optionsDropdown.AddOptions(optionsList);
+
+        HideDimensionTypePanel();
+    }
+
+    #endregion
+
+    #region General
+    
+    public DataNode.DimensionType GetDimensionTypeFromString(string dimensionTypeText) {
+        return (DataNode.DimensionType) System.Enum.Parse(typeof(DataNode.DimensionType), dimensionTypeText);
+    }
+    
+    public void SetParameterAndDimension() {
+        UIController.instance.OnParameterSelected(Parameter, DimensionType);
+    }
+
+    #endregion
+
+    #region Toggles 
+
+    public void OnValueChanged(bool value) {
+        if (value) {
+            OnToggleOn();
+        } else {
+            OnToggleOff();
+        }
+    }
+
+    // When toggle is on
+    private void OnToggleOn() {
+        ShowDimensionTypePanel();
+    }
+
+    private void OnToggleOff() {
+        HideDimensionTypePanel();
+    }
+
+    private void ShowDimensionTypePanel() {
+        stylePanelCanvasGroup.DOFade(1.0f, Utilities.animationSpeed).OnComplete(()=> {
+            stylePanelCanvasGroup.interactable = true;
+            stylePanelCanvasGroup.blocksRaycasts = true;
+        });
+    }
+
+    private void HideDimensionTypePanel() {
+        stylePanelCanvasGroup.interactable = true;
+        stylePanelCanvasGroup.blocksRaycasts = true;
+        stylePanelCanvasGroup.DOFade(0.0f, Utilities.animationSpeed);
+    }
+
+    #endregion
+
+    #region Dropdowns
+
+    public void OnDropdownValueChanged() {
+        // Get value of dropdown
+        DimensionType = GetDimensionTypeFromString(optionsDropdown.options[optionsDropdown.value].text);
+
+        // Set parameter type and dimension
+        SetParameterAndDimension();
+    }
+
+    #endregion
 
     #region Touch interactions
 
@@ -60,11 +164,17 @@ public class UIParameterButton : MonoBehaviour
 
         uiToggle.SelectToggle();
 
-        uiToggle.IsOn = true;
+        uiToggle.IsOn = !uiToggle.IsOn;
+
+        if (uiToggle.IsOn) {
+            transform.DOLocalMoveZ(-0.015f, Utilities.animationSpeed);
+        } else {
+            transform.DOLocalMoveZ(0.0f, Utilities.animationSpeed);
+        }
 
         //uiToggle.ExecuteOnButtonSelected();
 
-        UIController.instance.SelectParameter(Parameter);
+        //UIController.instance.SelectParameter(Parameter);
     }
 
     private void OnButtonRelease() {

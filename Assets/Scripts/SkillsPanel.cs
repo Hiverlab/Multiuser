@@ -52,8 +52,8 @@ public class SkillsPanel : MonoBehaviour
         skillTitleTextMesh.text = "";
         skillDescriptionPanel.gameObject.SetActive(true);
 
-        skillTitleTextMesh.DOText(skillTitle, Utilities.animationSpeed);
-        skillDescriptionTextMesh.DOText(skillDescription, Utilities.animationSpeed);
+        //skillTitleTextMesh.DOText(skillTitle, Utilities.animationSpeed);
+        //skillDescriptionTextMesh.DOText(skillDescription, Utilities.animationSpeed);
 
         //closeButton.gameObject.SetActive(false);
     }

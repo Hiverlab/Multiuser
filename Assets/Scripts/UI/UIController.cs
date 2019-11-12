@@ -38,13 +38,16 @@ public class UIController : MonoBehaviour
 
     private RectTransform parameterToggleGroupRectTransform;
 
-    public delegate void ParameterSelectedDelegate(string parameter);
-    public ParameterSelectedDelegate OnParameterSelected;
+    public delegate void TestParameterSelectedDelegate(string parameter);
+    public TestParameterSelectedDelegate OnTestParameterSelected;
 
     private string currentParameter;
 
-    public delegate void StyleSelectedDelegate(DataNode.DimensionType dimensionType);
-    public StyleSelectedDelegate OnStyleSelected;
+    public delegate void DimensionTypeSelectedDelegate(DataNode.DimensionType dimensionType);
+    public DimensionTypeSelectedDelegate OnDimensionTypeSelected;
+
+    public delegate void ParameterSelectedDelegate(string parameter, DataNode.DimensionType dimensionType);
+    public ParameterSelectedDelegate OnParameterSelected;
 
     private void Awake() {
         if (!instance) {
@@ -65,13 +68,13 @@ public class UIController : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.A)) {
-            OnStyleSelected(DataNode.DimensionType.ColorScale);
+            OnDimensionTypeSelected(DataNode.DimensionType.ColorScale);
         }
         if (Input.GetKeyDown(KeyCode.S)) {
-            OnStyleSelected(DataNode.DimensionType.Scale);
+            OnDimensionTypeSelected(DataNode.DimensionType.Scale);
         }
         if (Input.GetKeyDown(KeyCode.D)) {
-            OnStyleSelected(DataNode.DimensionType.None);
+            OnDimensionTypeSelected(DataNode.DimensionType.None);
         }
     }
 
@@ -81,7 +84,11 @@ public class UIController : MonoBehaviour
         Debug.Log(uiParameterButton);
         Debug.Log("Assigning parameter: " + parameter);
 
+        // Set parameter
         uiParameterButton.Parameter = parameter;
+
+        // Populate dropdown options
+        uiParameterButton.PopulateDropdownOptions();
 
         // Set toggle group
         uiParameterButton.SetToggleGroup(parameterToggleGroup);
@@ -146,12 +153,12 @@ public class UIController : MonoBehaviour
 
         currentParameter = parameter;
 
-        OnParameterSelected?.Invoke(parameter);
+        OnTestParameterSelected?.Invoke(parameter);
     }
 
-    public void SelectStyle(DataNode.DimensionType dimensionType) {
+    public void SelectDimensionType(DataNode.DimensionType dimensionType) {
         Debug.Log("Dimension Type: " + dimensionType + " selected");
 
-        OnStyleSelected?.Invoke(dimensionType);
+        OnDimensionTypeSelected?.Invoke(dimensionType);
     }
 }
