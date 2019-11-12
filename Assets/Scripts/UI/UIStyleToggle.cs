@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIParameterButton : MonoBehaviour
+public class UIStyleToggle : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI textMesh;
@@ -16,18 +16,8 @@ public class UIParameterButton : MonoBehaviour
     [SerializeField]
     private UIToggle uiToggle;
 
-    private string parameter;
-
-    public string Parameter {
-        get {
-            return parameter;
-        }
-        set {
-            parameter = value;
-
-            SetText(parameter);
-        }
-    }
+    [SerializeField]
+    private DataNode.DimensionType dimensionType;
 
     public void SetText(string text) {
         textMesh.text = text;
@@ -64,7 +54,7 @@ public class UIParameterButton : MonoBehaviour
 
         //uiToggle.ExecuteOnButtonSelected();
 
-        UIController.instance.SelectParameter(Parameter);
+        UIController.instance.SelectStyle(dimensionType);
     }
 
     private void OnButtonRelease() {

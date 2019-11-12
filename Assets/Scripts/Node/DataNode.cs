@@ -17,7 +17,8 @@ public class DataNode : MonoBehaviour {
         Position,
         Scale,
         ColorScale,
-        Shape
+        Shape,
+        None
     }
 
     // Need to attach a dimension type to the property
@@ -141,6 +142,11 @@ public class DataNode : MonoBehaviour {
 
     #endregion
 
+    #region Properties
+    private string selectedProperty;
+
+    #endregion
+
     #region Properties References
 
     [Header("Properties References")]
@@ -215,7 +221,11 @@ public class DataNode : MonoBehaviour {
         // Subscribe to geocoder response
         OnGeocoderResponseDelegate += OnGeocoderResponse;
 
+        // Subscribe to OnParameterSelected event
         UIController.instance.OnParameterSelected += SetProperty;
+        
+        // Subscribe to OnStyleSelected event
+        UIController.instance.OnStyleSelected += SetStyle;
     }
 
     #endregion
@@ -247,18 +257,21 @@ public class DataNode : MonoBehaviour {
         
         // Set color scale based on sentiment value
         string property = "Sentiment";
-        ColorScale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
+        //ColorScale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
         //Debug.Log("Setting color scale as: " + ColorScale);
         
         // Set scale based on joy
         //property = "Joy";
-        Scale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
+        //Scale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
         //Debug.Log("Setting scale as: " + Scale);
     }
 
     public void SetProperty(string property) {
         Debug.Log("Setting property: " + property);
 
+        selectedProperty = property;
+
+        /*
         float outputValue;
 
         bool success = float.TryParse(propertiesDictionary[property], NumberStyles.Float, CultureInfo.InvariantCulture, out outputValue);
@@ -270,6 +283,40 @@ public class DataNode : MonoBehaviour {
 
         Scale = DataNodePopulator.instance.GetNormalizedValue(property, outputValue);
         ColorScale = DataNodePopulator.instance.GetNormalizedValue(property, outputValue);
+        */
+    }
+
+
+    public void SetStyle(DimensionType dimensionType) {
+        Debug.Log("Setting style: " + dimensionType);
+
+        // If selected property is empty, then return
+        if (string.IsNullOrEmpty(selectedProperty)) {
+            return;
+        }
+
+        float outputValue;
+        bool success = float.TryParse(propertiesDictionary[selectedProperty], NumberStyles.Float, CultureInfo.InvariantCulture, out outputValue);
+
+        // If the first value is not a float, then skip this column
+        if (!success) {
+            return;
+        }
+
+        switch (dimensionType) {
+            case DimensionType.Scale:
+                Scale = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
+                ColorScale = 0.0f;
+                break;
+            case DimensionType.ColorScale:
+                ColorScale = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
+                Scale = 0.25f;
+                break;
+            default:
+                Scale = 0.0f;
+                ColorScale = 0.0f;
+                break;
+        }
     }
 
     private void ConvertAddressToGPS() {

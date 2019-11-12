@@ -41,6 +41,11 @@ public class UIController : MonoBehaviour
     public delegate void ParameterSelectedDelegate(string parameter);
     public ParameterSelectedDelegate OnParameterSelected;
 
+    private string currentParameter;
+
+    public delegate void StyleSelectedDelegate(DataNode.DimensionType dimensionType);
+    public StyleSelectedDelegate OnStyleSelected;
+
     private void Awake() {
         if (!instance) {
             instance = this;
@@ -56,6 +61,18 @@ public class UIController : MonoBehaviour
         selectedParametersList = new List<UIParameterButton>();
 
         parameterToggleGroupRectTransform = parameterToggleGroup.GetComponent<RectTransform>();
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.A)) {
+            OnStyleSelected(DataNode.DimensionType.ColorScale);
+        }
+        if (Input.GetKeyDown(KeyCode.S)) {
+            OnStyleSelected(DataNode.DimensionType.Scale);
+        }
+        if (Input.GetKeyDown(KeyCode.D)) {
+            OnStyleSelected(DataNode.DimensionType.None);
+        }
     }
 
     public void AddNewParameter(string parameter) {
@@ -74,6 +91,9 @@ public class UIController : MonoBehaviour
 
         // Reset position
         uiParameterButton.transform.localPosition = Vector3.zero;
+
+        // Reset rotation
+        uiParameterButton.transform.localEulerAngles = Vector3.zero;
 
         // Force rebuild layout
         LayoutRebuilder.ForceRebuildLayoutImmediate(parameterToggleGroupRectTransform);
@@ -124,6 +144,14 @@ public class UIController : MonoBehaviour
     public void SelectParameter(string parameter) {
         Debug.Log("Parameter: " + parameter + " selected");
 
+        currentParameter = parameter;
+
         OnParameterSelected?.Invoke(parameter);
+    }
+
+    public void SelectStyle(DataNode.DimensionType dimensionType) {
+        Debug.Log("Dimension Type: " + dimensionType + " selected");
+
+        OnStyleSelected?.Invoke(dimensionType);
     }
 }
