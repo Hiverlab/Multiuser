@@ -3,6 +3,7 @@ using Mapbox.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -158,7 +159,7 @@ public class DataNode : MonoBehaviour {
 
     private void UpdateScale() {
         // Update model scale on Y axis
-        float modelYScale = shapeMeshRenderer.transform.localScale.y * scale;
+        float modelYScale = 1.0f * scale;
 
         // Update model mesh renderer scale
         shapeMeshRenderer.transform.localScale = new Vector3(shapeMeshRenderer.transform.localScale.x,
@@ -249,8 +250,8 @@ public class DataNode : MonoBehaviour {
         ColorScale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
         //Debug.Log("Setting color scale as: " + ColorScale);
         
-        // Set length based on reach
-        property = "Joy";
+        // Set scale based on joy
+        //property = "Joy";
         Scale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
         //Debug.Log("Setting scale as: " + Scale);
     }
@@ -258,7 +259,17 @@ public class DataNode : MonoBehaviour {
     public void SetProperty(string property) {
         Debug.Log("Setting property: " + property);
 
-        Scale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
+        float outputValue;
+
+        bool success = float.TryParse(propertiesDictionary[property], NumberStyles.Float, CultureInfo.InvariantCulture, out outputValue);
+
+        // If the first value is not a float, then skip this column
+        if (!success) {
+            return;
+        }
+
+        Scale = DataNodePopulator.instance.GetNormalizedValue(property, outputValue);
+        ColorScale = DataNodePopulator.instance.GetNormalizedValue(property, outputValue);
     }
 
     private void ConvertAddressToGPS() {

@@ -14,12 +14,7 @@ public class DataNodePopulator : MonoBehaviour {
     AbstractMap map;
 
     [SerializeField]
-    [Geocode]
-    string[] locationStrings;
-    Vector2d[] locations;
-
-    [SerializeField]
-    float spawnScale = 100f;
+    float spawnScale = 1.0f;
 
     [SerializeField]
     DataNode nodePrefab;
@@ -45,22 +40,7 @@ public class DataNodePopulator : MonoBehaviour {
             Destroy(instance);
         }
     }
-
-    public void PopulateNodes() {
-        areNodesPopulated = true;
-        locations = new Vector2d[locationStrings.Length];
-        spawnedNodes = new List<DataNode>();
-        for (int i = 0; i < locationStrings.Length; i++) {
-            var locationString = locationStrings[i];
-            locations[i] = Conversions.StringToLatLon(locationString);
-            var instance = Lean.Pool.LeanPool.Spawn(nodePrefab);
-            //var instance = Instantiate(markerPrefab);
-            instance.transform.localPosition = map.GeoToWorldPosition(locations[i], true);
-            instance.transform.localScale = new Vector3(spawnScale, spawnScale, spawnScale);
-            spawnedNodes.Add(instance);
-        }
-    }
-
+    
     // Takes in a location string in the format "lat,lon" and returns a Vector3 position on the map
     public Vector3 GetWorldSpacePositionFromGPS(string locationString) {
         Vector2d location = Conversions.StringToLatLon(locationString);
@@ -91,6 +71,9 @@ public class DataNodePopulator : MonoBehaviour {
         // For every row, create a node with properties from each column
         for (int row = 0; row < totalRows; row++) {
             DataNode currentNode = Lean.Pool.LeanPool.Spawn(nodePrefab);
+
+            currentNode.transform.localScale = new Vector3(spawnScale, spawnScale, spawnScale);
+
             currentNode.Initialize();
             
             foreach (KeyValuePair<string, List<string>> keyValuePair in dataDictionary) {
@@ -107,7 +90,6 @@ public class DataNodePopulator : MonoBehaviour {
 
             yield return new WaitForSeconds(0.005f);
         }
-
 
         areNodesPopulated = true;
 
