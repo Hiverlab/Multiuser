@@ -68,6 +68,10 @@ public class UIParameterButton : MonoBehaviour
         }
 
         toggle.group = toggleGroup;
+
+        toggle.onValueChanged.AddListener(delegate {
+            ToggleValueChanged(toggle);
+        });
     }
 
     public void PopulateDropdownOptions() {
@@ -159,18 +163,22 @@ public class UIParameterButton : MonoBehaviour
         }
     }
 
+    private void ToggleValueChanged(Toggle change) {
+        if (change.isOn) {
+            transform.DOLocalMoveZ(-0.015f, Utilities.animationSpeed);
+        } else {
+            transform.DOLocalMoveZ(0.0f, Utilities.animationSpeed).OnComplete(() => {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+            });
+        }
+    }
+
     private void OnButtonPress() {
         Debug.Log("On Button Press");
 
         uiToggle.SelectToggle();
 
-        uiToggle.IsOn = !uiToggle.IsOn;
-
-        if (uiToggle.IsOn) {
-            transform.DOLocalMoveZ(-0.015f, Utilities.animationSpeed);
-        } else {
-            transform.DOLocalMoveZ(0.0f, Utilities.animationSpeed);
-        }
+        uiToggle.IsOn = true;
 
         //uiToggle.ExecuteOnButtonSelected();
 
