@@ -92,7 +92,7 @@ public class JobFamilyObject : MonoBehaviour {
 
         Debug.Log("Highlighting: " + name);
         //titleTextMesh.text = title;
-        //titleTextMesh.DOText(title, Utilities.animationSpeed);
+        titleTextMesh.DOText(title, Utilities.animationSpeed);
 
         isHighlighted = true;
 

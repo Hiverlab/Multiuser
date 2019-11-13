@@ -16,11 +16,11 @@ public class DataNode : MonoBehaviour {
     #region Dimensions
 
     public enum DimensionType {
-        Position,
+        None,
+        //Position,
         Scale,
         ColorScale,
-        Shape,
-        None
+        //Shape
     }
 
     // Need to attach a dimension type to the property
@@ -265,36 +265,15 @@ public class DataNode : MonoBehaviour {
 
         // Convert address to GPS
         ConvertAddressToGPS();
-        
-        // Set color scale based on sentiment value
-        string property = "Sentiment";
-        //ColorScale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
-        //Debug.Log("Setting color scale as: " + ColorScale);
-        
-        // Set scale based on joy
-        //property = "Joy";
-        //Scale = DataNodePopulator.instance.GetNormalizedValue(property, float.Parse(propertiesDictionary[property]));
-        //Debug.Log("Setting scale as: " + Scale);
+
+        // Set Scale as 0.1 first
+        Scale = 0.1f;
     }
 
     public void SetProperty(string property) {
         Debug.Log("Setting property: " + property);
 
         selectedProperty = property;
-
-        /*
-        float outputValue;
-
-        bool success = float.TryParse(propertiesDictionary[property], NumberStyles.Float, CultureInfo.InvariantCulture, out outputValue);
-
-        // If the first value is not a float, then skip this column
-        if (!success) {
-            return;
-        }
-
-        Scale = DataNodePopulator.instance.GetNormalizedValue(property, outputValue);
-        ColorScale = DataNodePopulator.instance.GetNormalizedValue(property, outputValue);
-        */
 
         UpdateVisuals();
     }

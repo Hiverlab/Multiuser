@@ -56,7 +56,7 @@ GraphicsSettings:
       renderingPath: 1
       hdrMode: 2
       realtimeGICPUUsage: 25
-      useReflectionProbeBoxProjection: 0
+      useReflectionProbeBoxProjection: 1
       useReflectionProbeBlending: 0
       useHDR: 0
       useDetailNormalMap: 0
@@ -73,7 +73,7 @@ GraphicsSettings:
       renderingPath: 1
       hdrMode: 2
       realtimeGICPUUsage: 25
-      useReflectionProbeBoxProjection: 0
+      useReflectionProbeBoxProjection: 1
       useReflectionProbeBlending: 0
       useHDR: 0
       useDetailNormalMap: 0
@@ -90,7 +90,7 @@ GraphicsSettings:
       renderingPath: 1
       hdrMode: 2
       realtimeGICPUUsage: 25
-      useReflectionProbeBoxProjection: 0
+      useReflectionProbeBoxProjection: 1
       useReflectionProbeBlending: 0
       useHDR: 0
       useDetailNormalMap: 0

@@ -57,7 +57,19 @@ public class DataNodePopulator : MonoBehaviour {
 
         List<string> dataKeys = new List<string>(dataDictionary.Keys);
 
+        // For each data key
         for (int i = 0; i < dataKeys.Count; i++) {
+            float outputValue;
+
+            // Try parse the first value of each column
+            bool success = float.TryParse(dataDictionary[dataKeys[i]][0], NumberStyles.Float, CultureInfo.InvariantCulture, out outputValue);
+
+            // If this is not numerical data, move on to next parameter
+            if (!success) {
+                continue;
+            }
+
+            // Add new parameter on UI
             UIController.instance.AddNewParameter(dataKeys[i]);
         }
 
