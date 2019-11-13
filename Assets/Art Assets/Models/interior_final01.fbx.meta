@@ -1292,292 +1292,292 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: No Name
-    second: {fileID: 2100000, guid: 40d95bf1eaed12b4ca23db53be3cabf3, type: 2}
+    second: {fileID: 2100000, guid: 30f168fb5ec4f394492640e32850e985, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Projection_lights
-    second: {fileID: 2100000, guid: 244db430263a8b641ad9b19d4d0db00e, type: 2}
+    second: {fileID: 2100000, guid: 3e49d2b8e0b967b4f9dd3f72b5434f7b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: alert_frame
-    second: {fileID: 2100000, guid: 2c238558ad2e5164e8cc58b7f3365617, type: 2}
+    second: {fileID: 2100000, guid: edcdc33da6d9fb249bb5b17a6cc6d3ee, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: alet support
-    second: {fileID: 2100000, guid: ded39637280f6ff469caa05da3d9de2d, type: 2}
+    second: {fileID: 2100000, guid: 62bcf6def23ec044aa9092526e6c92a3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: block
-    second: {fileID: 2100000, guid: f3a55de9b28a797409bc9da161a17f56, type: 2}
+    second: {fileID: 2100000, guid: 697b93550d02c51418aa327ef52da4dd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ceiling cover
-    second: {fileID: 2100000, guid: dc6fc921e04a9e14b892568c722e5f51, type: 2}
+    second: {fileID: 2100000, guid: 8593becd7870a5d4688ee46aa1efdb81, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ceiling displc1
-    second: {fileID: 2100000, guid: 6bdf0c395cd3f884ebd7d2164726b9c9, type: 2}
+    second: {fileID: 2100000, guid: 41fb922a594956341bf974b1e07d29c7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ceiling_light
-    second: {fileID: 2100000, guid: 1ec0a0c441af2c14a8cb3fe74296bc7a, type: 2}
+    second: {fileID: 2100000, guid: 075dd18bf2f4b6e408ee0a7d4c24d802, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ceiling_light_steel2
-    second: {fileID: 2100000, guid: 871703b9218983048a5c0b8676b0ef83, type: 2}
+    second: {fileID: 2100000, guid: b0d9d1bc9a6e4b14886bbadc8298de63, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ceiling_main01
-    second: {fileID: 2100000, guid: ad3160222ea34734ea1a563a958f2f83, type: 2}
+    second: {fileID: 2100000, guid: b2d790a03d88d06498fef578e1079dff, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_controlp_glass
-    second: {fileID: 2100000, guid: 660f6b799a4fb58488c9e1756affd272, type: 2}
+    second: {fileID: 2100000, guid: 628a3bc382bc83545ba1218562610f70, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_dark metal
-    second: {fileID: 2100000, guid: 4edf043505491cf4e82b3da6b00449a3, type: 2}
+    second: {fileID: 2100000, guid: b69661a50ab27b14bbab63ec1764fd57, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_floor1
-    second: {fileID: 2100000, guid: fb18925e65a39b64590b4488d9c3ab80, type: 2}
+    second: {fileID: 2100000, guid: 2a2723f2e31056949a415e4c35bd7609, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_glass
-    second: {fileID: 2100000, guid: 3b704e601bc64c946b9405d3518b4d6b, type: 2}
+    second: {fileID: 2100000, guid: e107ce55ad20aef46996424b645c02a8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_lock1_glass
-    second: {fileID: 2100000, guid: 171e0512fc5a93449a40227bcbbc0b8d, type: 2}
+    second: {fileID: 2100000, guid: ec46e2fc0c5bbd14695a63272cf48575, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_lock_glass2
-    second: {fileID: 2100000, guid: 11f1ad2750b4baa4091fc69a45da2e22, type: 2}
+    second: {fileID: 2100000, guid: 518783e29b7523d42abb0841fb1cdd49, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_lock_panel
-    second: {fileID: 2100000, guid: 519df646f2c84334f95f97e4a9b0492d, type: 2}
+    second: {fileID: 2100000, guid: 4bb73c18c3b1a024e945df5f80980190, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_main
-    second: {fileID: 2100000, guid: 0dc0991fcb8d2694ba740df5cc7cef8e, type: 2}
+    second: {fileID: 2100000, guid: bee873ffdfa608240a604217473a779c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_metal_lockl
-    second: {fileID: 2100000, guid: c52f3a20113af0b4e9c3ecd85cc00ce6, type: 2}
+    second: {fileID: 2100000, guid: b0bae377998a8ea46b89f1e769ab9a57, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_pivot_grey
-    second: {fileID: 2100000, guid: 6651571d01aeee0448e5a307d4a2c8d4, type: 2}
+    second: {fileID: 2100000, guid: 7e6eb0fa30e676c459d2ea176dfb0279, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_step_frame
-    second: {fileID: 2100000, guid: 4bfa8b3f8bce74e4daf6a07268cfe13d, type: 2}
+    second: {fileID: 2100000, guid: be5b74e7abc5a6e418755e280b3122bc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_top_light
-    second: {fileID: 2100000, guid: d8ec8680e57420545ae203efb90279c4, type: 2}
+    second: {fileID: 2100000, guid: d6e94ed7bf020f9418fdcc3d6f99eb20, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_vent1
-    second: {fileID: 2100000, guid: 2b9e11619685d2a4b9093d0c89c52a11, type: 2}
+    second: {fileID: 2100000, guid: 783e8cd8ab96ae649af3827817a37e5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: door_wall
-    second: {fileID: 2100000, guid: 714fb67743ec1394fa56132e87c4c589, type: 2}
+    second: {fileID: 2100000, guid: f6497c62247a0b44483065e418f35d5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: doorstep_displ
-    second: {fileID: 2100000, guid: ee8a1d4a7500a984c83e49acc06eb677, type: 2}
+    second: {fileID: 2100000, guid: 7ec750a8e6a173c48a8dce3e2a948564, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: doorstep_panel
-    second: {fileID: 2100000, guid: 7b9e17d70d6e6b54fa029601ae8012da, type: 2}
+    second: {fileID: 2100000, guid: 2b8c19119c8825f409c4ecc02249c9e7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: floor_displc1
-    second: {fileID: 2100000, guid: 593b3cb0a76eeb94a838b0c9ea69d4ad, type: 2}
+    second: {fileID: 2100000, guid: e73682692f74e8f4baa9d284fb4f995b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: floor_metalframe1
-    second: {fileID: 2100000, guid: c6f31b22dd3f1584687dca2e53fb2e6d, type: 2}
+    second: {fileID: 2100000, guid: ebe403ee723395c44ba40f400f994793, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: glass2
-    second: {fileID: 2100000, guid: 0e9b313dfaa35784c8551652b080eefb, type: 2}
+    second: {fileID: 2100000, guid: 422e6ecab7ddfdb47a362df779399334, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: glass_main
-    second: {fileID: 2100000, guid: 17f4800ec4b11a94a89fee316565bb8c, type: 2}
+    second: {fileID: 2100000, guid: 0f7fd4bab11fa1446bd3f33db0691000, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: glasstop1
-    second: {fileID: 2100000, guid: 055aeedd5fd55aa409e51c3aef550349, type: 2}
+    second: {fileID: 2100000, guid: 4d4b9c3e8b9b79f409e34ed71b31d231, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: handle rail
-    second: {fileID: 2100000, guid: fc270aef759851f408114e6a63fc93dc, type: 2}
+    second: {fileID: 2100000, guid: 3df995b636c935c4c92ea14f04fe182d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: high floor
-    second: {fileID: 2100000, guid: 67f62a8d6d58c8741bde20ec336f3466, type: 2}
+    second: {fileID: 2100000, guid: 99c3c3daa1f9eea498b45f287688b343, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: leg stand
-    second: {fileID: 2100000, guid: f8703ac277d56714688b5369f587c27f, type: 2}
+    second: {fileID: 2100000, guid: 2451bcdb5e28c934b917075325f21327, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: main wall2
-    second: {fileID: 2100000, guid: e299543a9bdf21a47a3fa35aa6af4fc8, type: 2}
+    second: {fileID: 2100000, guid: 382b71fff0f24374e85896bd8729dad5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metal screw
-    second: {fileID: 2100000, guid: b096cc083c4315b4780ddc477347c48f, type: 2}
+    second: {fileID: 2100000, guid: 8d39acade0f94034fb72a650c154bb76, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metal_light1
-    second: {fileID: 2100000, guid: 66ec7c641a1bc664eae4a315574b1270, type: 2}
+    second: {fileID: 2100000, guid: 765c46fa787c4b9499837d2555fd58dc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metal_panel1
-    second: {fileID: 2100000, guid: fcd070e166096f541b9c2e86ea4f764a, type: 2}
+    second: {fileID: 2100000, guid: 18c28c001e0093042bd823019c9486cb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metal_screen1
-    second: {fileID: 2100000, guid: 3b7d89243ce40d44e9f646f3c950e399, type: 2}
+    second: {fileID: 2100000, guid: e82f3c559779e6f48aba6fafe8504ac2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metal_screen_base2
-    second: {fileID: 2100000, guid: 7298bb11c1efbd44c900cc4ff6fce3da, type: 2}
+    second: {fileID: 2100000, guid: 35bdacb44b8039d459ae647d57febe24, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metal_screen_light
-    second: {fileID: 2100000, guid: ef2d2b360b8299645a1315ccda258541, type: 2}
+    second: {fileID: 2100000, guid: c04d0af67251304498da6c34fe73f5da, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metal_wall_dark1
-    second: {fileID: 2100000, guid: 0bef9f2ba071c0148a2fc7c034acddf7, type: 2}
+    second: {fileID: 2100000, guid: 1b4c76e8ce3df52408953ccd73b8b989, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ocbo logo
-    second: {fileID: 2100000, guid: da87791caea34734db7ff0225f74fb42, type: 2}
+    second: {fileID: 2100000, guid: 83ae00b89b2090a459dfd9b5b3f0d105, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: projection dark_frame
-    second: {fileID: 2100000, guid: 358d8acb46cb8b140a96c776dfcaeb20, type: 2}
+    second: {fileID: 2100000, guid: a30a4f903c498fe4ab96280f119c4c11, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: projection_emmision
-    second: {fileID: 2100000, guid: ad95f32e84a380c49a2c9abea45b0748, type: 2}
+    second: {fileID: 2100000, guid: fcad6f5f05acaa04fb869b509dbd6a9b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: rail
-    second: {fileID: 2100000, guid: 6d924e1737ca3c947834f25b01f8edfc, type: 2}
+    second: {fileID: 2100000, guid: 4364366a3bbce504b9499a72ae39b7af, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: red_light1
-    second: {fileID: 2100000, guid: 240801a567f1ad548b649ddd76585a4c, type: 2}
+    second: {fileID: 2100000, guid: 2a98f2c7abda79444a47b08727be3829, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: rubber
-    second: {fileID: 2100000, guid: 20f96ade6d5448b44a1a30add0df98e3, type: 2}
+    second: {fileID: 2100000, guid: c05be3d1feb5514429b033cf02483d48, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: screws
-    second: {fileID: 2100000, guid: e82892e0c05d58b4589ec9b076bbbfa4, type: 2}
+    second: {fileID: 2100000, guid: 6e61e89067ef6634ca58ea7e7a495e22, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: step_displc
-    second: {fileID: 2100000, guid: 40e93fa8df863854b87f9f3a23f899d1, type: 2}
+    second: {fileID: 2100000, guid: d75f4d80d894cf141b9b80951a01a5a5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: steps
-    second: {fileID: 2100000, guid: 333e5a4caa34d77438e699610da224b8, type: 2}
+    second: {fileID: 2100000, guid: c775fff94b2efde4dae56d68c9e6a145, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: table_metal1
-    second: {fileID: 2100000, guid: b09418ba241edec4b8a8cc859caa203f, type: 2}
+    second: {fileID: 2100000, guid: c2c04b61d0202d8448429f871fd3e810, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: tabletop_surface
-    second: {fileID: 2100000, guid: f2b44428102ac8e4489c50f2dfe2b7b3, type: 2}
+    second: {fileID: 2100000, guid: b8d406f17e87da04ca31d67b50ff1e71, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: vent_2
-    second: {fileID: 2100000, guid: 2263f35e9e3ac784eab3e14f8a01afd9, type: 2}
+    second: {fileID: 2100000, guid: b50650c2d9e6a704388165f032f29d49, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: wall_base_dark
-    second: {fileID: 2100000, guid: d0c91cd65dcd13c4092c3a67431dade7, type: 2}
+    second: {fileID: 2100000, guid: 7762d9b6c0b94e64987d4e9604b55435, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: wall_metal_main1
-    second: {fileID: 2100000, guid: 6eb15153ff740784c82f812bd3198be7, type: 2}
+    second: {fileID: 2100000, guid: 2b481dd076d253f4688fb936a20f1915, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: walls
-    second: {fileID: 2100000, guid: 784346ce56cf0e142991e89f588fc3a2, type: 2}
+    second: {fileID: 2100000, guid: 38777c097c181a04eb0fc5bfbbf4ff04, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: white plastic
-    second: {fileID: 2100000, guid: 34c5a01a75ee3b94cb5a5eaf2eb69068, type: 2}
+    second: {fileID: 2100000, guid: dd2341f271b3ede44aa68fa8b6ad6dc6, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -1635,7 +1635,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0

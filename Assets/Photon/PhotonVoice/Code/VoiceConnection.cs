@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.Serialization;
 #if UNITY_5_5_OR_NEWER
 using UnityEngine.Profiling;
 #endif
@@ -75,6 +76,12 @@ namespace Photon.Voice.Unity
 
         protected List<RemoteVoiceLink> cachedRemoteVoices = new List<RemoteVoiceLink>();
 
+        [SerializeField]
+        [FormerlySerializedAs("PrimaryRecorder")]
+        private Recorder primaryRecorder;
+
+        private bool primaryRecorderInitialized;
+
         #endregion
 
         #region Public Fields
@@ -85,8 +92,6 @@ namespace Photon.Voice.Unity
         [HideInInspector]
         public bool ShowSettings;
         #endif
-        /// <summary> Main Recorder to be used for transmission by default</summary>
-        public Recorder PrimaryRecorder;
 
         /// <summary> Special factory to link Speaker components with incoming remote audio streams</summary>
         public Func<int, byte, object, Speaker> SpeakerFactory;
@@ -212,6 +217,37 @@ namespace Photon.Voice.Unity
         }
         #endif
 
+        /// <summary> Main Recorder to be used for transmission by default</summary>
+        public Recorder PrimaryRecorder
+        {
+            get
+            {
+                #if UNITY_EDITOR
+                if (!Application.isPlaying)
+                {
+                    return this.primaryRecorder;
+                }
+                #endif
+                if (!this.primaryRecorderInitialized)
+                {
+                    this.TryInitializePrimaryRecorder();
+                }
+                return this.primaryRecorder;
+            }
+            set
+            {
+                this.primaryRecorder = value;
+                #if UNITY_EDITOR
+                if (!Application.isPlaying)
+                {
+                    return;
+                }
+                #endif
+                this.primaryRecorderInitialized = false;
+                this.TryInitializePrimaryRecorder();
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -311,6 +347,23 @@ namespace Photon.Voice.Unity
             return this.Client.ConnectToRegionMaster(Settings.FixedRegion);
         }
 
+        /// <summary>
+        /// Initializes the Recorder component to be able to transmit audio.
+        /// </summary>
+        /// <param name="rec">The Recorder to be initialized.</param>
+        public void InitRecorder(Recorder rec)
+        {
+            if (rec == null)
+            {
+                if (this.Logger.IsErrorEnabled)
+                {
+                    this.Logger.LogError("rec is null.");
+                }
+                return;
+            }
+            rec.Init(this);
+        }
+
         #endregion
 
         #region Private Methods
@@ -334,6 +387,10 @@ namespace Photon.Voice.Unity
                 Application.runInBackground = runInBackground;
             }
             #endif
+            if (!this.primaryRecorderInitialized)
+            {
+                this.TryInitializePrimaryRecorder();
+            }
         }
 
         protected virtual void Update()
@@ -658,6 +715,18 @@ namespace Photon.Voice.Unity
                     this.Logger.LogInfo("{0} cached remote voices info cleared", cachedRemoteVoices.Count);
                 }
                 cachedRemoteVoices.Clear();
+            }
+        }
+
+        private void TryInitializePrimaryRecorder()
+        {
+            if (this.primaryRecorder != null)
+            {
+                if (!this.primaryRecorder.IsInitialized)
+                {
+                    this.primaryRecorder.Init(this);
+                }
+                this.primaryRecorderInitialized = this.primaryRecorder.IsInitialized;
             }
         }
 

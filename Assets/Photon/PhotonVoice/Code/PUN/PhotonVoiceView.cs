@@ -227,7 +227,8 @@ namespace Photon.Voice.PUN
                 }
                 return true;
             }
-            RecorderInUse.Init(PhotonVoiceNetwork.Instance.VoiceClient, photonView.ViewID);
+            RecorderInUse.UserData = photonView.ViewID;
+            RecorderInUse.Init(PhotonVoiceNetwork.Instance);
             return true;
         }
 

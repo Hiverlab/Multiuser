@@ -238,7 +238,7 @@ namespace Photon.Voice.Unity
             AudioListener audioListener = FindObjectOfType<AudioListener>();
             if (audioListener != null)
             {
-                this.ac = audioListener.gameObject.GetComponent<AudioOutCapture>();
+                this.ac = audioListener.GetComponent<AudioOutCapture>();
                 if (this.ac == null)
                 {
                     this.ac = audioListener.gameObject.AddComponent<AudioOutCapture>();

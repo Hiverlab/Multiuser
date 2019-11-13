@@ -81,14 +81,13 @@ namespace Photon.Voice.Unity.UtilityScripts
 
         public void OnJoinedRoom()
         {
+            if (voiceConnection.PrimaryRecorder == null)
+            {
+                voiceConnection.PrimaryRecorder = this.gameObject.AddComponent<Recorder>();
+            }
             if (this.autoTransmit)
             {
-                if (voiceConnection.PrimaryRecorder == null)
-                {
-                    voiceConnection.PrimaryRecorder = this.gameObject.AddComponent<Recorder>();
-                }
                 voiceConnection.PrimaryRecorder.TransmitEnabled = autoTransmit;
-                voiceConnection.PrimaryRecorder.Init(voiceConnection.VoiceClient);
             }
         }
 
