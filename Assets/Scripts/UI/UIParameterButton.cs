@@ -185,9 +185,9 @@ public class UIParameterButton : MonoBehaviour
         //UIController.instance.SelectParameter(Parameter);
 
         // If dimension type is not none
-        if (DimensionType != DataNode.DimensionType.None) {
-            SetParameterAndDimension();
-        }
+        //if (DimensionType != DataNode.DimensionType.None) {
+        SetParameterAndDimension();
+        //}
     }
 
     private void OnButtonRelease() {
