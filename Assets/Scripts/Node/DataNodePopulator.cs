@@ -25,6 +25,8 @@ public class DataNodePopulator : MonoBehaviour {
 
     private Dictionary<string, List<string>> dataDictionary;
 
+    private bool isMapInitialized = false;
+
     public struct Properties {
         public float minimum;
         public float maximum;
@@ -43,12 +45,26 @@ public class DataNodePopulator : MonoBehaviour {
 
     public void SetMapOrigin(string locationString)
     {
-        StartCoroutine(SetMapOriginCoroutine(locationString));
+        Vector2d origin = Mapbox.Unity.Utilities.Conversions.StringToLatLon(locationString);
+
+        float mapZoom = 17.5f;
+
+        if (!isMapInitialized)
+        {
+            map.Initialize(origin, (int)mapZoom);
+        } else
+        {
+            map.UpdateMap(origin, (int)mapZoom);
+        }
+
+        map.SetZoom(mapZoom);
+
+        //StartCoroutine(SetMapOriginCoroutine(locationString));
     }
 
     private IEnumerator SetMapOriginCoroutine(string locationString)
     {
-        map.ResetMap();
+        //map.ResetMap();
 
         yield return new WaitForSeconds(1.0f);
 

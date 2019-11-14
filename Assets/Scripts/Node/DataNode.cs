@@ -211,11 +211,9 @@ public class DataNode : MonoBehaviour {
     }
 
     private void Update() {
-        /*
         if (LocationString != null) {
-            transform.position = NodePopulator.instance.GetWorldSpacePositionFromGPS(LocationString);
+            transform.position = DataNodePopulator.instance.GetWorldSpacePositionFromGPS(LocationString);
         }
-        */
         //UpdateColorScale();
     }
 
