@@ -408,7 +408,9 @@ namespace Mapbox.Unity.Map
 			{
 				OnUpdated();
 			}
-		}
+
+            RedrawVectorDataLayer();
+        }
 
 		private void Reset()
 		{

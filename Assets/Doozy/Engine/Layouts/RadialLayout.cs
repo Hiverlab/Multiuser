@@ -420,7 +420,7 @@ namespace Doozy.Engine.Layouts
                 var child = transform.GetChild(i) as RectTransform;
                 if (child == null) continue;
 
-                var childButton = child.GetComponent<UIButton>();
+                var childButton = child.GetComponent<UI.UIButton>();
                 if (childButton != null) childButton.UpdateStartValues();
 
                 var childToggle = child.GetComponent<UIToggle>();

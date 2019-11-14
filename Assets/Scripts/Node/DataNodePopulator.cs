@@ -35,6 +35,8 @@ public class DataNodePopulator : MonoBehaviour {
 
     private Dictionary<string, Properties> columnPropertiesDictionary;
 
+    private string dataTabId;
+
     private void Awake() {
         if (!instance) {
             instance = this;
@@ -43,19 +45,27 @@ public class DataNodePopulator : MonoBehaviour {
         }
     }
 
-    public void SetMapOrigin(string locationString)
+    public void SetMapOrigin(string locationString, string tabId)
     {
+        // Despawn all prefabs first
+        Lean.Pool.LeanPool.DespawnAll();
+
+        dataTabId = tabId;
+
         Vector2d origin = Mapbox.Unity.Utilities.Conversions.StringToLatLon(locationString);
 
         float mapZoom = 17.5f;
-
+        
         if (!isMapInitialized)
         {
+            isMapInitialized = true;
             map.Initialize(origin, (int)mapZoom);
         } else
         {
             map.UpdateMap(origin, (int)mapZoom);
         }
+
+        GoogleSheetsFetcher.instance.Initialize(dataTabId);
 
         map.SetZoom(mapZoom);
 
@@ -108,9 +118,6 @@ public class DataNodePopulator : MonoBehaviour {
     }
 
     private IEnumerator SpawnNodeCorutine() {
-        // Despawn all prefabs first
-        Lean.Pool.LeanPool.DespawnAll();
-
         int totalRows = dataDictionary[dataDictionary.Keys.First()].Count;
         spawnedNodes = new List<DataNode>();
 

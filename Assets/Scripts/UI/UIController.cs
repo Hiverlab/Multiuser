@@ -79,14 +79,20 @@ public class UIController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            DataNodePopulator.instance.SetMapOrigin("1.28015, 103.845854");
-            GoogleSheetsFetcher.instance.Initialize("2132687534");
+            // Despawn all prefabs first
+            //Lean.Pool.LeanPool.DespawnAll();
+
+            DataNodePopulator.instance.SetMapOrigin("1.28015, 103.845854", "2132687534");
+            //GoogleSheetsFetcher.instance.Initialize("2132687534");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            DataNodePopulator.instance.SetMapOrigin("1.298752, 103.786885");
-            GoogleSheetsFetcher.instance.Initialize("734724819");
+            // Despawn all prefabs first
+            //Lean.Pool.LeanPool.DespawnAll();
+
+            DataNodePopulator.instance.SetMapOrigin("1.297994, 103.788665", "734724819");
+            //GoogleSheetsFetcher.instance.Initialize("734724819");
         }
     }
 

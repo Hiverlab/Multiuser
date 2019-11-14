@@ -195,7 +195,7 @@ public class DataNode : MonoBehaviour {
 
         shapeMeshRenderer.material.DOColor(colorGradient.Evaluate(ColorScale), Utilities.animationSpeed);
 
-        DOTween.To(() => shapeMeshRenderer.material.GetColor("_EmissionColor"), x => shapeMeshRenderer.material.SetColor("_EmissionColor", x), colorGradient.Evaluate(ColorScale), Utilities.animationSpeed);
+        //DOTween.To(() => shapeMeshRenderer.material.GetColor("_EmissionColor"), x => shapeMeshRenderer.material.SetColor("_EmissionColor", x), colorGradient.Evaluate(ColorScale), Utilities.animationSpeed);
     }
 
     private void UpdateShape() {
@@ -211,9 +211,11 @@ public class DataNode : MonoBehaviour {
     }
 
     private void Update() {
+        /*
         if (LocationString != null) {
             transform.position = DataNodePopulator.instance.GetWorldSpacePositionFromGPS(LocationString);
         }
+        */
         //UpdateColorScale();
     }
 
@@ -300,6 +302,8 @@ public class DataNode : MonoBehaviour {
         if (string.IsNullOrEmpty(selectedProperty)) {
             return;
         }
+
+        Debug.Log("Property key: " + selectedProperty);
 
         float outputValue;
         bool success = float.TryParse(propertiesDictionary[selectedProperty], NumberStyles.Float, CultureInfo.InvariantCulture, out outputValue);

@@ -75,15 +75,21 @@ public class UIParameterButton : MonoBehaviour
     }
 
     public void PopulateDropdownOptions() {
+        // Clear options dropdown
+        optionsDropdown.ClearOptions();
+
+        // Create new options list
         optionsList = new List<string>();
 
+        // Populate options list based on dimension type
         string[] dimensionTypeNames = System.Enum.GetNames(typeof(DataNode.DimensionType));
         for (int i = 0; i < dimensionTypeNames.Length; i++) {
-            Debug.Log(dimensionTypeNames[i]);
+            //Debug.Log(dimensionTypeNames[i]);
 
             optionsList.Add(dimensionTypeNames[i]);
         }
 
+        // Add options list to dropdown
         optionsDropdown.AddOptions(optionsList);
 
         HideDimensionTypePanel();
