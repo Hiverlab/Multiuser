@@ -29,8 +29,13 @@ public class GoogleSheetsFetcher : MonoBehaviour {
         //Initialize();
     }
 
-    public void Initialize() {
+    public void Initialize(string _tabId = null) {
         dataDictionary = new Dictionary<string, List<string>>();
+
+        if (!string.IsNullOrEmpty(_tabId))
+        {
+            tabId = _tabId;
+        }
 
         Action<string> commCallback = (csv) => {
             // Load data here

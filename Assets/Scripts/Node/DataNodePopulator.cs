@@ -40,6 +40,22 @@ public class DataNodePopulator : MonoBehaviour {
             Destroy(instance);
         }
     }
+
+    public void SetMapOrigin(string locationString)
+    {
+        StartCoroutine(SetMapOriginCoroutine(locationString));
+    }
+
+    private IEnumerator SetMapOriginCoroutine(string locationString)
+    {
+        map.ResetMap();
+
+        yield return new WaitForSeconds(1.0f);
+
+        Vector2d origin = Mapbox.Unity.Utilities.Conversions.StringToLatLon(locationString);
+
+        map.Initialize(origin, (int)map.Zoom);
+    }
     
     // Takes in a location string in the format "lat,lon" and returns a Vector3 position on the map
     public Vector3 GetWorldSpacePositionFromGPS(string locationString) {
@@ -72,11 +88,13 @@ public class DataNodePopulator : MonoBehaviour {
             // Add new parameter on UI
             UIController.instance.AddNewParameter(dataKeys[i]);
         }
-
         StartCoroutine(SpawnNodeCorutine());
     }
 
     private IEnumerator SpawnNodeCorutine() {
+        // Despawn all prefabs first
+        Lean.Pool.LeanPool.DespawnAll();
+
         int totalRows = dataDictionary[dataDictionary.Keys.First()].Count;
         spawnedNodes = new List<DataNode>();
 

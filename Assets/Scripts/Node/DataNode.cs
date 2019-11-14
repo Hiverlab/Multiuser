@@ -194,6 +194,8 @@ public class DataNode : MonoBehaviour {
         //shapeMeshRenderer.material.color = colorGradient.Evaluate(ColorScale);
 
         shapeMeshRenderer.material.DOColor(colorGradient.Evaluate(ColorScale), Utilities.animationSpeed);
+
+        DOTween.To(() => shapeMeshRenderer.material.GetColor("_EmissionColor"), x => shapeMeshRenderer.material.SetColor("_EmissionColor", x), colorGradient.Evaluate(ColorScale), Utilities.animationSpeed);
     }
 
     private void UpdateShape() {
@@ -261,10 +263,10 @@ public class DataNode : MonoBehaviour {
         //Debug.Log("Finalizing properties");
 
         // Set label name
-        LabelName = propertiesDictionary["Restaurant"];
+        //LabelName = propertiesDictionary["Restaurant"];
 
-        // Convert address to GPS
-        ConvertAddressToGPS();
+        // Place node in world space
+        PlaceInWorldSpace();
 
         // Set Scale as 0.1 first
         Scale = 0.1f;
@@ -324,6 +326,21 @@ public class DataNode : MonoBehaviour {
                 Scale = 0.1f;
                 ColorScale = 0.0f;
                 break;
+        }
+    }
+
+    private void PlaceInWorldSpace()
+    {
+        // If using Address, convert it to GPS
+        if (propertiesDictionary.ContainsKey("Address"))
+        {
+            ConvertAddressToGPS();
+        }
+
+        // If has GPS, then just use GPS
+        if (propertiesDictionary.ContainsKey("GPS"))
+        {
+            transform.position = DataNodePopulator.instance.GetWorldSpacePositionFromGPS(propertiesDictionary["GPS"]);
         }
     }
 

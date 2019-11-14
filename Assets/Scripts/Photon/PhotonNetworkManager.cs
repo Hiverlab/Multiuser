@@ -240,7 +240,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
         Debug.Log("Created local avatar");
 
         if (SceneManager.GetActiveScene().name == "Scene - Mapbox") {
-            GoogleSheetsFetcher.instance.Initialize();
+            //GoogleSheetsFetcher.instance.Initialize();
         }
     }
 

@@ -466,14 +466,6 @@ namespace Photon.Voice.Unity
                 {
                     return;
                 }
-                if (this.DebugEchoMode && value != 0)
-                {
-                    this.DebugEchoMode = false;
-                    if (this.Logger.IsWarningEnabled)
-                    {
-                        this.Logger.LogWarning("DebugEchoMode disabled because InterestGroup changed to {0}. DebugEchoMode works only with Interest Group 0.", value);
-                    }
-                }
                 interestGroup = value;
                 voice.InterestGroup = value;
             }
@@ -727,7 +719,6 @@ namespace Photon.Voice.Unity
         /// </summary>
         /// <param name="voiceClient">The VoiceClient to be used with this Recorder.</param>
         /// <param name="customObj">Optional user data object to be transmitted with the voice stream info</param>
-        [Obsolete("use Init(VoiceConnection) instead")]
         public void Init(VoiceClient voiceClient, object customObj = null)
         {
             if (this.IsInitialized)
@@ -751,43 +742,6 @@ namespace Photon.Voice.Unity
             this.client = voiceClient;
             this.userData = customObj;
 
-            if (this.AutoStart)
-            {
-                this.StartRecording();
-            }
-        }
-
-        /// <summary>
-        /// Initializes the Recorder component to be able to transmit audio.
-        /// </summary>
-        /// <param name="voiceConnection">The VoiceConnection to be used with this Recorder.</param>
-        public void Init(VoiceConnection voiceConnection)
-        {
-            if (this.IsInitialized)
-            {
-                if (this.Logger.IsWarningEnabled)
-                {
-                    this.Logger.LogWarning("Recorder already initialized.");
-                }
-                return;
-            }
-            if (voiceConnection == null)
-            {
-                if (this.Logger.IsErrorEnabled)
-                {
-                    this.Logger.LogError("voiceConnection is null.");
-                }
-                return;
-            }
-            if (voiceConnection.VoiceClient == null)
-            {
-                if (this.Logger.IsErrorEnabled)
-                {
-                    this.Logger.LogError("voiceConnection.VoiceClient is null.");
-                }
-                return;
-            }
-            this.client = voiceConnection.VoiceClient;
             if (this.AutoStart)
             {
                 this.StartRecording();
