@@ -7,6 +7,8 @@ using System.Globalization;
 using System.Linq;
 using UnityEngine;
 
+using DG.Tweening;
+
 public class DataNodePopulator : MonoBehaviour {
     public static DataNodePopulator instance;
 
@@ -43,10 +45,26 @@ public class DataNodePopulator : MonoBehaviour {
         } else {
             Destroy(instance);
         }
+
+        // Hide map on awake
+        HideMap();
+    }
+
+    private void HideMap()
+    {
+        map.transform.parent.DOScale(0.0f, Utilities.animationSpeed * 2).SetEase(Ease.InOutBack);
+        map.transform.parent.DOLocalMoveY(0.5f, Utilities.animationSpeed * 2).SetEase(Ease.InOutBack);
+    }
+
+    private void ShowMap()
+    {
+        map.transform.parent.DOScale(0.0075f, Utilities.animationSpeed * 2).SetEase(Ease.InOutBack);
+        map.transform.parent.DOLocalMoveY(1.25f, Utilities.animationSpeed * 2).SetEase(Ease.InOutBack);
     }
 
     public void SetMapOrigin(string locationString, string tabId)
     {
+        /*
         // Despawn all prefabs first
         Lean.Pool.LeanPool.DespawnAll();
 
@@ -56,12 +74,53 @@ public class DataNodePopulator : MonoBehaviour {
 
         float mapZoom = 17.5f;
         
-        if (!isMapInitialized)
+        // If map is not set to initialize on start and is not initialized
+        if (!map.InitializeOnStart && !isMapInitialized)
         {
+            Debug.Log("Initializing map");
             isMapInitialized = true;
             map.Initialize(origin, (int)mapZoom);
         } else
         {
+            Debug.Log("Updating map");
+            map.UpdateMap(origin, (int)mapZoom);
+        }
+
+        GoogleSheetsFetcher.instance.Initialize(dataTabId);
+
+        map.SetZoom(mapZoom);
+        
+        ShowMap();
+        */
+        StartCoroutine(SetMapOriginCoroutine(locationString, tabId));
+    }
+
+    private IEnumerator SetMapOriginCoroutine(string locationString, string tabId)
+    {
+        // Hide map
+        HideMap();
+
+        // Despawn all prefabs
+        Lean.Pool.LeanPool.DespawnAll();
+
+        yield return new WaitForSeconds(Utilities.animationSpeed * 2);
+
+        dataTabId = tabId;
+
+        Vector2d origin = Mapbox.Unity.Utilities.Conversions.StringToLatLon(locationString);
+
+        float mapZoom = 17.5f;
+
+        // If map is not set to initialize on start and is not initialized
+        if (!map.InitializeOnStart && !isMapInitialized)
+        {
+            Debug.Log("Initializing map");
+            isMapInitialized = true;
+            map.Initialize(origin, (int)mapZoom);
+        }
+        else
+        {
+            Debug.Log("Updating map");
             map.UpdateMap(origin, (int)mapZoom);
         }
 
@@ -69,18 +128,13 @@ public class DataNodePopulator : MonoBehaviour {
 
         map.SetZoom(mapZoom);
 
-        //StartCoroutine(SetMapOriginCoroutine(locationString));
-    }
+        yield return new WaitForSeconds(Utilities.animationSpeed * 2);
 
-    private IEnumerator SetMapOriginCoroutine(string locationString)
-    {
-        //map.ResetMap();
+        ShowMap();
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(Utilities.animationSpeed * 2);
 
-        Vector2d origin = Mapbox.Unity.Utilities.Conversions.StringToLatLon(locationString);
-
-        map.Initialize(origin, (int)map.Zoom);
+        StartCoroutine(SpawnNodeCorutine());
     }
     
     // Takes in a location string in the format "lat,lon" and returns a Vector3 position on the map
@@ -114,7 +168,7 @@ public class DataNodePopulator : MonoBehaviour {
             // Add new parameter on UI
             UIController.instance.AddNewParameter(dataKeys[i]);
         }
-        StartCoroutine(SpawnNodeCorutine());
+        //StartCoroutine(SpawnNodeCorutine());
     }
 
     private IEnumerator SpawnNodeCorutine() {
@@ -123,12 +177,16 @@ public class DataNodePopulator : MonoBehaviour {
 
         // For every row, create a node with properties from each column
         for (int row = 0; row < totalRows; row++) {
+            // Spawn node
             DataNode currentNode = Lean.Pool.LeanPool.Spawn(nodePrefab);
 
+            // Set spawn scale
             currentNode.transform.localScale = new Vector3(spawnScale, spawnScale, spawnScale);
 
+            // Initialize
             currentNode.Initialize();
             
+            // Set up properties for each data node
             foreach (KeyValuePair<string, List<string>> keyValuePair in dataDictionary) {
                 string key = keyValuePair.Key;
                 string value = dataDictionary[keyValuePair.Key][row];
@@ -138,6 +196,7 @@ public class DataNodePopulator : MonoBehaviour {
                 currentNode.AddToProperties(key, value);
             }
 
+            // Add to spawned nodes
             spawnedNodes.Add(currentNode);
             //Debug.Log("Current row: " + row);
 

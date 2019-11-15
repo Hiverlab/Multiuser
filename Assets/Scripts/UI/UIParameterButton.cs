@@ -28,6 +28,8 @@ public class UIParameterButton : MonoBehaviour
 
     private List<string> optionsList;
 
+    private bool canPress = true;
+
     #region Properties
 
     private string parameter;
@@ -170,6 +172,9 @@ public class UIParameterButton : MonoBehaviour
     }
 
     private void ToggleValueChanged(Toggle change) {
+        // Hide dropdown options
+        optionsDropdown.Hide();
+
         if (change.isOn) {
             transform.DOLocalMoveZ(-0.015f, Utilities.animationSpeed);
         } else {
@@ -179,25 +184,40 @@ public class UIParameterButton : MonoBehaviour
         }
     }
 
-    private void OnButtonPress() {
+    private void OnButtonPress()
+    {
+        if (!canPress)
+        {
+            return;
+        }
+
         Debug.Log("On Button Press");
 
-        uiToggle.SelectToggle();
+        canPress = false;
 
-        uiToggle.IsOn = true;
+        //uiToggle.SelectToggle();
+
+        uiToggle.IsOn = !uiToggle.IsOn;
 
         //uiToggle.ExecuteOnButtonSelected();
 
         //UIController.instance.SelectParameter(Parameter);
 
         // If dimension type is not none
-        if (DimensionType != DataNode.DimensionType.None) {
+        //if (DimensionType != DataNode.DimensionType.None) {
             SetParameterAndDimension();
-        }
+        //}
     }
 
     private void OnButtonRelease() {
+        if (canPress)
+        {
+            return;
+        }
+
         Debug.Log("On Button Release");
+
+        canPress = true;
 
         /*
         // If this parameter is available

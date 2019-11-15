@@ -268,8 +268,8 @@ public class DataNode : MonoBehaviour {
         // Place node in world space
         PlaceInWorldSpace();
 
-        // Set Scale as 0.1 first
-        Scale = 0.1f;
+        // Set Scale as 0.0
+        Scale = 0.0f;
     }
 
     public void SetProperty(string property) {
@@ -304,6 +304,12 @@ public class DataNode : MonoBehaviour {
         }
 
         Debug.Log("Property key: " + selectedProperty);
+
+        if (!propertiesDictionary.ContainsKey(selectedProperty))
+        {
+            Debug.Log("Does not contain: " + selectedProperty);
+            return;
+        }
 
         float outputValue;
         bool success = float.TryParse(propertiesDictionary[selectedProperty], NumberStyles.Float, CultureInfo.InvariantCulture, out outputValue);
@@ -343,6 +349,9 @@ public class DataNode : MonoBehaviour {
         if (propertiesDictionary.ContainsKey("GPS"))
         {
             transform.position = DataNodePopulator.instance.GetWorldSpacePositionFromGPS(propertiesDictionary["GPS"]);
+            
+            // Set scale to be 0.1f
+            Scale = 0.1f;
         }
     }
 
@@ -375,6 +384,9 @@ public class DataNode : MonoBehaviour {
         */
 
         transform.position = DataNodePopulator.instance.GetWorldSpacePositionFromGPS(LocationString);
+        
+        // Set scale to be 0.1f
+        Scale = 0.1f;
     }
 
     #endregion

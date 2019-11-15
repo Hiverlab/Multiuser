@@ -105,6 +105,9 @@ public class UIController : MonoBehaviour
         // Set parameter
         uiParameterButton.Parameter = parameter;
 
+        // Reset dimension
+        uiParameterButton.DimensionType = DataNode.DimensionType.None;
+
         // Populate dropdown options
         uiParameterButton.PopulateDropdownOptions();
 

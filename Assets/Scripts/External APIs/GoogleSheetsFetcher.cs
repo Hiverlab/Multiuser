@@ -152,7 +152,6 @@ public class GoogleSheetsFetcher : MonoBehaviour {
         Debug.Log("Complete download");
         List<List<string>> parsedCsv = ParseCSV(csv);
 
-       
         // Go through first row to get keys
         for (int col = 0; col < parsedCsv[0].Count; col++) {
             string columnName = parsedCsv[0][col];
@@ -164,6 +163,8 @@ public class GoogleSheetsFetcher : MonoBehaviour {
             }
 
             dataDictionary.Add(columnName, columnData);
+
+            Debug.Log("Adding column name: " + columnName);
         }
 
         DataNodePopulator.instance.SetNodesDatabase(dataDictionary);
