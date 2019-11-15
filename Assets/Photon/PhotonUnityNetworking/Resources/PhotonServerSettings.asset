@@ -49,5 +49,7 @@ MonoBehaviour:
   - RPC_ToggleJobPanel
   - ChangeColour
   - RPC_SetParameterAndDimension
+  - RPC_SetMapOrigin
+  - RPC_ParameterPanelSelected
   DisableAutoOpenWizard: 1
   ShowSettings: 1

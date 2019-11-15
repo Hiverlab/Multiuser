@@ -62,6 +62,8 @@ public class UIParameterButton : MonoBehaviour
 
     public void SetText(string text) {
         textMesh.text = text;
+
+        transform.name = text;
     }
 
     public void SetToggleGroup(ToggleGroup toggleGroup) {
@@ -74,6 +76,32 @@ public class UIParameterButton : MonoBehaviour
         toggle.onValueChanged.AddListener(delegate {
             ToggleValueChanged(toggle);
         });
+    }
+
+    public void Initialize()
+    {
+        UIController.instance.OnPanelSelected += OnPanelSelected;
+    }
+
+    private void OnPanelSelected(string uiPanelName)
+    {
+        // If not this parameter button
+        if (!uiPanelName.Equals(transform.name))
+        {
+            return;
+        }
+
+        if (!canPress)
+        {
+            return;
+        }
+
+        Debug.Log("On Panel Selected");
+
+
+        uiToggle.IsOn = !uiToggle.IsOn;
+
+        SetParameterAndDimension();
     }
 
     public void PopulateDropdownOptions() {
@@ -189,6 +217,7 @@ public class UIParameterButton : MonoBehaviour
 
     private void OnButtonPress()
     {
+        /*
         if (!canPress)
         {
             return;
@@ -210,6 +239,11 @@ public class UIParameterButton : MonoBehaviour
         //if (DimensionType != DataNode.DimensionType.None) {
             SetParameterAndDimension();
         //}
+        */
+
+        // Send RPC to all saying that this button is selected
+        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_ParameterPanelSelected),
+            Photon.Pun.RpcTarget.All, transform.name);
     }
 
     private void OnButtonRelease() {

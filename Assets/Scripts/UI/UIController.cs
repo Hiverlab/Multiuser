@@ -49,6 +49,10 @@ public class UIController : MonoBehaviour
     public delegate void ParameterSelectedDelegate(string parameter, DataNode.DimensionType dimensionType);
     public ParameterSelectedDelegate OnParameterSelected;
 
+    public delegate void PanelSelectedDelegate(string uiPanelName);
+    public PanelSelectedDelegate OnPanelSelected;
+
+
     private void Awake() {
         if (!instance) {
             instance = this;
@@ -82,8 +86,11 @@ public class UIController : MonoBehaviour
             // Despawn all prefabs first
             //Lean.Pool.LeanPool.DespawnAll();
 
-            DataNodePopulator.instance.SetMapOrigin("1.28015, 103.845854", "2132687534");
+            //DataNodePopulator.instance.SetMapOrigin("1.28015, 103.845854", "2132687534");
             //GoogleSheetsFetcher.instance.Initialize("2132687534");
+
+            PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
+                Photon.Pun.RpcTarget.All, "1.28015, 103.845854", "2132687534");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -91,8 +98,12 @@ public class UIController : MonoBehaviour
             // Despawn all prefabs first
             //Lean.Pool.LeanPool.DespawnAll();
 
-            DataNodePopulator.instance.SetMapOrigin("1.297994, 103.788665", "734724819");
+            //DataNodePopulator.instance.SetMapOrigin("1.297994, 103.788665", "734724819");
             //GoogleSheetsFetcher.instance.Initialize("734724819");
+
+
+            PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
+                Photon.Pun.RpcTarget.All, "1.297994, 103.788665", "734724819");
         }
     }
 
@@ -113,6 +124,9 @@ public class UIController : MonoBehaviour
 
         // Set toggle group
         uiParameterButton.SetToggleGroup(parameterToggleGroup);
+
+        // Finalize
+        uiParameterButton.Initialize();
 
         // Set parent
         uiParameterButton.transform.parent = parameterToggleGroup.transform;

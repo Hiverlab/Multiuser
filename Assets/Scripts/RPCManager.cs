@@ -21,7 +21,9 @@ public class RPCManager : MonoBehaviour
         RPC_AssistantStandby,
         RPC_AssistantSuccess,
         RPC_AssistantFailure,
-        RPC_SetParameterAndDimension
+        RPC_SetParameterAndDimension,
+        RPC_SetMapOrigin,
+        RPC_ParameterPanelSelected
     }
 
     public Dictionary<RPC, string> RPCDictionary;
@@ -52,6 +54,8 @@ public class RPCManager : MonoBehaviour
         RPCDictionary.Add(RPC.RPC_AssistantSuccess, "RPC_AssistantSuccess");
         RPCDictionary.Add(RPC.RPC_AssistantFailure, "RPC_AssistantFailure");
         RPCDictionary.Add(RPC.RPC_SetParameterAndDimension, "RPC_SetParameterAndDimension");
+        RPCDictionary.Add(RPC.RPC_SetMapOrigin, "RPC_SetMapOrigin");
+        RPCDictionary.Add(RPC.RPC_ParameterPanelSelected, "RPC_ParameterPanelSelected");
     }
 
     public string GetRPC(RPC rpc) {
@@ -155,9 +159,25 @@ public class RPCManager : MonoBehaviour
     {
         Debug.Log("[RPC] Set parameter and dimension: " + parameter + ", " + dimensionType.ToString());
 
-        UIController.instance.OnParameterSelected(parameter, dimensionType);
+        UIController.instance.OnParameterSelected?.Invoke(parameter, dimensionType);
     }
 
+    [PunRPC]
+    public void RPC_SetMapOrigin(string locationString, string tabId)
+    {
+        Debug.Log("[RPC] Set map origin");
+
+        DataNodePopulator.instance.SetMapOrigin(locationString, tabId);
+    }
+
+
+    [PunRPC]
+    public void RPC_ParameterPanelSelected(string uiPanelName)
+    {
+        Debug.Log("[RPC] Parameter panel selected");
+
+        UIController.instance.OnPanelSelected?.Invoke(uiPanelName);
+    }
 
     #endregion
 }

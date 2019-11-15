@@ -20,6 +20,9 @@ public class UI3DButton_DataSetter : UI3DButton
     {
         base.OnButtonRelease();
 
-        DataNodePopulator.instance.SetMapOrigin(gps, tabId);
+        //DataNodePopulator.instance.SetMapOrigin(gps, tabId);
+
+        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
+            Photon.Pun.RpcTarget.All, gps, tabId);
     }
 }
