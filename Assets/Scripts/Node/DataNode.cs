@@ -221,7 +221,7 @@ public class DataNode : MonoBehaviour {
 
     private void UpdateHeatmap()
     {
-        // TODO: Add shape, preferably enum
+        // TODO: Update heatmap 
     }
 
     #endregion
