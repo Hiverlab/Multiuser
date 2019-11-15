@@ -91,6 +91,7 @@ public class UIParameterButton : MonoBehaviour
             return;
         }
 
+        // If cannot press
         if (!canPress)
         {
             return;
@@ -98,10 +99,22 @@ public class UIParameterButton : MonoBehaviour
 
         Debug.Log("On Panel Selected");
 
+        // Set can press to false
+        canPress = false;
 
         uiToggle.IsOn = !uiToggle.IsOn;
 
         SetParameterAndDimension();
+
+        StartCoroutine(ResetCanPressCoroutine());
+    }
+
+    private IEnumerator ResetCanPressCoroutine()
+    {
+        yield return new WaitForSeconds(Utilities.animationSpeed);
+        canPress = true;
+
+        Debug.Log("Can press");
     }
 
     public void PopulateDropdownOptions() {
@@ -254,7 +267,7 @@ public class UIParameterButton : MonoBehaviour
 
         Debug.Log("On Button Release");
 
-        canPress = true;
+        //canPress = true;
 
         /*
         // If this parameter is available
