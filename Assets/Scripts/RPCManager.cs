@@ -20,7 +20,8 @@ public class RPCManager : MonoBehaviour
         RPC_SortHighlightedNodes,
         RPC_AssistantStandby,
         RPC_AssistantSuccess,
-        RPC_AssistantFailure
+        RPC_AssistantFailure,
+        RPC_SetParameterAndDimension
     }
 
     public Dictionary<RPC, string> RPCDictionary;
@@ -50,6 +51,7 @@ public class RPCManager : MonoBehaviour
         RPCDictionary.Add(RPC.RPC_AssistantStandby, "RPC_AssistantStandby");
         RPCDictionary.Add(RPC.RPC_AssistantSuccess, "RPC_AssistantSuccess");
         RPCDictionary.Add(RPC.RPC_AssistantFailure, "RPC_AssistantFailure");
+        RPCDictionary.Add(RPC.RPC_SetParameterAndDimension, "RPC_SetParameterAndDimension");
     }
 
     public string GetRPC(RPC rpc) {
@@ -145,4 +147,17 @@ public class RPCManager : MonoBehaviour
 
         Assistant.instance.TriggerFailure();
     }
+
+    #region Generic
+
+    [PunRPC]
+    public void RPC_SetParameterAndDimension(string parameter, DataNode.DimensionType dimensionType)
+    {
+        Debug.Log("[RPC] Set parameter and dimension: " + parameter + ", " + dimensionType.ToString());
+
+        UIController.instance.OnParameterSelected(parameter, dimensionType);
+    }
+
+
+    #endregion
 }

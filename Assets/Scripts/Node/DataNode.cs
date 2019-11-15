@@ -20,6 +20,7 @@ public class DataNode : MonoBehaviour {
         //Position,
         Scale,
         ColorScale,
+        Heatmap
         //Shape
     }
 
@@ -31,6 +32,7 @@ public class DataNode : MonoBehaviour {
     private float scale;
     private Color color;
     private float colorScale;
+    private float heatmapIntensity;
     private MeshRenderer shape;
 
     // Position (X, Y, Z) 3-Dimensions
@@ -90,6 +92,21 @@ public class DataNode : MonoBehaviour {
             shape = value;
 
             UpdateShape();
+        }
+    }
+
+    public float HeatmapIntensity
+    {
+        get
+        {
+            return heatmapIntensity;
+        }
+
+        set
+        {
+            heatmapIntensity = value;
+
+            UpdateHeatmap();
         }
     }
 
@@ -199,6 +216,11 @@ public class DataNode : MonoBehaviour {
     }
 
     private void UpdateShape() {
+        // TODO: Add shape, preferably enum
+    }
+
+    private void UpdateHeatmap()
+    {
         // TODO: Add shape, preferably enum
     }
 
@@ -386,6 +408,17 @@ public class DataNode : MonoBehaviour {
         transform.position = DataNodePopulator.instance.GetWorldSpacePositionFromGPS(LocationString);
         
         // Set scale to be 0.1f
+        Scale = 0.1f;
+    }
+
+    private void PlaySpawnAnimation()
+    {
+
+    }
+
+    private IEnumerator PlaySpawnAnimationCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
         Scale = 0.1f;
     }
 

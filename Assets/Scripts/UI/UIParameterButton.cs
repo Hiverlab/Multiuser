@@ -106,7 +106,10 @@ public class UIParameterButton : MonoBehaviour
     }
     
     public void SetParameterAndDimension() {
-        UIController.instance.OnParameterSelected(Parameter, DimensionType);
+        //UIController.instance.OnParameterSelected(Parameter, DimensionType);
+
+        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetParameterAndDimension),
+                    Photon.Pun.RpcTarget.All, Parameter, DimensionType);
     }
 
     #endregion

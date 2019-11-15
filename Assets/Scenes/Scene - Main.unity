@@ -473,8 +473,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Skills
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 136bce1b9e6e46d41ba4e916afbb130f, type: 2}
@@ -710,8 +708,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &224523380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,8 +726,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 6f72915a95c81cd48bb35361ac6152c6, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
@@ -1262,8 +1256,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 3873760e24fb6b04c9ebcf46544ddc2c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -1436,8 +1428,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 3873760e24fb6b04c9ebcf46544ddc2c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -4172,8 +4162,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Job Family
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 136bce1b9e6e46d41ba4e916afbb130f, type: 2}
@@ -4505,7 +4493,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812844505}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -5241,8 +5229,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "IMMERSIVE \nHIVE MIND \nENGINE"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f573c951caa6773428ac0b64cadbe5c2, type: 2}
@@ -5681,8 +5667,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1052424801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5701,8 +5685,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 8bfecf1a4222ec54a9470d75bfdfed65, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
@@ -5886,8 +5868,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1082017756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,8 +5886,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 234c0eefb44c94d478c4aac7abbca7ae, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
@@ -5981,8 +5959,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 3873760e24fb6b04c9ebcf46544ddc2c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -7551,8 +7527,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1395701870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7571,8 +7545,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 6982587b91cc4c346aaf810c458c6218, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
@@ -7646,8 +7618,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 3873760e24fb6b04c9ebcf46544ddc2c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -7844,8 +7814,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Job Role
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 136bce1b9e6e46d41ba4e916afbb130f, type: 2}
@@ -8138,13 +8106,9 @@ MonoBehaviour:
   OnConnectSucessful:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnDisconnect:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnJoinRoomSuccessful:
     m_PersistentCalls:
       m_Calls:
@@ -8159,13 +8123,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnCreateOrJoinRoomFailed:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   networkClientState: 0
   networkTextmesh: {fileID: 0}
 --- !u!114 &1482796287
@@ -11328,8 +11288,8 @@ MonoBehaviour:
   voiceDetection: 0
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 250
-  unityMicrophoneDevice: Microphone (Realtek(R) Audio)
-  photonMicrophoneDeviceId: 0
+  unityMicrophoneDevice: 
+  photonMicrophoneDeviceId: -1
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -11664,8 +11624,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Impact
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 136bce1b9e6e46d41ba4e916afbb130f, type: 2}
