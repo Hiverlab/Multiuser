@@ -92,6 +92,7 @@ public class UIWatch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("Loading main scene");
@@ -107,6 +108,20 @@ public class UIWatch : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             OnButtonPress();
+        }
+        */
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
+                Photon.Pun.RpcTarget.All, "1.28015, 103.845854", "2132687534");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+
+
+            PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
+                Photon.Pun.RpcTarget.All, "1.297994, 103.788665", "734724819");
         }
     }
 
@@ -168,7 +183,8 @@ public class UIWatch : MonoBehaviour
         {
             ShowUIViews();
             ShowUISideViews();
-        } else
+        }
+        else
         {
             HideUIViews();
             HideUISideViews();

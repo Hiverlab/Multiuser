@@ -6963,6 +6963,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &645895605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6142170681078755790, guid: 086e52f224dbb47fbacdd2628be5369b,
+    type: 3}
+  m_PrefabInstance: {fileID: 464828220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc75da2222c1a4e05b14af0a85ca38d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &650768527
 GameObject:
   m_ObjectHideFlags: 0
@@ -12016,7 +12028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recorderIsSet: 0
-  speechSandboxStreaming: {fileID: 0}
+  speechSandboxStreaming: {fileID: 645895605}
   isVoiceActive: 0
 --- !u!1 &1829601116
 GameObject:
@@ -12501,7 +12513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1959943120
 Transform:
   m_ObjectHideFlags: 0
@@ -12530,7 +12542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206b424fee7d86e48980c2a148e44070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSpectatorActive: 1
+  isSpectatorActive: 0
   ovrCameraRig: {fileID: 498644630}
   spectatorCamera: {fileID: 91367133}
   cameraPositionList:
@@ -12539,6 +12551,7 @@ MonoBehaviour:
   - {fileID: 1977411509}
   - {fileID: 302210974}
   delayBetweenViews: 10
+  masterTarget: {fileID: 0}
 --- !u!1001 &1960189640
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ using TMPro;
 
 // The node class is purely for the visual representation of a data point
 public class DataNode : MonoBehaviour {
+    public int index = -1;
 
     // These are the different dimensions that the node is affected by
     #region Dimensions
@@ -222,7 +223,8 @@ public class DataNode : MonoBehaviour {
     private void UpdateHeatmap()
     {
         // TODO: Update heatmap 
-        // Use instance to add update properties on heatmap
+        // Update heatmap property
+        Heatmap.instance.UpdateProperties(index, 0.15f, HeatmapIntensity);
     }
 
     #endregion
@@ -347,11 +349,16 @@ public class DataNode : MonoBehaviour {
         switch (dimensionType) {
             case DimensionType.Scale:
                 Scale = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
-                //ColorScale = 0.0f;
+                ColorScale = 0.0f;
                 break;
             case DimensionType.ColorScale:
                 ColorScale = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
-                //Scale = 0.25f;
+                Scale = 0.1f;
+                break;
+            case DimensionType.Heatmap:
+                HeatmapIntensity = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
+                Scale = 0.1f;
+                ColorScale = 0.0f;
                 break;
             default:
                 Scale = 0.1f;
@@ -375,6 +382,10 @@ public class DataNode : MonoBehaviour {
             
             // Set scale to be 0.1f
             Scale = 0.1f;
+
+            // Update heatmap position
+            Heatmap.instance.UpdatePosition(index, transform.position);
+            Heatmap.instance.UpdateProperties(index, 0.0f, 0.0f);
         }
     }
 
@@ -410,6 +421,10 @@ public class DataNode : MonoBehaviour {
         
         // Set scale to be 0.1f
         Scale = 0.1f;
+
+        // Update heatmap position
+        Heatmap.instance.UpdatePosition(index, transform.position);
+        Heatmap.instance.UpdateProperties(index, 0.0f, 0.0f);
     }
 
     private void PlaySpawnAnimation()

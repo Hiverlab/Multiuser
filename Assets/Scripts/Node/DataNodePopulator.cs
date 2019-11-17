@@ -175,6 +175,9 @@ public class DataNodePopulator : MonoBehaviour {
         int totalRows = dataDictionary[dataDictionary.Keys.First()].Count;
         spawnedNodes = new List<DataNode>();
 
+        // Initialize heatmap
+        Heatmap.instance.Initialize(totalRows);
+
         // For every row, create a node with properties from each column
         for (int row = 0; row < totalRows; row++) {
             // Spawn node
@@ -182,6 +185,8 @@ public class DataNodePopulator : MonoBehaviour {
 
             // Set spawn scale
             currentNode.transform.localScale = new Vector3(spawnScale, spawnScale, spawnScale);
+
+            currentNode.index = row;
 
             // Initialize
             currentNode.Initialize();

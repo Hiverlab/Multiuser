@@ -89,6 +89,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
     public void JoinOrCreateRoom() {
         string roomName = "multiuserdataviz01";
 
+        PhotonNetwork.AutomaticallySyncScene = true;
+
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsVisible = false;
         roomOptions.MaxPlayers = 8;
@@ -202,8 +204,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
         GameObject newVoiceReceiver = PhotonNetwork.Instantiate("VoiceReceiver", Vector3.zero, Quaternion.identity);
         Debug.Log("Voice Receiver instantiated: " + newVoiceReceiver.GetComponent<PhotonView>().ViewID);
 
-        PhotonNetwork.AutomaticallySyncScene = true;
-
         CreateLocalAvatar();
     }
 
@@ -233,6 +233,17 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 
             bool isEventRaised = PhotonNetwork.RaiseEvent(PhotonRaiseEventComponent.instance.InstantiateVrAvatarEventCode, photonView.ViewID, raiseEventOptions, sendOptions);
             Debug.Log("Is event raised: " + isEventRaised);
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log("Is master");
+                //PhotonNetwork.RaiseEvent(PhotonRaiseEventComponent.instance.MasterClientEventCode, photonView.ViewID, raiseEventOptions, sendOptions);
+            } else
+            {
+                // Disable watch
+                UIWatch.instance.gameObject.SetActive(false);
+            }
+
         } else {
             Debug.LogError("Failed to allocate a ViewId.");
 
