@@ -8,14 +8,21 @@ public class DataNodeCollider : MonoBehaviour
     private DataNode parentNode;
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag.Equals("PlayerTouch")) {
+
+        if (other.tag.Contains("Key"))
+        {
             parentNode.OnTouchEnter();
+
+            Utilities.instance.VibrateController(100, 0.25f, 0.15f, other.tag);
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.tag.Equals("PlayerTouch")) {
+        if (other.tag.Contains("Key"))
+        {
             parentNode.OnTouchExit();
+
+            Utilities.instance.VibrateController(100, 0.25f, 0.15f, other.tag);
         }
     }
 }

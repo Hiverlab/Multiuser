@@ -12,6 +12,8 @@ TagManager:
   - ScrollRectCollider
   - VRGazeInteractable
   - PlayerTouch
+  - LeftKey
+  - RightKey
   layers:
   - Default
   - TransparentFX

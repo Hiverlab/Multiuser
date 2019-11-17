@@ -222,6 +222,7 @@ public class DataNode : MonoBehaviour {
     private void UpdateHeatmap()
     {
         // TODO: Update heatmap 
+        // Use instance to add update properties on heatmap
     }
 
     #endregion

@@ -34,14 +34,21 @@ public class UIStyleToggle : MonoBehaviour
     #region Touch interactions
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag.Equals("PlayerTouch")) {
+
+        if (other.tag.Contains("Key"))
+        {
             OnButtonPress();
+
+            Utilities.instance.VibrateController(100, 0.25f, 0.15f, other.tag);
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.tag.Equals("PlayerTouch")) {
+        if (other.tag.Contains("Key"))
+        {
             OnButtonRelease();
+
+            Utilities.instance.VibrateController(100, 0.25f, 0.15f, other.tag);
         }
     }
 

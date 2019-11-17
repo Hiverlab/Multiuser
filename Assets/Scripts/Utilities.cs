@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Utilities : MonoBehaviour {
+public class Utilities : MonoBehaviour
+{
     public static Utilities instance;
 
-    private void Awake() {
-        if (!instance) {
+    private void Awake()
+    {
+        if (!instance)
+        {
             instance = this;
-        } else {
+        }
+        else
+        {
             Destroy(instance);
         }
 
@@ -16,14 +21,17 @@ public class Utilities : MonoBehaviour {
     }
 
     public static float animationSpeed = 0.5f;
-    
-    public static void Log(string className, string debugMessage) {
+
+    public static void Log(string className, string debugMessage)
+    {
         Debug.Log("<b>" + className + "<b> " + debugMessage);
     }
 
-    public static float GetRandomAnimationSpeed(float speed = -1) {
+    public static float GetRandomAnimationSpeed(float speed = -1)
+    {
         // Override if speed is -1
-        if (speed == -1) {
+        if (speed == -1)
+        {
             speed = animationSpeed;
         }
 
@@ -31,12 +39,22 @@ public class Utilities : MonoBehaviour {
         return speed * Random.Range(0.95f, 1.05f);
     }
 
-    public void VibrateController(float frequency, float amplitude, float duration, OVRInput.Controller controller) {
-        SoundEffectsManager.instance.PlayAudioClip(SoundEffectsManager.SFX.UI);
+    public void VibrateController(float frequency, float amplitude, float duration, string controllerName)
+    {
+        OVRInput.Controller controller = controllerName.Equals("LeftKey") ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
+
+        //SoundEffectsManager.instance.PlayAudioClip(SoundEffectsManager.SFX.UI);
         StartCoroutine(VibrateControllerCoroutine(frequency, amplitude, duration, controller));
     }
 
-    private static IEnumerator VibrateControllerCoroutine(float frequency, float amplitude, float duration, OVRInput.Controller controller) {
+    public void VibrateController(float frequency, float amplitude, float duration, OVRInput.Controller controller)
+    {
+        //SoundEffectsManager.instance.PlayAudioClip(SoundEffectsManager.SFX.UI);
+        StartCoroutine(VibrateControllerCoroutine(frequency, amplitude, duration, controller));
+    }
+
+    private static IEnumerator VibrateControllerCoroutine(float frequency, float amplitude, float duration, OVRInput.Controller controller)
+    {
         OVRInput.SetControllerVibration(frequency, amplitude, controller);
 
         yield return new WaitForSeconds(duration);

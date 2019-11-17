@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -81,6 +82,7 @@ public class UIController : MonoBehaviour
             OnDimensionTypeSelected(DataNode.DimensionType.None);
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             // Despawn all prefabs first
@@ -105,6 +107,7 @@ public class UIController : MonoBehaviour
             PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
                 Photon.Pun.RpcTarget.All, "1.297994, 103.788665", "734724819");
         }
+        */
     }
 
     public void AddNewParameter(string parameter) {

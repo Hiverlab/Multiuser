@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI3DButton_DataSetter : UI3DButton
 {
@@ -10,6 +12,9 @@ public class UI3DButton_DataSetter : UI3DButton
     [SerializeField]
     private string tabId;
 
+    private void OnEnable()
+    {
+    }
 
     protected override void OnButtonPress()
     {
@@ -22,7 +27,27 @@ public class UI3DButton_DataSetter : UI3DButton
 
         //DataNodePopulator.instance.SetMapOrigin(gps, tabId);
 
-        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
-            Photon.Pun.RpcTarget.All, gps, tabId);
+        /*
+        */
+
+        UIWatch.instance.SetModule(this);
+    }
+
+    public override void ConfirmAction()
+    {
+        base.ConfirmAction();
+
+        // If we are in mapbox scene
+        if (SceneManager.GetActiveScene().name == "Scene - Main")
+        {
+            // Load main scene
+            PhotonNetwork.LoadLevel("Scene - Mapbox");
+        }
+        else
+        {
+            // Otherwise just load the data
+            PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
+                Photon.Pun.RpcTarget.All, gps, tabId);
+        }
     }
 }
