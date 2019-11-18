@@ -40,8 +40,13 @@ public class UI3DButton_DataSetter : UI3DButton
         // If we are in mapbox scene
         if (SceneManager.GetActiveScene().name == "Scene - Main")
         {
-            // Load main scene
-            PhotonNetwork.LoadLevel("Scene - Mapbox");
+            PhotonNetwork.AutomaticallySyncScene = true;
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                // Load main scene
+                PhotonNetwork.LoadLevel("Scene - Mapbox");
+            }
         }
         else
         {

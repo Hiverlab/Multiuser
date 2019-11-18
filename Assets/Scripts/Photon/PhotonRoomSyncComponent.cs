@@ -50,7 +50,7 @@ public class PhotonRoomSyncComponent : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (PhotonNetwork.InRoom && SceneManager.GetActiveScene().buildIndex == 1)
+        if (PhotonNetwork.InRoom)// && SceneManager.GetActiveScene().buildIndex == 1)
 		{
 
 			if ((isSync || GetComponent<PhotonView>().IsMine) && !avatarIsLoaded)

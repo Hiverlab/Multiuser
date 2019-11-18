@@ -53,7 +53,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 		else
 		{
 			OnConnectSucessful.Invoke();
-            PhotonNetwork.JoinLobby();
         }
 
 		PhotonNetwork.KeepAliveInBackground = 99999999;
