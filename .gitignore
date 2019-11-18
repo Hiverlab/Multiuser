@@ -10,6 +10,7 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 /[Aa]ssets/[Pp]hoton/
+/[Aa]ssets/Art Assets/Models/Geylang Buildings
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta

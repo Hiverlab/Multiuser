@@ -13,6 +13,8 @@ using TMPro;
 public class DataNode : MonoBehaviour {
     public int index = -1;
 
+    private bool canUpdateVisuals = true;
+
     // These are the different dimensions that the node is affected by
     #region Dimensions
 
@@ -368,6 +370,12 @@ public class DataNode : MonoBehaviour {
                 HeatmapIntensity = 0.0f;
                 break;
         }
+    }
+
+    private IEnumerator ResetUpdateVisuals()
+    {
+        yield return new WaitForSeconds(0.25f);
+        canUpdateVisuals = true;
     }
 
     private void PlaceInWorldSpace()

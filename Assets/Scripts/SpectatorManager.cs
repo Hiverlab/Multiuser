@@ -56,7 +56,7 @@ public class SpectatorManager : MonoBehaviour
 
     private void Initialize()
     {
-        //ovrCameraRig.SetActive(false);
+        ovrCameraRig.SetActive(false);
 
         cameraPositionIndex = 0;
 

@@ -53,7 +53,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 		else
 		{
 			OnConnectSucessful.Invoke();
-		}
+            PhotonNetwork.JoinLobby();
+        }
 
 		PhotonNetwork.KeepAliveInBackground = 99999999;
 
@@ -241,7 +242,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
             } else
             {
                 // Disable watch
-                UIWatch.instance.gameObject.SetActive(false);
+                //UIWatch.instance.gameObject.SetActive(false);
             }
 
         } else {

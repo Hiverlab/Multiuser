@@ -3280,8 +3280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c80fe1abdd0774d87ea2dffd7d6c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToSet: Tangible Data Viz<br>one-north
-  gps: 1.297994, 103.788665
+  textToSet: Tangible Data Viz<br>Geylang
+  gps: 1.311310, 103.879139
   tabId: 734724819
 --- !u!114 &5185137941311915238
 MonoBehaviour:

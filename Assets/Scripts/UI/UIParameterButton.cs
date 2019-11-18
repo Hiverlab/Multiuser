@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Doozy.Engine.UI;
 using TMPro;
+using Photon.Pun;
 
 public class UIParameterButton : MonoBehaviour
 {
@@ -34,11 +35,14 @@ public class UIParameterButton : MonoBehaviour
 
     private string parameter;
 
-    public string Parameter {
-        get {
+    public string Parameter
+    {
+        get
+        {
             return parameter;
         }
-        set {
+        set
+        {
             parameter = value;
 
             SetText(parameter);
@@ -47,11 +51,14 @@ public class UIParameterButton : MonoBehaviour
 
     private DataNode.DimensionType dimensionType;
 
-    public DataNode.DimensionType DimensionType {
-        get {
+    public DataNode.DimensionType DimensionType
+    {
+        get
+        {
             return dimensionType;
         }
-        set {
+        set
+        {
             dimensionType = value;
         }
     }
@@ -60,20 +67,24 @@ public class UIParameterButton : MonoBehaviour
 
     #region Setters
 
-    public void SetText(string text) {
+    public void SetText(string text)
+    {
         textMesh.text = text;
 
         transform.name = text;
     }
 
-    public void SetToggleGroup(ToggleGroup toggleGroup) {
-        if (!toggle) {
+    public void SetToggleGroup(ToggleGroup toggleGroup)
+    {
+        if (!toggle)
+        {
             return;
         }
 
         toggle.group = toggleGroup;
 
-        toggle.onValueChanged.AddListener(delegate {
+        toggle.onValueChanged.AddListener(delegate
+        {
             ToggleValueChanged(toggle);
         });
     }
@@ -117,7 +128,8 @@ public class UIParameterButton : MonoBehaviour
         Debug.Log("Can press");
     }
 
-    public void PopulateDropdownOptions() {
+    public void PopulateDropdownOptions()
+    {
         // Clear options dropdown
         optionsDropdown.ClearOptions();
 
@@ -126,7 +138,8 @@ public class UIParameterButton : MonoBehaviour
 
         // Populate options list based on dimension type
         string[] dimensionTypeNames = System.Enum.GetNames(typeof(DataNode.DimensionType));
-        for (int i = 0; i < dimensionTypeNames.Length; i++) {
+        for (int i = 0; i < dimensionTypeNames.Length; i++)
+        {
             //Debug.Log(dimensionTypeNames[i]);
 
             optionsList.Add(dimensionTypeNames[i]);
@@ -141,47 +154,58 @@ public class UIParameterButton : MonoBehaviour
     #endregion
 
     #region General
-    
-    public DataNode.DimensionType GetDimensionTypeFromString(string dimensionTypeText) {
-        return (DataNode.DimensionType) System.Enum.Parse(typeof(DataNode.DimensionType), dimensionTypeText);
+
+    public DataNode.DimensionType GetDimensionTypeFromString(string dimensionTypeText)
+    {
+        return (DataNode.DimensionType)System.Enum.Parse(typeof(DataNode.DimensionType), dimensionTypeText);
     }
-    
-    public void SetParameterAndDimension() {
+
+    public void SetParameterAndDimension()
+    {
         //UIController.instance.OnParameterSelected(Parameter, DimensionType);
 
         PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetParameterAndDimension),
-                    Photon.Pun.RpcTarget.All, Parameter, DimensionType);
+            Photon.Pun.RpcTarget.All, Parameter, DimensionType);
     }
 
     #endregion
 
     #region Toggles 
 
-    public void OnValueChanged(bool value) {
-        if (value) {
+    public void OnValueChanged(bool value)
+    {
+        if (value)
+        {
             OnToggleOn();
-        } else {
+        }
+        else
+        {
             OnToggleOff();
         }
     }
 
     // When toggle is on
-    private void OnToggleOn() {
+    private void OnToggleOn()
+    {
         ShowDimensionTypePanel();
     }
 
-    private void OnToggleOff() {
+    private void OnToggleOff()
+    {
         HideDimensionTypePanel();
     }
 
-    private void ShowDimensionTypePanel() {
-        stylePanelCanvasGroup.DOFade(1.0f, Utilities.animationSpeed).OnComplete(()=> {
+    private void ShowDimensionTypePanel()
+    {
+        stylePanelCanvasGroup.DOFade(1.0f, Utilities.animationSpeed).OnComplete(() =>
+        {
             stylePanelCanvasGroup.interactable = true;
             stylePanelCanvasGroup.blocksRaycasts = true;
         });
     }
 
-    private void HideDimensionTypePanel() {
+    private void HideDimensionTypePanel()
+    {
         stylePanelCanvasGroup.interactable = true;
         stylePanelCanvasGroup.blocksRaycasts = true;
         stylePanelCanvasGroup.DOFade(0.0f, Utilities.animationSpeed);
@@ -191,7 +215,8 @@ public class UIParameterButton : MonoBehaviour
 
     #region Dropdowns
 
-    public void OnDropdownValueChanged() {
+    public void OnDropdownValueChanged()
+    {
         // Get value of dropdown
         DimensionType = GetDimensionTypeFromString(optionsDropdown.options[optionsDropdown.value].text);
 
@@ -203,7 +228,8 @@ public class UIParameterButton : MonoBehaviour
 
     #region Touch interactions
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.tag.Contains("Key"))
         {
             OnButtonPress();
@@ -212,7 +238,8 @@ public class UIParameterButton : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other) {
+    private void OnTriggerExit(Collider other)
+    {
         if (other.tag.Contains("Key"))
         {
             OnButtonRelease();
@@ -221,14 +248,19 @@ public class UIParameterButton : MonoBehaviour
         }
     }
 
-    private void ToggleValueChanged(Toggle change) {
+    private void ToggleValueChanged(Toggle change)
+    {
         // Hide dropdown options
         optionsDropdown.Hide();
 
-        if (change.isOn) {
+        if (change.isOn)
+        {
             transform.DOLocalMoveZ(-0.015f, Utilities.animationSpeed);
-        } else {
-            transform.DOLocalMoveZ(0.0f, Utilities.animationSpeed).OnComplete(() => {
+        }
+        else
+        {
+            transform.DOLocalMoveZ(0.0f, Utilities.animationSpeed).OnComplete(() =>
+            {
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
             });
         }
@@ -261,11 +293,14 @@ public class UIParameterButton : MonoBehaviour
         */
 
         // Send RPC to all saying that this button is selected
-        PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_ParameterPanelSelected),
-            Photon.Pun.RpcTarget.All, transform.name);
+        //PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_ParameterPanelSelected),
+        //    Photon.Pun.RpcTarget.All, transform.name);
+
+        OnPanelSelected(transform.name);
     }
 
-    private void OnButtonRelease() {
+    private void OnButtonRelease()
+    {
         if (canPress)
         {
             return;
@@ -295,6 +330,28 @@ public class UIParameterButton : MonoBehaviour
         }
         */
     }
+
+    /*
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(optionsDropdown.value);
+            stream.SendNext(Parameter);
+            stream.SendNext(DimensionType);
+        }
+
+        else if (stream.IsReading)
+        {
+            optionsDropdown.value = (int)stream.ReceiveNext();
+            Parameter = (string)stream.ReceiveNext();
+            DimensionType = (DataNode.DimensionType)stream.ReceiveNext();
+
+
+            Debug.Log("Receiving options value: " + optionsDropdown.value);
+        }
+    }
+    */
 
     #endregion
 }

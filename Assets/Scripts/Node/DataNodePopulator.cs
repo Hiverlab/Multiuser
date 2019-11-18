@@ -29,6 +29,9 @@ public class DataNodePopulator : MonoBehaviour {
 
     private bool isMapInitialized = false;
 
+    [SerializeField]
+    private GameObject customBuildings;
+
     public struct Properties {
         public float minimum;
         public float maximum;
@@ -54,6 +57,8 @@ public class DataNodePopulator : MonoBehaviour {
     {
         map.transform.parent.DOScale(0.0f, Utilities.animationSpeed * 2).SetEase(Ease.InOutBack);
         map.transform.parent.DOLocalMoveY(0.5f, Utilities.animationSpeed * 2).SetEase(Ease.InOutBack);
+
+        customBuildings.SetActive(false);
     }
 
     private void ShowMap()
@@ -110,6 +115,15 @@ public class DataNodePopulator : MonoBehaviour {
         Vector2d origin = Mapbox.Unity.Utilities.Conversions.StringToLatLon(locationString);
 
         float mapZoom = 17.5f;
+
+        if (locationString.Equals("1.311310, 103.879139"))
+        {
+            mapZoom = 18.5f;
+            customBuildings.SetActive(true);
+        } else
+        {
+            customBuildings.SetActive(false);
+        }
 
         // If map is not set to initialize on start and is not initialized
         if (!map.InitializeOnStart && !isMapInitialized)
