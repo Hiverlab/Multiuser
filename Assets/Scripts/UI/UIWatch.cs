@@ -112,14 +112,14 @@ public class UIWatch : MonoBehaviour
         */
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            //PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
+            //    Photon.Pun.RpcTarget.All, "1.28015, 103.845854", "2132687534");
             PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
-                Photon.Pun.RpcTarget.All, "1.28015, 103.845854", "2132687534");
+                Photon.Pun.RpcTarget.All, "1.280431, 103.848632", "2132687534");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-
-
             PhotonNetworkManager.instance.photonView.RPC(RPCManager.instance.GetRPC(RPCManager.RPC.RPC_SetMapOrigin),
                 Photon.Pun.RpcTarget.All, "1.297994, 103.788665", "734724819");
         }

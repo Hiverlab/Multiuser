@@ -50,13 +50,6 @@ public class PhotonRaiseEventComponent : MonoBehaviourPunCallbacks, IOnEventCall
 	}
 
     private IEnumerator CreateRemoteAvatarCoroutine(EventData photonEvent) {
-        // If spectator manager is active
-        if (SpectatorManager.instance.isSpectatorActive)
-        {
-            // Return
-            yield return null;
-        }
-
         yield return new WaitForSeconds(2.0f);
 
         Debug.Log("Creating remote avatar...");
@@ -70,13 +63,13 @@ public class PhotonRaiseEventComponent : MonoBehaviourPunCallbacks, IOnEventCall
         photonView.ViewID = (int)photonEvent.CustomData;
         Debug.Log("Set photon view id");
 
-        // If master target not already assigned
-        if (!SpectatorManager.instance.masterTarget)
-        {
-            Debug.Log("Assigning master target");
-            SpectatorManager.instance.SetMasterTarget(remoteAvatar);
-        }
 
+        // If spectator manager is not active, meaning this is a client
+        if (!SpectatorManager.instance.isSpectatorActive)
+        {
+            // Move this far away
+            remoteAvatar.transform.position = new Vector3(0, -1000, 0);
+        }
     }
 
 	public void OnEnable()

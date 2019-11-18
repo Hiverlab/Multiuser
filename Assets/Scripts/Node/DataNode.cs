@@ -350,10 +350,12 @@ public class DataNode : MonoBehaviour {
             case DimensionType.Scale:
                 Scale = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
                 ColorScale = 0.0f;
+                HeatmapIntensity = 0.0f;
                 break;
             case DimensionType.ColorScale:
                 ColorScale = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
                 Scale = 0.1f;
+                HeatmapIntensity = 0.0f;
                 break;
             case DimensionType.Heatmap:
                 HeatmapIntensity = DataNodePopulator.instance.GetNormalizedValue(selectedProperty, outputValue);
@@ -363,6 +365,7 @@ public class DataNode : MonoBehaviour {
             default:
                 Scale = 0.1f;
                 ColorScale = 0.0f;
+                HeatmapIntensity = 0.0f;
                 break;
         }
     }

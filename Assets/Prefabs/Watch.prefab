@@ -1609,7 +1609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textToSet: Tangible Data Viz<br>Telok Ayer
-  gps: 1.28015, 103.845854
+  gps: 1.280431, 103.848632
   tabId: 2132687534
 --- !u!114 &4804864341047046053
 MonoBehaviour:

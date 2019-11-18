@@ -17,6 +17,7 @@ public class GoogleSheetsFetcher : MonoBehaviour {
 
     public static GoogleSheetsFetcher instance;
 
+    private static bool isDownloading = false;
     private void Awake() {
         if (!instance) {
             instance = this;
@@ -150,6 +151,9 @@ public class GoogleSheetsFetcher : MonoBehaviour {
 
     private static void CompleteDownload(string csv) {
         Debug.Log("Complete download");
+        
+        isDownloading = false;
+
         List<List<string>> parsedCsv = ParseCSV(csv);
 
         // Go through first row to get keys
@@ -172,12 +176,20 @@ public class GoogleSheetsFetcher : MonoBehaviour {
 
     public static IEnumerator DownloadCSVCoroutine(string docId, Action<string> callback,
                                                    bool saveAsset = false, string assetName = null, string sheetId = null) {
+
+        if (isDownloading)
+        {
+            yield return null;
+        }
+
+        isDownloading = true;
+
         string url =
             "https://docs.google.com/spreadsheets/d/" + docId + "/export?format=csv";
 
         if (!string.IsNullOrEmpty(sheetId))
             url += "&gid=" + sheetId;
-        
+
         using (UnityWebRequest www = UnityWebRequest.Get(url)) {
             UnityWebRequestAsyncOperation asyncWebRequest = www.SendWebRequest();
 
