@@ -207,7 +207,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
         CreateLocalAvatar();
     }
 
-    public void CreateLocalAvatar() {
+    public void CreateLocalAvatar(bool isSpectator = false) {
         GameObject localAvatar = Instantiate(Resources.Load("LocalAvatar")) as GameObject;
         PhotonView photonView = localAvatar.GetComponent<PhotonView>();
 
@@ -231,8 +231,12 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
                 Reliability = true
             };
 
-            bool isEventRaised = PhotonNetwork.RaiseEvent(PhotonRaiseEventComponent.instance.InstantiateVrAvatarEventCode, photonView.ViewID, raiseEventOptions, sendOptions);
-            Debug.Log("Is event raised: " + isEventRaised);
+            // If is not spectator, then create a remote avatar
+            if (!isSpectator)
+            {
+                bool isEventRaised = PhotonNetwork.RaiseEvent(PhotonRaiseEventComponent.instance.InstantiateVrAvatarEventCode, photonView.ViewID, raiseEventOptions, sendOptions);
+                Debug.Log("Is event raised: " + isEventRaised);
+            }
 
             if (PhotonNetwork.IsMasterClient)
             {
@@ -241,7 +245,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
             } else
             {
                 // Disable watch
-                //UIWatch.instance.gameObject.SetActive(false);
+                UIWatch.instance.gameObject.SetActive(false);
             }
 
         } else {

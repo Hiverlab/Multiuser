@@ -55,7 +55,11 @@ public class PhotonRoomSyncComponent : MonoBehaviour, IPunObservable
 
 			if ((isSync || GetComponent<PhotonView>().IsMine) && !avatarIsLoaded)
 			{
-				if (!PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("isSpectator"))
+
+                PhotonNetworkManager.instance.CreateLocalAvatar(SpectatorManager.instance.isSpectatorActive);
+
+                /*
+                if (!PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("isSpectator"))
 				{
 					PhotonNetworkManager.instance.CreateLocalAvatar();
 				}
@@ -65,6 +69,7 @@ public class PhotonRoomSyncComponent : MonoBehaviour, IPunObservable
 					PhotonNetworkManager.instance.Invoke("CreateRemoteAvatarsOnStart", 0.1f);
 					
 				}
+                */
 
 				isSync = true;
 				avatarIsLoaded = true;
@@ -82,6 +87,7 @@ public class PhotonRoomSyncComponent : MonoBehaviour, IPunObservable
 
 	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
+        /*
 		if (stream.IsWriting == true)
 		{
 			stream.SendNext(sessionStartDateTime);
@@ -104,7 +110,7 @@ public class PhotonRoomSyncComponent : MonoBehaviour, IPunObservable
 				gameStateEnumIndex = -1;
 			}
 			*/
-
+            /*
 			stream.SendNext(gameStateEnumIndex);
 		}
 		else
@@ -123,5 +129,6 @@ public class PhotonRoomSyncComponent : MonoBehaviour, IPunObservable
 
 			isSync = true;
 		}
+*/
 	}
 }
