@@ -64,11 +64,11 @@ public class PhotonRaiseEventComponent : MonoBehaviourPunCallbacks, IOnEventCall
         Debug.Log("Set photon view id");
 
 
-        // If spectator manager is not active, meaning this is a client
-        if (!SpectatorManager.instance.isSpectatorActive)
+        // If this is spectator
+        if (SpectatorManager.instance.isSpectatorActive)
         {
             // Move this far away
-            remoteAvatar.transform.position = new Vector3(0, -1000, 0);
+            //remoteAvatar.transform.position = new Vector3(0, -1000, 0);
         }
     }
 

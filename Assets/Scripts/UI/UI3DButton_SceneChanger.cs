@@ -30,6 +30,9 @@ public class UI3DButton_SceneChanger : UI3DButton
         {
             PhotonNetwork.AutomaticallySyncScene = true;
 
+            // Load main scene
+            //PhotonNetwork.LoadLevel("Scene - Main");
+
             if (PhotonNetwork.IsMasterClient)
             {
                 // Load main scene

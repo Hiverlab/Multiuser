@@ -44,6 +44,8 @@ public class SpectatorManager : MonoBehaviour
     {
 #if UNITY_EDITOR
         isSpectatorActive = true;
+#elif UNITY_STANDALONE_WIN
+        isSpectatorActive = true;
 #else
         isSpectatorActive = false;
         Debug.unityLogger.logEnabled = false;

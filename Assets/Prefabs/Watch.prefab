@@ -4950,7 +4950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select a module
+  m_text: Tangible Data Viz<br>Telok Ayer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 136bce1b9e6e46d41ba4e916afbb130f, type: 2}
   m_sharedMaterial: {fileID: 5957740220823308389, guid: 136bce1b9e6e46d41ba4e916afbb130f,
@@ -5020,12 +5020,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 7115829671103707013}
-    characterCount: 15
+    characterCount: 28
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 4
+    wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -5111,7 +5111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f977818ebd87dc5468cbed221bafa676, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2bc96663b702d64a9bfc08c8774e706, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

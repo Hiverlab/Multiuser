@@ -133,9 +133,9 @@ public class UIWatch : MonoBehaviour
 
         targetTextMesh.text = "";
 
-        targetTextMesh.DOText(_currentButton.textToSet, Utilities.animationSpeed);
-
-        moduleConfirmButton.gameObject.SetActive(true);
+        targetTextMesh.DOText(_currentButton.textToSet, Utilities.animationSpeed).OnComplete(()=> {
+            moduleConfirmButton.gameObject.SetActive(true);
+        });
     }
 
     public void ConfirmModule()

@@ -42,6 +42,9 @@ public class UI3DButton_DataSetter : UI3DButton
         {
             PhotonNetwork.AutomaticallySyncScene = true;
 
+            // Load main scene
+            //PhotonNetwork.LoadLevel("Scene - Mapbox");
+
             if (PhotonNetwork.IsMasterClient)
             {
                 // Load main scene

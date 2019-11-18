@@ -94,6 +94,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsVisible = false;
         roomOptions.MaxPlayers = 8;
+        roomOptions.IsOpen = true;
         PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
     }
 
@@ -246,6 +247,9 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
             {
                 // Disable watch
                 UIWatch.instance.gameObject.SetActive(false);
+
+                // Disable parent (Model is here)
+                UIWatch.instance.transform.parent.gameObject.SetActive(false);
             }
 
         } else {
@@ -345,6 +349,13 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 	{
 		base.OnLeftRoom();
 		//SceneController.instance.SwitchScene(0);
+
+        // If is master
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 0)
+        {
+            // Close the room
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
 	}
 
 	public override void OnCreateRoomFailed(short returnCode, string message)

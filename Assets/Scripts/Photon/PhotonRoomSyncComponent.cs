@@ -50,15 +50,19 @@ public class PhotonRoomSyncComponent : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
+
         if (PhotonNetwork.InRoom)// && SceneManager.GetActiveScene().buildIndex == 1)
 		{
 
 			if ((isSync || GetComponent<PhotonView>().IsMine) && !avatarIsLoaded)
 			{
 
-                PhotonNetworkManager.instance.CreateLocalAvatar(SpectatorManager.instance.isSpectatorActive);
+//                PhotonNetworkManager.instance.CreateLocalAvatar(SpectatorManager.instance.isSpectatorActive);
 
-                /*
                 if (!PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("isSpectator"))
 				{
 					PhotonNetworkManager.instance.CreateLocalAvatar();
@@ -69,7 +73,6 @@ public class PhotonRoomSyncComponent : MonoBehaviour, IPunObservable
 					PhotonNetworkManager.instance.Invoke("CreateRemoteAvatarsOnStart", 0.1f);
 					
 				}
-                */
 
 				isSync = true;
 				avatarIsLoaded = true;
